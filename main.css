@@ -40,18 +40,20 @@ body {
     border: 2px solid #28a745;
     border-radius: 5px;
     font-size: 16px;
-    margin: 0px;
-    margin-left: 40px;
+    margin: 0;
+    margin-left: 20px;
+    margin-right: 400px;
 }
-
+.button-container{
+    margin-left: 800px;
+}
 .header-button {
     background-color: transparent;
     color: #ffffff;
     border: none;
     cursor: pointer;
-    margin-left: 10px;
+    margin-left: 40px;
     font-size: 30px;
-    
 }
 
 .header-button:hover {
@@ -76,3 +78,44 @@ body {
 .section h2 {
     margin-top: 0;
 }
+@media only screen and (max-width: 768px) {
+    .sections-container {
+        flex-direction: column;
+    }
+
+    .section {
+        width: calc(100% - 40px);
+    }
+
+    .search-bar {
+        width: calc(100% - 40px);
+        margin: 10px 0;
+    }
+
+    .button-container {
+        margin-left: 20px;
+    }
+
+    .header-button {
+        font-size: 1.2em;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+    .container {
+        padding: 0 40px;
+    }
+
+    .logo {
+        font-size: 2.5em;
+    }
+
+    .search-bar {
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    .button-container {
+        margin-left: 250px;
+    }
+}
+
