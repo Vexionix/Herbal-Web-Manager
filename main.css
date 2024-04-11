@@ -8,7 +8,11 @@ body {
 .header {
     background-color: #28a745;
     color: #ffffff;
-    padding: 10px 20px;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .container {
@@ -24,8 +28,9 @@ body {
 
 .logo {
     font-size: 50px;
-    margin: 0;
-
+    margin: 0px;
+    padding: 0px;
+    margin-right: 20px;
 }
 
 .search-bar {
@@ -35,6 +40,8 @@ body {
     border: 2px solid #28a745;
     border-radius: 5px;
     font-size: 16px;
+    margin: 0px;
+    margin-left: 40px;
 }
 
 .header-button {
@@ -42,8 +49,9 @@ body {
     color: #ffffff;
     border: none;
     cursor: pointer;
-    margin-right: 10px;
+    margin-left: 10px;
     font-size: 30px;
+    
 }
 
 .header-button:hover {
