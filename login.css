@@ -75,3 +75,15 @@ body {
     color: #ffffff;
     text-decoration: none;
 }
+
+footer {
+    background-color: #107d01;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+footer .footer-container p {
+    color: #fff0f0;
+}
