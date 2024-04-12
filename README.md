@@ -1,3 +1,9 @@
-T.B.A.
+# Herbal Web Manager (HeMa)
 
-Will contain details of our intended structure, will describe our idea and direction with the implementation of the project, as well as the features we added/will add, and will be modified over time. At least this is the initial plan, things are still to be discussed. 
+Project done by Perju Mircea-Stefan and Hulubei-Tudor (A4) for Web Technologies. The project represents a web page that revolves around plants. For now functionalities and our views are TBD as we just started but we will keep updating as we go on.
+
+# Current objectives
+
+- Implement the design of the home, about, help, contact, sign up and login pages
+- Talk about the way we want to go about the project and task sharing
+- Setup a proper working space with a few standards, such as dividing in branches and talking about our merge requests to make sure we know what the other person is doing.
