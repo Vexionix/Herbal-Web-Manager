@@ -5,7 +5,7 @@ body {
 }
 
 .header {
-    background-color: #379e36;
+    background-image: url('assets/background.jpg');
     margin: 0px;
 }
 
@@ -14,8 +14,21 @@ body {
     padding: 10px;
 }
 
+@font-face {
+    font-family: the-bold-font;
+    src: url(assets/the_bold_font.otf);
+}
+
 .logo {
     text-align: center;
+    font-family: the-bold-font;
+    font-size: 40px;
+    background: -webkit-linear-gradient(#14a102, #04d91d, #03f41f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #000000;
 }
 
 .search-bar-container {
@@ -61,4 +74,16 @@ body {
 .redirect-button a {
     color: #ffffff;
     text-decoration: none;
+}
+
+footer {
+    background-color: #107d01;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+footer .footer-container p {
+    color: #fff0f0;
 }
