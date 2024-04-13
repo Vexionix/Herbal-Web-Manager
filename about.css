@@ -1,0 +1,150 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('assets/background.jpg');
+}
+
+.header-container {
+    background-image: url('assets/background.jpg');
+    margin: 0px;
+}
+
+.header-top {
+    background-color: #107d01;
+    padding: 10px;
+}
+
+@font-face {
+    font-family: the-bold-font;
+    src: url(assets/the_bold_font.otf);
+}
+
+.logo {
+    text-align: center;
+    font-family: the-bold-font;
+    font-size: 40px;
+    background: -webkit-linear-gradient(#14a102, #04d91d, #03f41f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #000000;
+}
+
+.search-bar-container {
+    text-align: center;
+}
+
+.search-bar-container input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.search-bar-container button {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.redirect-nav {
+    margin-top: 10px;
+    background-color: #107d01;
+    padding: 5px;
+}
+
+.redirect-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.redirect-button {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.redirect-button a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.login-section {
+    background: #ffffff;
+    text-align: center;
+    border: 5px solid #000000;
+    width: 400px;
+    height: 0 auto;
+    margin: 0 auto;
+}
+
+.login-section label {
+    color: #000000;
+}
+
+footer {
+    background-color: #107d01;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+footer .footer-container p {
+    color: #fff0f0;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+h1 {
+  font-size: 36px;
+}
+
+p {
+  font-size: 18px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Hover Animation */
+section:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Fade-in Animation */
+main {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
