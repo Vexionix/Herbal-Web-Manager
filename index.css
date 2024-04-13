@@ -104,16 +104,35 @@ body {
     border-radius: 40px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    flex-direction: column;
+    border: 5px solid red;
 }
 
 .section {
     width: calc(33.33% - 20px);
     background-color: #ffffff;
-    padding: 20px;
     margin-top: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
+    margin-left: 10px;
+    border: 5px solid black;
+    height: 37%;
+}
+
+.section > p{
+    border: 2px solid pink;
+    position: relative;
+    width: 50%;
+}
+
+.photo{
+    border: 2px solid blue;
+    display: flex;
+    width: 43%;
+    height: 50%;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    left: 54%;
+    bottom: 55%;
 }
 
 .section h2 {
@@ -136,6 +155,7 @@ footer .footer-container p {
     display: none; 
 }
 .container {
+    display: flex;
     border-radius: 40px;
     max-width: 100px auto;
     margin: 20px auto;
@@ -143,6 +163,7 @@ footer .footer-container p {
 }
 
 .like-button{
+    position: relative;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -154,6 +175,7 @@ footer .footer-container p {
     width: 300px;
     height: 100px;
     background-size: cover;
+    bottom: 50%;
 }
 
 .like-button:hover{
