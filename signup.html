@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeMa signup</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="header">
+        <header class="header-top"></header>
+        <div class="logo">
+            <p>Herbal Web Manager</p>
+        </div>
+        <div class="search-bar-container">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+        <nav class="redirect-nav">
+            <ul>
+                <li class="redirect-button"><a href="index.html">Home</a></li>
+                <li class="redirect-button"><a href="#">About</a></li>
+                <li class="redirect-button"><a href="#">Help</a></li>
+                <li class="redirect-button"><a href="#">Contact</a></li>
+                <li class="redirect-button"><a href="signup.html">Sign up</a></li>
+                <li class="redirect-button"><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <h2>Sign Up or sign up with:</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <button class="google-btn">Sign up with Google</button>
+            </div>
+            
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name" required>
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" required>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+              <option value="" disabled selected>Select your gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Sign Up">
+          </div><p>Already have an account? <a href="login.html">Log in here</a>.</p>
+        </form>
+      </div>
+      
+      <br>
+</body>
+<footer>
+    <div class="footer-container">
+        <p>
+            © 2024 Herbal Web Manager, Perju Mircea-Stefan & Hulubei Tudor
+            2A4 UAIC FII
+        </p>
+    </div>
+</footer>
+</html>
