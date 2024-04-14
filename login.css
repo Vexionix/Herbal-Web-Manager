@@ -76,6 +76,11 @@ body {
     text-decoration: none;
 }
 
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
 .login-section {
     background-color: #f0f0f0;
     text-align: center;
@@ -85,6 +90,7 @@ body {
     margin: 0 auto;
     padding: 30px;
     margin-top: 35px;
+    padding-bottom: 2.5rem;
 }
 
 .login-section h2 {
@@ -116,14 +122,14 @@ body {
 
 footer {
     background-color: #107d01;
-    position: fixed;
+    position: absolute;
     bottom: 0;
-    text-align: center;
     width: 100%;
 }
 
 footer .footer-container p {
     color: #fff0f0;
+    text-align: center;
 }
 
 /* Desktop */
@@ -285,7 +291,6 @@ footer .footer-container p {
 @media screen and (max-width: 767px) {
     body {
         width: 100%;
-        margin-bottom: 20px;
     }
 
     .header-container {
@@ -315,12 +320,12 @@ footer .footer-container p {
     .redirect-nav {
         margin-top: 10px;
         background-color: #107d01;
-        padding: 5px;
+        padding: 5px 10px;
     }
 
     .redirect-button {
         font-size: 80%;
-        margin: 0 10px;
+        margin: 0 auto;
     }
 
     .login-section {
