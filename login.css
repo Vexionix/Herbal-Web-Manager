@@ -1,10 +1,9 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('assets/bgmirror.png');
-    background-size: cover;
     background-position: center;
-    background-color: #629e2f;
+    background: #85A878;
+    background-position: cover;
 }
 
 .header-container {
@@ -117,12 +116,9 @@ body {
 
 footer {
     background-color: #107d01;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
     position: fixed;
     bottom: 0;
-    left: 0;
+    text-align: center;
     width: 100%;
 }
 
@@ -354,11 +350,7 @@ footer .footer-container p {
         border-radius: 3px;
     }
 
-    .footer-container {
-        overflow: hidden;
-    }
-
     .footer-container p {
-        font-size: 75%
+        font-size: 80%
     }
 }
