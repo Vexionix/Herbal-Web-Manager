@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #85A878;
 }
 
 
@@ -85,6 +85,8 @@ body {
 .button-container{
     margin-left: 500px;
 }
+
+
 .header-button {
     background-color: transparent;
     color: #ffffff;
@@ -94,45 +96,83 @@ body {
     font-size: 30px;
 }
 
-.header-button:hover {
-    text-decoration: underline;
+.test:hover {
     scale: 1.1;
     box-shadow: 2px 2px 2px 2px #666666;
 }
 
-.sections-container {
-    border-radius: 40px;
+.section:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+    
+.table {
     display: flex;
-    flex-wrap: wrap;
-    border: 5px solid red;
-}
-
-.section {
-    width: calc(33.33% - 20px);
-    background-color: #ffffff;
-    margin-top: 20px;
-    border-radius: 10px;
-    margin-left: 10px;
-    border: 5px solid black;
-    height: 37%;
-}
-
-.section > p{
-    border: 2px solid pink;
-    position: relative;
-    width: 50%;
-}
-
-.photo{
-    border: 2px solid blue;
-    display: flex;
-    width: 43%;
-    height: 50%;
-    align-content: center;
+    flex-direction: column;
     justify-content: center;
+}
+
+.table-row {
+    display: flex;
+    justify-content: center;
+}
+
+.test {
+    margin-top: 10px;
+    background: #DFF8D5;
+    display: flex;
+    flex-direction: column;
+    width: 40%; 
+    margin-left: 20px; 
+    margin-right: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 2%;
+}
+
+.test:last-child {
+    margin-right: 0;
+}
+
+.test .row1 {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    width: 100%;
+}
+
+.test .row1 div {
+    width: 50%;
+    border-radius: 2%;
+    padding-left: 20px;
+}
+
+.test .row2 {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    width: 100%;
+}
+
+.test .row2 .fourth {
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 9px;
+}
+
+.photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    left: 54%;
-    bottom: 55%;
+    padding-right: 9px;
+}
+
+.photo img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .section h2 {
@@ -140,26 +180,8 @@ body {
     margin-top: 0;
 }
 
-footer {
-    background-color: #107d01;
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-footer .footer-container p {
-    color: #fff0f0;
-}
 .favorite-button {
     display: none; 
-}
-.container {
-    display: flex;
-    border-radius: 40px;
-    max-width: 100px auto;
-    margin: 20px auto;
-    padding: 0 20px;
 }
 
 .like-button{
@@ -175,7 +197,6 @@ footer .footer-container p {
     width: 300px;
     height: 100px;
     background-size: cover;
-    bottom: 50%;
 }
 
 .like-button:hover{
@@ -248,7 +269,7 @@ footer .footer-container p {
 }
 
 .like5 {
-background-size: cover;
+    background-size: cover;
     animation: fillLike 1s forwards;
 }
 
@@ -294,45 +315,64 @@ background-size: cover;
     }
 }
 
+footer {
+    background-color: #107d01;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+footer .footer-container p {
+    color: #fff0f0;
+}
+
 
 @media only screen and (max-width: 994px) {
     .sections-container {
         flex-direction: column;
+        align-items: center; 
     }
-
+    
     .section {
         width: calc(100% - 40px);
+        margin-left: 20px; 
+        margin-right: 20px; 
     }
-
-    .search-bar {
-        width: calc(100% - 40px);
-        margin: 10px 0;
+    
+    .search-bar-container {
+        margin-top: 20px;
     }
-
+    
+    .search-bar-container input[type="text"],
+    .search-bar-container button {
+        width: calc(100% - 40px); 
+        margin-bottom: 10px;
+    }
+    
     .button-container {
         margin-left: 20px;
     }
-
+    
     .header-button {
         font-size: 1.2em;
     }
 }
+
 @media only screen and (min-width: 769px) and (max-width: 1200px) {
     .container {
         padding: 0 40px;
     }
-
+    
     .logo {
         font-size: 2.5em;
     }
-
-    .search-bar {
+    
+    .search-bar-container {
         margin-right: 20px;
-        margin-bottom: 20px;
     }
-
+    
     .button-container {
         margin-left: 250px;
     }
 }
-
