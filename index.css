@@ -4,7 +4,6 @@ body {
     padding: 0;
     background-position: center;
     background: #85A878;
-    background-position: cover;
 }
 
 .header-container {
@@ -91,7 +90,7 @@ body {
 }
 
 .test:hover {
-    scale: 1.1;
+    transform: scale(1.1);
     box-shadow: 2px 2px 2px 2px #666666;
 }
 
