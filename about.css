@@ -2,93 +2,79 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-image: url('assets/background.jpg');
+  background-color: #85A878;
 }
 
 .header-container {
-    background-image: url('assets/background.jpg');
-    margin: 0px;
+  background-image: url('assets/background.jpg');
+  margin: 0;
 }
 
 .header-top {
-    background-color: #107d01;
-    padding: 10px;
+  background-color: #107d01;
+  padding: 10px;
 }
 
 @font-face {
-    font-family: the-bold-font;
-    src: url(assets/the_bold_font.otf);
+  font-family: the-bold-font;
+  src: url(assets/the_bold_font.otf);
 }
 
 .logo {
-    text-align: center;
-    font-family: the-bold-font;
-    font-size: 40px;
-    background: -webkit-linear-gradient(#14a102, #04d91d, #03f41f);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: #000000;
+  text-align: center;
+  font-family: the-bold-font;
+  font-size: 40px;
+  background: linear-gradient(#14a102, #04d91d, #03f41f);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px #000000;
 }
 
 .search-bar-container {
-    text-align: center;
+  text-align: center;
 }
 
 .search-bar-container input[type="text"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 300px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 250px;
 }
 
 .search-bar-container button {
-    padding: 5px 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 
 .redirect-nav {
-    margin-top: 10px;
-    background-color: #107d01;
-    padding: 5px;
+  margin-top: 5px;
+  background-color: #107d01;
+  padding: 5px;
 }
 
 .redirect-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .redirect-button {
-    margin: 0 10px;
-    cursor: pointer;
+  margin: 0 10px;
+  cursor: pointer;
 }
 
 .redirect-button a {
-    color: #ffffff;
-    text-decoration: none;
+  color: #ffffff;
+  text-decoration: none;
 }
 
-.login-section {
-    background: #ffffff;
-    text-align: center;
-    border: 5px solid #000000;
-    width: 400px;
-    height: 0 auto;
-    margin: 0 auto;
-}
-
-.login-section label {
-    color: #000000;
-}
 
 footer {
     background-color: #107d01;
@@ -104,37 +90,54 @@ footer {
 footer .footer-container p {
     color: #fff0f0;
 }
+main {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start; 
+  padding: 10vh 5vw;
+}
+
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2vh;
 }
-
 
 h1 {
   font-size: 36px;
 }
 
-p {
-  font-size: 18px;
-}
-
 section {
-  margin-bottom: 40px;
+  margin-bottom: 10vh;
+  background-color: #DFF8D5;
+  border-radius: 2%;    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+h2{
+  font-size: 3vh;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1vh;
+  padding-bottom: 1vh;
+}
+section p{
+    font-size: 1.8vh;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh;
+    padding-top: 0.1vh;
+  
 }
 
-/* Hover Animation */
 section:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease-in-out;
 }
 
-/* Fade-in Animation */
 main {
   opacity: 0;
   animation: fadeIn 1s forwards;
@@ -146,5 +149,162 @@ main {
   }
   to {
     opacity: 1;
+  }
+}
+
+footer {
+  background-color: #107d01;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+
+footer .footer-container p {
+  color: #fff0f0;
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {
+  body {
+      width: 100%;
+  }
+
+  .header-container {
+      margin: 0;
+  }
+
+  .header-top {
+      padding: 10px;
+  }
+
+  .logo {
+    text-align: center;
+    font-family: the-bold-font;
+    font-size: 40px;
+    background: linear-gradient(#14a102, #04d91d, #03f41f);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px #000000;
+  }
+
+  .search-bar-container input[type="text"] {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 250px;
+  }
+
+  .search-bar-container button {
+      padding: 5px 10px;
+      border-radius: 10px;
+  }
+
+  .redirect-nav {
+      margin-top: 10px;
+      background-color: #107d01;
+      padding: 5px;
+  }
+
+  .redirect-button {
+      margin: 0 10px;
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  body {
+      width: 100%;
+  }
+
+  .header-container {
+      margin: 0;
+  }
+
+  .header-top {
+      padding: 20px;
+  }
+
+  .logo {
+      font-size: 60px;
+      -webkit-text-stroke-width: 4px;
+  }
+
+  .search-bar-container input[type="text"] {
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 20px;
+      width: 400px;
+  }
+
+  .search-bar-container button {
+      padding: 10px 20px;
+      border-radius: 20px;
+  }
+
+  .redirect-nav {
+      margin-top: 20px;
+      background-color: #107d01;
+      padding: 10px;
+  }
+
+  .redirect-button {
+      font-size: 180%;
+      margin: 0 20px;
+  }
+
+  .footer-container {
+      overflow: hidden;
+  }
+
+  .footer-container p {
+      font-size: 150%;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+  body {
+      width: 100%;
+      margin-bottom: 20px;
+  }
+
+  .header-container {
+      margin: 0;
+  }
+
+  .header-top {
+      padding: 10px;
+  }
+
+  .logo {
+      font-size: 250%;
+  }
+
+  .search-bar-container input[type="text"] {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 50%;
+  }
+
+  .search-bar-container button {
+      padding: 5px 10px;
+      border-radius: 10px;
+  }
+
+  .redirect-nav {
+      margin-top: 10px;
+      background-color: #107d01;
+      padding: 5px;
+  }
+
+  .redirect-button {
+      font-size: 80%;
+      margin: 0 10px;
+  }
+
+  .footer-container p {
+      font-size: 80%
   }
 }
