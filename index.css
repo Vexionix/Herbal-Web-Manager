@@ -86,7 +86,7 @@ body {
 }
 
 .test:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
     box-shadow: 2px 2px 2px 2px #666666;
 }
 
