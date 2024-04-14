@@ -2,8 +2,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #85A878;
+    background-position: center;
+    background: #85A878;
+    background-position: cover;
 }
+
 .header-container {
     background-image: url('assets/background.jpg');
     margin: 0;
@@ -74,7 +77,16 @@ body {
     text-decoration: none;
 }
 
-.button-container{
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.page-content-container {
+    padding-bottom: 5rem;
+}
+
+.button-container {
     margin-left: 500px;
 }
 
@@ -86,8 +98,8 @@ body {
 .section:hover {
     transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
-  }
-    
+}
+
 .table {
     display: flex;
     flex-direction: column;
@@ -105,16 +117,12 @@ body {
     background: #DFF8D5;
     display: flex;
     flex-direction: column;
-    width: 40%; 
-    margin-left: 20px; 
+    width: 40%;
+    margin-left: 20px;
     margin-right: 40px;
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 2%;
-}
-
-.test:last-child {
-    margin-right: 0;
 }
 
 .test .row1 {
@@ -138,7 +146,7 @@ body {
 }
 
 .test .row2 .fourth {
-    width: 100%; 
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -164,10 +172,10 @@ body {
 }
 
 .favorite-button {
-    display: none; 
+    display: none;
 }
 
-.like-button{
+.like-button {
     position: relative;
     display: flex;
     justify-content: space-evenly;
@@ -182,12 +190,12 @@ body {
     background-size: cover;
 }
 
-.like-button:hover{
+.like-button:hover {
     color: green;
     box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.5);
 }
 
-.like-button:active{
+.like-button:active {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -232,16 +240,16 @@ body {
 
 .like_text {
     position: relative;
-    left:15%;
+    left: 15%;
     padding-left: 10px;
 }
 
 
-.favorite-button:checked + .favorite-label .like_empty {
+.favorite-button:checked+.favorite-label .like_empty {
     display: none;
 }
 
-.favorite-button:checked + .favorite-label .like_fill {
+.favorite-button:checked+.favorite-label .like_fill {
     display: block;
 }
 
@@ -260,18 +268,23 @@ body {
     0% {
         background-image: url('assets/like_outline.png');
     }
+
     20% {
         background-image: url('assets/like_outline.png');
     }
+
     40% {
         background-image: url('assets/like_filled_quater-removebg-preview.png');
     }
+
     60% {
         background-image: url('assets/like_filled_half-removebg-preview.png');
     }
+
     80% {
         background-image: url('assets/like_filled_75_v2-removebg-preview.png');
     }
+
     100% {
         background-image: url('assets/like_filled_v2-removebg.png');
     }
@@ -281,18 +294,23 @@ body {
     0% {
         background-image: url('assets/like_filled_v2-removebg.png');
     }
+
     20% {
         background-image: url('assets/like_filled_75_v2-removebg-preview.png');
     }
+
     40% {
         background-image: url('assets/like_filled_half-removebg-preview.png');
     }
+
     60% {
         background-image: url('assets/like_filled_quater-removebg-preview.png');
     }
+
     80% {
         background-image: url('assets/like_outline.png');
     }
+
     100% {
         background-image: url('assets/like_outline.png');
     }
@@ -300,14 +318,14 @@ body {
 
 footer {
     background-color: #107d01;
-    position: fixed;
+    position: absolute;
     bottom: 0;
-    text-align: center;
     width: 100%;
 }
 
 footer .footer-container p {
     color: #fff0f0;
+    text-align: center;
 }
 
 /* Desktop */
@@ -406,7 +424,6 @@ footer .footer-container p {
 @media screen and (max-width: 767px) {
     body {
         width: 100%;
-        margin-bottom: 20px;
     }
 
     .header-container {
@@ -436,12 +453,12 @@ footer .footer-container p {
     .redirect-nav {
         margin-top: 10px;
         background-color: #107d01;
-        padding: 5px;
+        padding: 5px 10px;
     }
 
     .redirect-button {
         font-size: 80%;
-        margin: 0 10px;
+        margin: 0 auto;
     }
 
     .footer-container p {
