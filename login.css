@@ -7,8 +7,6 @@ body {
     background-color: #629e2f;
 }
 
-
-
 .header-container {
     background-image: url('assets/background.jpg');
     margin: 0;
@@ -28,12 +26,10 @@ body {
     text-align: center;
     font-family: the-bold-font;
     font-size: 40px;
-    background: -webkit-linear-gradient(#14a102, #04d91d, #03f41f);
+    background: linear-gradient(#14a102, #04d91d, #03f41f);
     background-clip: text;
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: #000000;
+    -webkit-text-stroke: 2px #000000;
 }
 
 .search-bar-container {
@@ -150,7 +146,6 @@ footer .footer-container p {
 
     .logo {
         font-size: 40px;
-        -webkit-text-stroke-width: 2px;
     }
 
     .search-bar-container input[type="text"] {
@@ -307,7 +302,6 @@ footer .footer-container p {
 
     .logo {
         font-size: 250%;
-        -webkit-text-stroke-width: 2px;
     }
 
     .search-bar-container input[type="text"] {
