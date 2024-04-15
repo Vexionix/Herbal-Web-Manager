@@ -110,6 +110,80 @@ body {
     font-weight: bold;
 }
 
+.container .name-container {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.container .name-container .first-name-container {
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.container .name-container .last-name-container {
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.name-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.container .name-container input[type="text"],
+.container .name-container input[type="email"],
+.container .name-container input[type="password"],
+.container .name-container select {
+    text-align: center;
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.container .email-gender-container {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.container .email-gender-container .email-container {
+    width: 75%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.container .email-gender-container .gender-container {
+    width: 25%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.email-gender-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.container .email-gender-container input[type="text"],
+.container .email-gender-container input[type="email"],
+.container .email-gender-container input[type="password"],
+.container .email-gender-container select {
+    text-align: center;
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"],
@@ -218,6 +292,14 @@ footer .footer-container p {
 
     .container {
         width: 80%;
+    }
+
+    .container .name-container .first-name-container {
+        width: 45%;
+    }
+
+    .container .name-container .last-name-container {
+        width: 45%;
     }
 
     .footer-container p {
