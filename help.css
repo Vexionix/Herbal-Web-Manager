@@ -4,6 +4,7 @@ body {
   padding: 0;
   background-position: center;
   background: #85A878;
+  cursor: url('assets/cursor.png'), auto;
 }
 
 .header-container {

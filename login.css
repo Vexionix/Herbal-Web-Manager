@@ -3,6 +3,7 @@ body {
     padding: 0;
     background-position: center;
     background: #85A878;
+    cursor: url('assets/cursor.png'), auto;
 }
 
 .header-container {
@@ -100,6 +101,7 @@ body {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    cursor: url('assets/cursor.png'), auto;
 }
 
 .login-section input {
