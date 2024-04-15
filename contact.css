@@ -149,80 +149,24 @@ footer .footer-container p {
 
 /* Desktop */
 @media screen and (min-width: 1024px) {
-  body {
-    width: 100%;
-  }
-
-  .header-container {
-    margin: 0;
-  }
-
-  .header-top {
-    padding: 10px;
-  }
-
-  .logo {
-    font-size: 40px;
-  }
-
-  .search-bar-container input[type="text"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 250px;
-  }
-
-  .search-bar-container button {
-    padding: 5px 10px;
-    border-radius: 10px;
-  }
-
-  .redirect-nav {
-    margin-top: 10px;
-    background-color: #107d01;
-    padding: 5px;
-  }
-
-  .redirect-button {
-    margin: 0 10px;
+  .container {
+    width: 60%;
   }
 }
 
 /* Tablet */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  body {
-    width: 100%;
-  }
-
-  .header-container {
-    margin: 0;
-  }
-
-  .header-top {
-    padding: 20px;
-  }
-
   .logo {
     font-size: 60px;
     -webkit-text-stroke-width: 4px;
   }
 
   .search-bar-container input[type="text"] {
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 20px;
-    width: 400px;
-  }
-
-  .search-bar-container button {
-    padding: 10px 20px;
-    border-radius: 20px;
+    width: 50%;
   }
 
   .redirect-nav {
     margin-top: 20px;
-    background-color: #107d01;
-    padding: 10px;
   }
 
   .redirect-button {
@@ -230,8 +174,8 @@ footer .footer-container p {
     margin: 0 20px;
   }
 
-  .footer-container {
-    overflow: hidden;
+  .container {
+    width: 80%;
   }
 
   .footer-container p {
@@ -241,43 +185,20 @@ footer .footer-container p {
 
 /* Mobile */
 @media screen and (max-width: 767px) {
-  body {
-    width: 100%;
-  }
-
-  .header-container {
-    margin: 0;
-  }
-
-  .header-top {
-    padding: 10px;
-  }
-
   .logo {
     font-size: 250%;
   }
 
   .search-bar-container input[type="text"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
     width: 50%;
-  }
-
-  .search-bar-container button {
-    padding: 5px 10px;
-    border-radius: 10px;
-  }
-
-  .redirect-nav {
-    margin-top: 10px;
-    background-color: #107d01;
-    padding: 5px 10px;
   }
 
   .redirect-button {
     font-size: 80%;
-    margin: 0 auto;
+  }
+
+  .container {
+    width: 80%;
   }
 
   .footer-container p {

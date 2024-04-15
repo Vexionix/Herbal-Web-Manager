@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeMa signup</title>
-    <link rel="stylesheet" href="signup.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HeMa signup</title>
+  <link rel="stylesheet" href="signup.css">
 </head>
+
 <body>
-    <div class="header">
-        <header class="header-top"></header>
-        <div class="logo">
-            <p>Herbal Web Manager</p>
-        </div>
-        <div class="search-bar-container">
-            <input type="text" placeholder="Search...">
-            <button>Search</button>
-        </div>
-        <nav class="redirect-nav">
-            <ul>
-                <li class="redirect-button"><a href="index.html">Home</a></li>
-                <li class="redirect-button"><a href="about.html">About</a></li>
-                <li class="redirect-button"><a href="help.html">Help</a></li>
-                <li class="redirect-button"><a href="contact.html">Contact</a></li>
-                <li class="redirect-button"><a href="signup.html">Sign up</a></li>
-                <li class="redirect-button"><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
+  <header>
+    <div class="header-container">
+      <div class="header-top"></div>
+      <div class="logo">
+        <p>Herbal Web Manager</p>
+      </div>
+      <div class="search-bar-container">
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+      </div>
+      <nav class="redirect-nav">
+        <ul>
+          <li class="redirect-button"><a href="index.html">Home</a></li>
+          <li class="redirect-button"><a href="about.html">About</a></li>
+          <li class="redirect-button"><a href="help.html">Help</a></li>
+          <li class="redirect-button"><a href="contact.html">Contact</a></li>
+          <li class="redirect-button"><a href="signup.html">Sign up</a></li>
+          <li class="redirect-button"><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="container">
-        <h2>Sign Up or sign up with:</h2>
+  </header>
+
+  <div class="page-container">
+    <div class="signup-section">
+      <div class="container">
+        <h2>Sign up</h2>
         <form action="login.html" method="get">
-            <div class="form-group">
-                <button class="google-btn">Sign up with Google</button>
-            </div>
-            <div class="form-group">
-                <label for="username">User Name</label>
-                <input type="text" id="username" name="username" required>
-              </div>
+          <div class="form-group">
+            <label for="username">User Name</label>
+            <input type="text" id="username" name="username" placeholder="Enter username" required>
+          </div>
           <div class="form-group">
             <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first-name" required>
+            <input type="text" id="first-name" name="first-name" placeholder="Enter first name" required>
           </div>
           <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last-name" required>
+            <input type="text" id="last-name" name="last-name" placeholder="Enter last name" required>
           </div>
           <div class="form-group">
             <label for="gender">Gender</label>
@@ -56,15 +60,16 @@
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" placeholder="Enter email" required>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" placeholder="Enter password" required>
           </div>
           <div class="form-group">
             <label for="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirm-password" required>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password"
+              required>
           </div>
           <div class="form-group">
             <input type="submit" value="Sign Up">
@@ -72,15 +77,15 @@
           <p>Already have an account? <a href="login.html">Log in here</a>.</p>
         </form>
       </div>
-      
-      <br>
-      <footer>
-          <div class="footer-container">
-              <p>
-                  © 2024 Herbal Web Manager, Perju Mircea-Stefan & Hulubei Tudor
-                  2A4 UAIC FII
-              </p>
-          </div>
-      </footer>
+    </div>
+    <footer>
+      <div class="footer-container">
+        <p>
+          © 2024 Herbal Web Manager, Perju Mircea-Stefan & Hulubei Tudor 2A4 UAIC FII
+        </p>
+      </div>
+    </footer>
+  </div>
 </body>
+
 </html>
