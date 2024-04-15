@@ -86,7 +86,7 @@ body {
 }
 
 .cell:hover {
-    transform: scale(1.1);
+    transform: scale(1.01);
     box-shadow: 2px 2px 2px 2px #666666;
 }
 
@@ -158,24 +158,25 @@ body {
 
 .favorite-button {
     display: none;
-
+    width: 20vw;
+    height: 10vh;
 }
 
 .like-button {
     position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-        border-radius: 10px;
-        box-shadow: 0 6px black;
-        background-color: rgb(207, 255, 207);
-        padding: 4px 4px;
-        transition: all 0.3s ease;
-        width: 20vw;
-        height: 10vh;
-        background-size: cover;
-        border: 1px solid #000000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+     border-radius: 10px;
+     box-shadow: 0 6px black;
+     background-color: rgb(207, 255, 207);
+     padding: 4px 4px;
+     transition: all 0.3s ease;
+     width: 20vw;
+     height: 10vh;
+     background-size: cover;
+     border: 1px solid #000000;
 }
 
 .like-button:hover {
@@ -191,22 +192,18 @@ body {
 .favorite-label {
     position: relative;
     display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    flex-wrap: wrap;
     cursor: pointer;
     padding: 0%;
     width: 20vw;
     height: 10vh;
-    border: 3px solid red;
 }
 
 .like_empty {
     display: block;
-    justify-content: start; /* Align the content to the left */
-    align-items:self-start;
     position:relative;
-    left: 5%;
 }
 
 .like_fill {
@@ -217,23 +214,25 @@ body {
 .like0,
 .like5 {
     display: flex;
-    justify-content: left;
-    align-content: start;
-    position: absolute;
-    top: -59%;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    top: -100%;
     bottom: 100%;
     left: -15%;
-    width: 3.8411458333333335vw;
+    width: 4vw;
     height: 10.136986301369863vh;
     background-size: contain;
 }
 
 .like_text {
     display: flex;
-    justify-content: left;
+    justify-content: right;
     align-content: start;
     position: relative;
+    margin-left: 1%;
     padding-left: 25%;
+    border: 2px solid pink;
 }
 
 
@@ -319,12 +318,28 @@ footer .footer-container p {
     color: #fff0f0;
     text-align: center;
 }
-
 /* Desktop */
-@media screen and (min-width: 1024px) {}
+@media screen and (min-width: 1579px){
+    .like-button {
+        width:  288px; 
+        height: 96px; 
+    }
+    
+    .favorite-label {
+        width: 384px; 
+        height: 96px; 
+    }
+    
+    .like0,
+    .like5 {
+        width: 70px; 
+        height: 90px;
+    }
+
+}
 
 /* Tablet */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) and (max-width: 1578px) {
     .logo {
         font-size: 60px;
         -webkit-text-stroke-width: 4px;
@@ -373,49 +388,22 @@ footer .footer-container p {
         align-items: center;
         padding-bottom: 5%;
     }
-
     .like-button {
-        position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            flex-wrap: wrap;
-            border-radius: 10px;
-            box-shadow: 0 6px black;
-            background-color: rgb(207, 255, 207);
-            padding: 4px 4px;
-            transition: all 0.3s ease;
-            width: 30vw;
-            height: 10vh;
-            background-size: cover;
-            border: 1px solid #000000;
+        width:  288px; 
+        height: 96px; 
     }
-
+    
     .favorite-label {
-        position: relative;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-wrap: wrap;
-        cursor: pointer;
-        padding: 0%;
-        width: 40vw;
-        height: 10vh;
-        border: 3px solid red;
+        width: 384px; 
+        height: 96px; 
     }
     
     .like0,
     .like5 {
-        width: 8vw;
-        height: 7vh;
+        width: 70px; 
+        height: 90px;
     }
-    .like_text {
-        display: flex;
-        justify-content: left;
-        align-content: start;
-        position: relative;
-        padding-left: 25%;
-    }
+
 }
 
 /* Mobile */
@@ -443,7 +431,7 @@ footer .footer-container p {
     }
 
     .cell {
-        margin-top: 1.36986301369863vh;
+        margin-top: 5%;
         background: #DFF8D5;
         display: flex;
         flex-direction: column;
@@ -451,12 +439,26 @@ footer .footer-container p {
         margin-left: 2.5%;
         margin-right: 2.5%;
         margin-top: 2.5%;
-        margin-bottom: 2.5%;
+        margin-bottom: 5%;
         border-radius: 2%;
+        margin: 10%;
     }
     
+    .cell .row1 {
+        flex-direction: column;
+        padding-bottom: 10% ;
+    }
+    
+    .cell .row1 div {
+        width: 90%;
+        border-radius: 2%;
+        padding: 0%;
+        margin: 0 auto;
+    }
+
     .cell .row2 .fourth {
         width: 100%;
+        flex-direction: column;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -464,45 +466,18 @@ footer .footer-container p {
     }
 
     .like-button {
-        position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            flex-wrap: wrap;
-            border-radius: 10px;
-            box-shadow: 0 6px black;
-            background-color: rgb(207, 255, 207);
-            padding: 4px 4px;
-            transition: all 0.3s ease;
-            width: 30vw;
-            height: 10vh;
-            background-size: cover;
-            border: 1px solid #000000;
+        width:  270px; 
+        height: 96px; 
     }
-
+    
     .favorite-label {
-        position: relative;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-wrap: wrap;
-        cursor: pointer;
-        padding: 0%;
-        width: 40vw;
-        height: 10vh;
-        border: 3px solid red;
+        width: 374px; 
+        height: 96px; 
     }
     
     .like0,
     .like5 {
-        width: 8vw;
-        height: 7vh;
-    }
-    .like_text {
-        display: flex;
-        justify-content: left;
-        align-content: start;
-        position: relative;
-        padding-left: 25%;
+        width: 55px; 
+        height: 70px; 
     }
 }
