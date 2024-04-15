@@ -1,5 +1,3 @@
-  HeMa Documentation 
-
 HeMa Documentation
 ==================
 
