@@ -341,7 +341,7 @@ footer .footer-container p {
 }
 
 /* Tablet */
-@media screen and (min-width: 768px) and (max-width: 1023) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
     .logo {
         font-size: 60px;
         -webkit-text-stroke-width: 4px;
