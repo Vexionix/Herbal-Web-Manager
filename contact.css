@@ -142,6 +142,10 @@ body {
   font-size: 16px;
 }
 
+.contact-container button[type="submit"]:hover {
+  background-color: #5e1aaf;
+}
+
 main {
   opacity: 0;
   animation: fadeIn 1s forwards;
