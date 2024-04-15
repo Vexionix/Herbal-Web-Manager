@@ -85,7 +85,7 @@ body {
     padding-bottom: 5rem;
 }
 
-.test:hover {
+.cell:hover {
     transform: scale(1.1);
     box-shadow: 2px 2px 2px 2px #666666;
 }
@@ -102,8 +102,8 @@ body {
     justify-content: center;
 }
 
-.test {
-    margin-top: 10px;
+.cell {
+    margin-top: 1.36986301369863vh;
     background: #DFF8D5;
     display: flex;
     flex-direction: column;
@@ -115,27 +115,27 @@ body {
     border-radius: 2%;
 }
 
-.test .row1 {
+.cell .row1 {
     display: flex;
     flex-direction: row;
     text-align: left;
     width: 100%;
 }
 
-.test .row1 div {
+.cell .row1 div {
     width: 50%;
     border-radius: 2%;
-    padding-left: 20px;
+    padding-left: 1.3020833333333333vw;
 }
 
-.test .row2 {
+.cell .row2 {
     display: flex;
     flex-direction: row;
     text-align: center;
     width: 100%;
 }
 
-.test .row2 .fourth {
+.cell .row2 .fourth {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -148,7 +148,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    padding-right: 9px;
+    padding-right: 0.5859375vw;
 }
 
 .photo img {
@@ -179,7 +179,7 @@ body {
 
 .like-button:hover {
     color: green;
-    box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0.6510416666666666vw 0.410958904109589vh rgba(255, 255, 255, 0.5);
 }
 
 .like-button:active {
@@ -220,15 +220,15 @@ body {
     top: -59%;
     bottom: 100%;
     left: -15%;
-    width: 59px;
-    height: 74px;
+    width: 3.8411458333333335vw;
+    height: 10.136986301369863vh;
     background-size: contain;
 }
 
 .like_text {
     position: relative;
     left: 15%;
-    padding-left: 10px;
+    padding-left: 0.6510416666666666vw;
 }
 
 
@@ -340,6 +340,74 @@ footer .footer-container p {
 
     .footer-container p {
         font-size: 150%;
+    }
+
+    .table-row{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cell {
+        margin-top: 1.36986301369863vh;
+        background: #DFF8D5;
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        margin-top: 2.5%;
+        margin-bottom: 2.5%;
+        border-radius: 2%;
+    }
+    .cell .row2 .fourth {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 5%;
+    }
+
+    .like-button {
+        position: relative;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        border-radius: 10px;
+        box-shadow: 0 6px black;
+        background-color: rgb(207, 255, 207);
+        padding: 4px 4px;
+        transition: all 0.3s ease;
+        width: 50%;
+        height: 88%;
+        background-size: cover;
+        border: 1px solid #000000;
+    }    
+    
+    .favorite-label {
+        width: 100%;
+        height: 100%;
+        align-content: center;
+        width: 7vw;
+        height: 6vh;
+        top: -100%;
+        bottom: 100%;
+        left: -20%;
+        cursor: pointer;
+        font-size: 120%;
+        padding-left: 20%;
+        padding-top: 15%;
+        padding-right: 15%;
+        padding-bottom: 10%;
+        position: relative; 
+        
+    }
+   
+    .like_text {
+        position: relative;
+        left: 15%;
+        padding-left: 0vw;
     }
 }
 
