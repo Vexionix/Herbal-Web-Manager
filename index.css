@@ -163,18 +163,19 @@ body {
 
 .like-button {
     position: relative;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    border-radius: 10px;
-    box-shadow: 0 6px black;
-    background-color: rgb(207, 255, 207);
-    padding: 4px 4px;
-    transition: all 0.3s ease;
-    width: 38%;
-    height: 88%;
-    background-size: cover;
-    border: 1px solid #000000;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        border-radius: 10px;
+        box-shadow: 0 6px black;
+        background-color: rgb(207, 255, 207);
+        padding: 4px 4px;
+        transition: all 0.3s ease;
+        width: 20vw;
+        height: 10vh;
+        background-size: cover;
+        border: 1px solid #000000;
 }
 
 .like-button:hover {
@@ -188,22 +189,24 @@ body {
 }
 
 .favorite-label {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    font-size: 120%;
-    padding-left: 20%;
-    padding-top: 15%;
-    padding-right: 15%;
-    padding-bottom: 10%;
     position: relative;
-    top: 0;
-    left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+    padding: 0%;
+    width: 20vw;
+    height: 10vh;
+    border: 3px solid red;
 }
 
 .like_empty {
     display: block;
-    position: relative;
+    justify-content: start; /* Align the content to the left */
+    align-items:self-start;
+    position:relative;
+    left: 5%;
 }
 
 .like_fill {
@@ -215,7 +218,7 @@ body {
 .like5 {
     display: flex;
     justify-content: left;
-    align-content: center;
+    align-content: start;
     position: absolute;
     top: -59%;
     bottom: 100%;
@@ -226,9 +229,11 @@ body {
 }
 
 .like_text {
+    display: flex;
+    justify-content: left;
+    align-content: start;
     position: relative;
-    left: 15%;
-    padding-left: 0.6510416666666666vw;
+    padding-left: 25%;
 }
 
 
@@ -371,43 +376,45 @@ footer .footer-container p {
 
     .like-button {
         position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            border-radius: 10px;
+            box-shadow: 0 6px black;
+            background-color: rgb(207, 255, 207);
+            padding: 4px 4px;
+            transition: all 0.3s ease;
+            width: 30vw;
+            height: 10vh;
+            background-size: cover;
+            border: 1px solid #000000;
+    }
+
+    .favorite-label {
+        position: relative;
         display: flex;
         justify-content: space-evenly;
+        align-items: center;
         flex-wrap: wrap;
-        border-radius: 10px;
-        box-shadow: 0 6px black;
-        background-color: rgb(207, 255, 207);
-        padding: 4px 4px;
-        transition: all 0.3s ease;
-        width: 50%;
-        height: 88%;
-        background-size: cover;
-        border: 1px solid #000000;
-    }    
-    
-    .favorite-label {
-        width: 100%;
-        height: 100%;
-        align-content: center;
-        width: 7vw;
-        height: 6vh;
-        top: -100%;
-        bottom: 100%;
-        left: -20%;
         cursor: pointer;
-        font-size: 120%;
-        padding-left: 20%;
-        padding-top: 15%;
-        padding-right: 15%;
-        padding-bottom: 10%;
-        position: relative; 
-        
+        padding: 0%;
+        width: 40vw;
+        height: 10vh;
+        border: 3px solid red;
     }
-   
+    
+    .like0,
+    .like5 {
+        width: 8vw;
+        height: 7vh;
+    }
     .like_text {
+        display: flex;
+        justify-content: left;
+        align-content: start;
         position: relative;
-        left: 15%;
-        padding-left: 0vw;
+        padding-left: 25%;
     }
 }
 
@@ -427,5 +434,75 @@ footer .footer-container p {
 
     .footer-container p {
         font-size: 80%
+    }
+    .table-row{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cell {
+        margin-top: 1.36986301369863vh;
+        background: #DFF8D5;
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        margin-top: 2.5%;
+        margin-bottom: 2.5%;
+        border-radius: 2%;
+    }
+    
+    .cell .row2 .fourth {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 5%;
+    }
+
+    .like-button {
+        position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            border-radius: 10px;
+            box-shadow: 0 6px black;
+            background-color: rgb(207, 255, 207);
+            padding: 4px 4px;
+            transition: all 0.3s ease;
+            width: 30vw;
+            height: 10vh;
+            background-size: cover;
+            border: 1px solid #000000;
+    }
+
+    .favorite-label {
+        position: relative;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        cursor: pointer;
+        padding: 0%;
+        width: 40vw;
+        height: 10vh;
+        border: 3px solid red;
+    }
+    
+    .like0,
+    .like5 {
+        width: 8vw;
+        height: 7vh;
+    }
+    .like_text {
+        display: flex;
+        justify-content: left;
+        align-content: start;
+        position: relative;
+        padding-left: 25%;
     }
 }
