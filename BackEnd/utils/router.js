@@ -1,4 +1,4 @@
-import { handleRequest } from '../routes.js';
+import { handleRequest } from './requestHandler.js';
 import { handleContact, handleContactForm } from '../routes/contact.js';
 import { handleSignup, handleSignupForm } from '../routes/signup.js';
 import { handleLogin, handleLoginForm } from '../routes/login.js';

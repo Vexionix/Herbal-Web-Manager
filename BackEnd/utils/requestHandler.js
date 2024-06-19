@@ -1,8 +1,8 @@
 import fs from 'fs/promises';
 import url from 'url';
 import path from 'path';
-import { getContentType } from './utils/contentTypes.js';
-import { handleError } from './utils/errorHandlers.js';
+import { getContentType } from './contentTypes.js';
+import { handleError } from './errorHandlers.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
