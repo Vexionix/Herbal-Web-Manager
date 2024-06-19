@@ -4,11 +4,11 @@ body {
   padding: 0;
   background-position: center;
   background: #85A878;
-  cursor: url('assets/cursor.png'), auto;
+  cursor: url('../assets/cursor.png'), auto;
 }
 
 .header-container {
-  background-image: url('assets/background.jpg');
+  background-image: url('../assets/background.jpg');
   margin: 0;
 }
 
@@ -19,7 +19,7 @@ body {
 
 @font-face {
   font-family: the-bold-font;
-  src: url(assets/the_bold_font.otf);
+  src: url(../assets/the_bold_font.otf);
 }
 
 .logo {
