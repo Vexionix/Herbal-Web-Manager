@@ -1,8 +1,8 @@
 import fs from 'fs/promises';
 import url from 'url';
 import path from 'path';
-import { getContentType } from './contentTypes.js';
-import { handleError } from './errorHandlers.js';
+import { getContentType } from './utils/contentTypes.js';
+import { handleError } from './utils/errorHandlers.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,6 +19,8 @@ const getFilePath = (requestPath) => {
         return path.join(plantsDirectory, requestPath.replace('/plants', ''));
     } else if (requestPath === '/about') {
         return path.join(frontEndDirectory, 'about.html');
+    } else if (requestPath === '/help') {
+    return path.join(frontEndDirectory, 'help.html'); 
     } else {
         return path.join(frontEndDirectory, requestPath);
     }
@@ -38,6 +40,7 @@ export const handleRequest = async (req, res) => {
             res.end();
             return;
         }
+
 
         const filePath = getFilePath(requestPath);
         if (!filePath.startsWith(frontEndDirectory) && !filePath.startsWith(assetsDirectory) && !filePath.startsWith(plantsDirectory)) {
