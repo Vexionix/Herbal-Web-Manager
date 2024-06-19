@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --env-file=.env index"
+    "start": "nodemon --env-file=.env server"
   },
   "author": "Perju Mircea Stefan & Tudor Hulubei",
   "license": "MIT",
