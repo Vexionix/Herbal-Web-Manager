@@ -7,7 +7,7 @@ import { handleSignup } from './routes/signup.js';
 import { handleLogin } from './routes/login.js';
 import { serveImage, serveCSS } from './utils/staticFileMiddleware.js';
 
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT;
 
 const server = http.createServer((req, res) => {
     console.log(req.url);
