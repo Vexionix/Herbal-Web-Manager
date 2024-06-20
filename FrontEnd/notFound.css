@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-position: center;
+    background: #85A878;
+    cursor: url('../assets/cursor.png'), auto;
+}
+
+.header-container {
+    background-image: url('../assets/background.jpg');
+    margin: 0;
+}
+
+.header-top {
+    background-color: #107d01;
+    padding: 10px;
+}
+
+@font-face {
+    font-family: the-bold-font;
+    src: url(../assets/the_bold_font.otf);
+}
+
+.logo {
+    text-align: center;
+    font-family: the-bold-font;
+    font-size: 40px;
+    background: linear-gradient(#14a102, #04d91d, #03f41f);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px #000000;
+}
+
+.search-bar-container {
+    text-align: center;
+}
+
+.search-bar-container input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.search-bar-container button {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.redirect-nav {
+    margin-top: 5px;
+    background-color: #107d01;
+    padding: 5px;
+}
+
+.redirect-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.redirect-button {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.redirect-button a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+.error-text h1 {
+    font-size: 10em;
+    margin-bottom: 0.5em;
+}
+
+.error-text h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+.error-text p {
+    margin-bottom: 1em;
+    font-size: 1.2em;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 0.5em 1em;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+   
+}
+
+.home-button:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+#background-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
