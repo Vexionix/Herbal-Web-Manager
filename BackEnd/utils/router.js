@@ -21,7 +21,7 @@ const routes = {
     }
 };
 
-export const router = (req, res) => {
+export const router = async (req, res) => {
     const { method, url } = req;
     const routeHandler = routes[method] && routes[method][url];
     if (routeHandler) {

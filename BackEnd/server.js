@@ -3,7 +3,7 @@ import { router } from './utils/router.js';
 
 const PORT = process.env.PORT;
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
     router(req, res);
 });
 
