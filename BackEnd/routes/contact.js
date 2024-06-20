@@ -23,6 +23,7 @@ export const handleContact = async (req, res) => {
         handleError(error, res);
     }
 };
+
 export const handleContactForm = async (req, res) => {
     if (req.method === 'POST') {
         let body = '';
@@ -33,6 +34,12 @@ export const handleContactForm = async (req, res) => {
         req.on('end', async () => {
             const parsedBody = querystring.parse(body);
             const { 'full-name': fullName, email, subject, message } = parsedBody;
+
+            if (!fullName || !email || !subject || !message) {
+                res.writeHead(400, { 'Content-Type': 'text/plain' });
+                res.end('All fields are required.');
+                return;
+            }
 
             let transporter = nodemailer.createTransport({
                 service: 'gmail',
