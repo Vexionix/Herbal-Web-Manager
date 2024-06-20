@@ -2,6 +2,7 @@ import { handleRequest } from './requestHandler.js';
 import { handleContact, handleContactForm } from '../routes/contact.js';
 import { handleSignup, handleSignupForm } from '../routes/signup.js';
 import { handleLogin, handleLoginForm } from '../routes/login.js';
+import { serveStaticFile } from './staticFileMiddleware.js';
 
 const routes = {
     'GET': {
@@ -26,6 +27,6 @@ export const router = (req, res) => {
     if (routeHandler) {
         routeHandler(req, res);
     } else {
-        handleRequest(req, res);
+        serveStaticFile(req, res);
     }
 };
