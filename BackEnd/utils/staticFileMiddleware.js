@@ -10,42 +10,29 @@ const frontEndDirectory = path.join(__dirname, '..', "..", 'FrontEnd');
 const assetsDirectory = path.join(__dirname, '..', "..", 'assets');
 const plantsDirectory = path.join(__dirname, '..', "..", 'plants');
 
-export const serveImage = async (req, res) => {
+export const serveStaticFile = async (req, res) => {
     const requestPath = url.parse(req.url).pathname;
-    let filePath;
 
+    if (req.url === '/favicon.ico') {
+        res.writeHead(204);
+        res.end();
+        return;
+    }   
+    
+    let filePath;
     if (requestPath.startsWith('/assets')) {
         filePath = path.join(assetsDirectory, requestPath.replace('/assets', ''));
     } else if (requestPath.startsWith('/plants')) {
         filePath = path.join(plantsDirectory, requestPath.replace('/plants', ''));
-    }
-
-    try {
-        if (filePath) {
-            const data = await fs.readFile(filePath);
-            const contentType = getContentType(filePath);
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.write(data);
-            res.end();
-        } else {
-            throw new Error('File not found');
-        }
-    } catch (error) {
-        handleError(error, res);
-    }
-};
-
-export const serveCSS = async (req, res) => {
-    const requestPath = url.parse(req.url).pathname;
-    let filePath;
-
-    if (requestPath.endsWith('.css')) {
+    } else if (requestPath.endsWith('.css')) {
         filePath = path.join(frontEndDirectory, requestPath);
+    } else if (requestPath.endsWith('.js')) {
+        filePath = path.join(__dirname, '..', '..', requestPath);
     }
 
     try {
         if (filePath) {
-            const data = await fs.readFile(filePath);
+            const data = await fs.readFile(filePath); 
             const contentType = getContentType(filePath);
             res.writeHead(200, { 'Content-Type': contentType });
             res.write(data);

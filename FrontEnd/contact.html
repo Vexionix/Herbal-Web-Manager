@@ -34,7 +34,7 @@
     <div class="page-container">
         <div class="contact-container">
             <h2>Reach out to us</h2>
-            <form action="/contact" method="post">
+            <form id="contact-form" action="/contact" method="post">
                 <div class="first-row">
                     <div class="full-name-container">
                         <label for="full-name">Full Name:</label>
@@ -50,6 +50,7 @@
                 <label for="message">Message:</label>
                 <input type="text" id="message" name="message" placeholder="Enter message" required>
                 <button type="submit">Send Message</button>
+                <div id="status-message" style="margin-top: 10px;"></div>
             </form>
         </div>
         <footer>
@@ -60,6 +61,7 @@
             </div>
         </footer>
     </div>
+    <script src="../BackEnd/scripts/contact.js"></script>
 </body>
 
 </html>

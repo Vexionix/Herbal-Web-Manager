@@ -23,7 +23,6 @@ export const handleContact = async (req, res) => {
         handleError(error, res);
     }
 };
-
 export const handleContactForm = async (req, res) => {
     if (req.method === 'POST') {
         let body = '';
@@ -52,14 +51,15 @@ export const handleContactForm = async (req, res) => {
 
             try {
                 await transporter.sendMail(mailOptions);
-                res.writeHead(200, { 'Content-Type': 'text/html' });
-                res.end('<h1>Message sent successfully!</h1>');
+                res.writeHead(200, { 'Content-Type': 'text/plain' });
+                res.end('Message sent successfully!');
             } catch (error) {
-                handleError(error, res);
+                res.writeHead(500, { 'Content-Type': 'text/plain' });
+                res.end('Failed to send message.');
             }
         });
     } else {
-        res.writeHead(405, { 'Content-Type': 'text/html' });
-        res.end('<h1>Method Not Allowed</h1>');
+        res.writeHead(405, { 'Content-Type': 'text/plain' });
+        res.end('Method Not Allowed');
     }
 };
