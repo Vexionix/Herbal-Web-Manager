@@ -10,6 +10,7 @@ const __dirname = path.dirname(__filename);
 const frontEndDirectory = path.join(__dirname, '..', "..", 'FrontEnd');
 const assetsDirectory = path.join(__dirname, '..', "..", 'assets');
 const plantsDirectory = path.join(__dirname, '..', "..", 'plants');
+const dataDirectory = path.join(__dirname, '..', "..", 'data');
 
 export const serveStaticFile = async (req, res) => {
     const requestPath = url.parse(req.url).pathname;
@@ -28,6 +29,8 @@ export const serveStaticFile = async (req, res) => {
     } else if (requestPath.endsWith('.css')) {
         filePath = path.join(frontEndDirectory, requestPath);
     } else if (requestPath.endsWith('.js')) {
+        filePath = path.join(__dirname, '..', '..', requestPath);
+    } else if (requestPath.endsWith('.json')) {
         filePath = path.join(__dirname, '..', '..', requestPath);
     }
 

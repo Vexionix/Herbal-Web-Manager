@@ -3,6 +3,7 @@ import { handleContact, handleContactForm } from '../routes/contact.js';
 import { handleSignup, handleSignupForm } from '../routes/signup.js';
 import { handleLogin, handleLoginForm } from '../routes/login.js';
 import { handleNotFound } from '../routes/notFound.js';
+import { handlePlantApi } from './handlePlantApi.js';
 import { serveStaticFile } from './staticFileMiddleware.js';
 
 const routes = {
@@ -14,6 +15,7 @@ const routes = {
         '/signup': handleSignup,
         '/login': handleLogin,
         '/notFound': handleNotFound,
+        '/api/plants': handlePlantApi,
         // Add more static paths here if needed
     },
     'POST': {
