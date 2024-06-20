@@ -12,6 +12,7 @@ const routes = {
         '/contact': handleContact,
         '/signup': handleSignup,
         '/login': handleLogin,
+        '/notFound': handleNotFound,
         // Add more static paths here if needed
     },
     'POST': {

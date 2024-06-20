@@ -15,7 +15,9 @@ const getFilePath = (requestPath) => {
         return path.join(frontEndDirectory, 'about.html');
     } else if (requestPath === '/help') {
     return path.join(frontEndDirectory, 'help.html'); 
-    } else {
+    }else if (requestPath === '/notFound') {
+        return path.join(frontEndDirectory, 'notFound.html');  
+    }else {
         return path.join(frontEndDirectory, requestPath);
     }
 };
