@@ -3,6 +3,7 @@ import url from 'url';
 import fs from 'fs/promises';
 import { getContentType } from './contentTypes.js';
 import { handleError } from './errorHandlers.js';
+import { handleNotFound } from '../routes/notFound.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,8 +38,9 @@ export const serveStaticFile = async (req, res) => {
             res.writeHead(200, { 'Content-Type': contentType });
             res.write(data);
             res.end();
-        } else {
-            throw new Error('File not found');
+        } else {            
+            handleNotFound(null, res);
+            return;
         }
     } catch (error) {
         handleError(error, res);

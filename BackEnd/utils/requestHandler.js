@@ -33,7 +33,8 @@ export const handleRequest = async (req, res) => {
         const requestPath = url.parse(req.url).pathname;
         const filePath = getFilePath(requestPath);
         if (!filePath.startsWith(frontEndDirectory)) {
-            throw new Error('File not found');
+            handleNotFound(null, res);
+            return;
         }
 
         const data = await fs.readFile(filePath);
