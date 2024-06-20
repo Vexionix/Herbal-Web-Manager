@@ -2,6 +2,7 @@ import { handleRequest } from './requestHandler.js';
 import { handleContact, handleContactForm } from '../routes/contact.js';
 import { handleSignup, handleSignupForm } from '../routes/signup.js';
 import { handleLogin, handleLoginForm } from '../routes/login.js';
+import { handleNotFound } from '../routes/notFound.js';
 import { serveStaticFile } from './staticFileMiddleware.js';
 
 const routes = {
