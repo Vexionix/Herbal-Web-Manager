@@ -6,9 +6,9 @@ import { handleError } from './errorHandlers.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const frontEndDirectory = path.join(__dirname, '..', 'FrontEnd');
-const assetsDirectory = path.join(__dirname, '..', 'assets');
-const plantsDirectory = path.join(__dirname, '..', 'plants');
+const frontEndDirectory = path.join(__dirname, '..', '..', 'FrontEnd');
+const assetsDirectory = path.join(__dirname, '..', '..', 'assets');
+const plantsDirectory = path.join(__dirname, '..', '..', 'plants');
 
 const getFilePath = (requestPath) => {
     if (requestPath === '/') {
