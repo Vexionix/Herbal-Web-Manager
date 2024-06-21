@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page - Plants and Users Management</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <div class="header-top"></div>
+      <div class="logo">
+        <p>Herbal Web Manager</p>
+      </div>
+      <div class="search-bar-container">
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+      </div>
+      <nav class="redirect-nav">
+        <ul>
+          <li class="redirect-button"><a href="/">Home</a></li>
+          <li class="redirect-button"><a href="about">About</a></li>
+          <li class="redirect-button"><a href="help">Help</a></li>
+          <li class="redirect-button"><a href="contact">Contact</a></li>
+          <li class="redirect-button"><a href="signup">Sign up</a></li>
+          <li class="redirect-button"><a href="login">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-container">
+    <main>
+      <section id="plants" class="container">
+        <h2>Manage Plants</h2>
+        <button id="addPlantBtn">Add New Plant</button>
+        <table id="plantsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Species</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Plant rows will be dynamically added here -->
+          </tbody>
+        </table>
+      </section>
+
+      <section id="users" class="container">
+        <h2>Manage Users</h2>
+        <button id="addUserBtn">Add New User</button>
+        <table id="usersTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- User rows will be dynamically added here -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <p>
+          © 2024 Herbal Web Manager, Perju Mircea-Stefan & Hulubei Tudor 2A4 UAIC FII
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal for adding/editing plants -->
+  <div id="plantModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Add/Edit Plant</h2>
+      <form id="plantForm">
+        <label for="plantName">Name:</label>
+        <input type="text" id="plantName" name="plantName" required>
+        <label for="plantSpecies">Species:</label>
+        <input type="text" id="plantSpecies" name="plantSpecies" required>
+        <label for="plantColor">Color:</label>
+        <input type="text" id="plantColor" name="plantColor" required>
+        <label for="plantDescription">Description:</label>
+        <input type="text" id="plantDescription" name="plantDescription" required>
+        <label for="plantFullURL">Full URL:</label>
+        <input type="text" id="plantFullURL" name="plantFullURL" required>
+        <label for="plantRegularURL">Regular URL:</label>
+        <input type="text" id="plantRegularURL" name="plantRegularURL" required>
+        <label for="plantSmallURL">Small URL:</label>
+        <input type="text" id="plantSmallURL" name="plantSmallURL" required>
+        <label for="plantTags">Tags (comma-separated):</label>
+        <input type="text" id="plantTags" name="plantTags" required>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal for adding/editing users -->
+  <div id="userModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Add/Edit User</h2>
+      <form id="userForm">
+        <label for="userName">Username:</label>
+        <input type="text" id="userName" name="userName" required>
+        <label for="userPassword">Password:</label>
+        <input type="password" id="userPassword" name="userPassword" required>
+        <label for="userDescription">Description:</label>
+        <input type="text" id="userDescription" name="userDescription">
+        <label for="userEmail">Email:</label>
+        <input type="email" id="userEmail" name="userEmail" required>
+        <label for="userProfileImg">Profile Image URL:</label>
+        <input type="text" id="userProfileImg" name="userProfileImg">
+        <label for="userLikedPhotos">Liked Photos (comma-separated IDs):</label>
+        <input type="text" id="userLikedPhotos" name="userLikedPhotos">
+        <label for="userCollections">Collections (comma-separated IDs):</label>
+        <input type="text" id="userCollections" name="userCollections">
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="../BackEnd/scripts/admin.js"></script>
+</body>
+
+</html>
