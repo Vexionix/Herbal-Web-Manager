@@ -7,6 +7,7 @@ import { handlePlantApi } from './handlePlantApi.js';
 import { serveStaticFile } from './staticFileMiddleware.js';
 import { handleUnsplashRequest } from './unsplashHandler.js';
 import url from 'url';
+import { handleAdmin } from '../routes/admin.js';
 
 const routes = {
     'GET': {
@@ -20,6 +21,7 @@ const routes = {
         '/notFound': handleNotFound,
         '/api/plants': handlePlantApi,
         '/api/unsplash': handleUnsplashRequest,
+        '/admin': handleAdmin
         // Add more static paths here if needed
     },
     'POST': {
