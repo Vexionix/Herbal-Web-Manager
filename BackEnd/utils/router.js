@@ -5,6 +5,8 @@ import { handleLogin, handleLoginForm } from '../routes/login.js';
 import { handleNotFound } from '../routes/notFound.js';
 import { handlePlantApi } from './handlePlantApi.js';
 import { serveStaticFile } from './staticFileMiddleware.js';
+import { handleUnsplashRequest } from './unsplashHandler.js';
+import url from 'url';
 
 const routes = {
     'GET': {
@@ -17,6 +19,7 @@ const routes = {
         '/login': handleLogin,
         '/notFound': handleNotFound,
         '/api/plants': handlePlantApi,
+        '/api/unsplash': handleUnsplashRequest,
         // Add more static paths here if needed
     },
     'POST': {
@@ -27,8 +30,10 @@ const routes = {
 };
 
 export const router = async (req, res) => {
-    const { method, url } = req;
-    const routeHandler = routes[method] && routes[method][url];
+    const { method } = req;
+    const parsedUrl = url.parse(req.url);
+    const pathname = parsedUrl.pathname;
+    const routeHandler = routes[method] && routes[method][pathname];
     if (routeHandler) {
         routeHandler(req, res);
     } else {

@@ -58,5 +58,11 @@
         "name": "Bamboo Palm (Chamaedorea seifrizii)",
         "description": "Tropical palm with feathery fronds. Thrives in bright, indirect light but can tolerate lower light conditions. Requires consistently moist soil and high humidity. Filters indoor air pollutants, improving air quality. Adds a touch of tropical elegance to indoor spaces. Ideal for offices or living rooms with bright, indirect light. Symbolizes peace and tranquility.",
         "image": "/plants/bamboo.jpg"
+    },
+    {
+        "id": 11,
+        "name": "Bamboo Palm (Chamaedorea seifrizii)",
+        "description": "Tropical palm with feathery fronds. Thrives in bright, indirect light but can tolerate lower light conditions. Requires consistently moist soil and high humidity. Filters indoor air pollutants, improving air quality. Adds a touch of tropical elegance to indoor spaces. Ideal for offices or living rooms with bright, indirect light. Symbolizes peace and tranquility.",
+        "image": "/plants/bamboo.jpg"
     }
 ]

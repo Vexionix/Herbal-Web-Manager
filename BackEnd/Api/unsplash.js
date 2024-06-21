@@ -2,7 +2,7 @@ import { createApi } from 'unsplash-js';
 import nodeFetch from 'node-fetch';
 
 const unsplash = createApi({
-  accessKey: 'Nm602E5_-NjFMvAyz7McHReLbu9yraIVouISTXGpzq0',
+  accessKey: '75kvQkPoyfaPtW92qFmRXRQvlNWNv0iKzRerzTPznW0',
   fetch: nodeFetch,
 });
 
