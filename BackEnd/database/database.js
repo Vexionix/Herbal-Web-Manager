@@ -1,41 +1,42 @@
+const mongoose = require('mongoose');
 
-const { Pool, Client } = require("pg");
+// Replace 'your-connection-string-here' with your actual MongoDB connection string.
+const uri = 'mongodb://localhost:27017/nodedemo';  // Adjust the URI as per your MongoDB setup
 
-const credentials = {
-  user: "postgres",
-  host: "localhost",
-  database: "nodedemo",
-  password: "yourpassword",
-  port: 5432,
-};
+// Function to connect to MongoDB using Mongoose
+async function connectWithMongoose() {
+  try {
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,  // Optional, use if needed
+      useFindAndModify: false  // Optional, use if needed
+    });
+    console.log('Connected to MongoDB');
 
+    // Example operation: Create a simple schema and model
+    const testSchema = new mongoose.Schema({ name: String });
+    const TestModel = mongoose.model('Test', testSchema);
 
-async function pool() {
-  const pool = new Pool(credentials);
-  const now = await pool.query("SELECT NOW()");
-  await pool.end();
+    // Example operation: Insert a document
+    const doc = new TestModel({ name: 'Mongoose Test' });
+    await doc.save();
 
-  return now;
+    // Example operation: Find the inserted document
+    const result = await TestModel.findOne({ name: 'Mongoose Test' });
+    console.log('Found document:', result);
+
+    // Close the connection
+    await mongoose.connection.close();
+    console.log('Connection closed');
+  } catch (err) {
+    console.error('Failed to connect to MongoDB', err);
+  }
 }
 
-
-async function client() {
-  const client = new Client(credentials);
-  await client.connect();
-  const now = await client.query("SELECT NOW()");
-  await client.end();
-
-  return now;
-}
-
-
-
+// Immediately Invoked Function Expression (IIFE) to run the connection function
 (async () => {
-  const poolResult = await poolDemo();
-  console.log("Time with pool: " + poolResult.rows[0]["now"]);
-
-  const clientResult = await clientDemo();
-  console.log("Time with client: " + clientResult.rows[0]["now"]);
+  await connectWithMongoose();
 })();
 
-export default { pool, client };
+module.exports = { connectWithMongoose };

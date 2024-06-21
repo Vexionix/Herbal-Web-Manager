@@ -1,11 +1,11 @@
 import { connect } from '../database/mongooseDatabase.js'; // Import the connect function
 import User from '../models/userModel.js'; // Import your User model
 
-async function createNewUser(username, email, age) {
-    await connect(); // Ensure connection is established before operations
+async function createNewUser(username, password, description, liked_photos, collections, profile_img, email) {
+    await connect();
 
     try {
-        const newUser = await User.create({ username, email, age });
+        const newUser = await User.create({ username, password, description, liked_photos, collections, profile_img, email });
         console.log('User created successfully:', newUser);
         return newUser;
     } catch (error) {
@@ -27,13 +27,14 @@ async function findAllUsers() {
     }
 }
 
-async function updateUserByUsername(username, newAge) {
+
+async function updateUserByUsername(username, newData) {
     await connect();
 
     try {
         const updatedUser = await User.findOneAndUpdate(
             { username },
-            { age: newAge },
+            newData,
             { new: true }
         );
         console.log('User updated successfully:', updatedUser);
@@ -43,6 +44,7 @@ async function updateUserByUsername(username, newAge) {
         throw error;
     }
 }
+
 
 async function deleteUserByUsername(username) {
     await connect();
@@ -55,24 +57,85 @@ async function deleteUserByUsername(username) {
         console.error('Error deleting user:', error);
         throw error;
     }
-    async function closeDatabaseConnection() {
-    try {
-        await mongoose.connection.close();
-        console.log('Disconnected from MongoDB');
-    } catch (error) {
-        console.error('Error closing database connection:', error);
-        throw error;
-    }
-}
 }
 
-async function closeDatabaseConnection() {
+async function addLikedPhoto(username, photoId) {
+    await connect();
+
     try {
-        await mongoose.connection.close();
-        console.log('Disconnected from MongoDB');
+        const updatedUser = await User.findOneAndUpdate(
+            { username },
+            { $addToSet: { liked_photos: { _id: photoId } } },
+            { new: true }
+        );
+        console.log('Liked photo added successfully for user:', updatedUser);
+        return updatedUser;
     } catch (error) {
-        console.error('Error closing database connection:', error);
+        console.error('Error adding liked photo:', error);
         throw error;
     }
 }
-export { createNewUser, findAllUsers, updateUserByUsername, deleteUserByUsername, closeDatabaseConnection };
+
+async function removeLikedPhoto(username, photoId) {
+    await connect();
+
+    try {
+        const updatedUser = await User.findOneAndUpdate(
+            { username },
+            { $pull: { liked_photos: { _id: photoId } } },
+            { new: true }
+        );
+        console.log('Liked photo removed successfully for user:', updatedUser);
+        return updatedUser;
+    } catch (error) {
+        console.error('Error removing liked photo:', error);
+        throw error;
+    }
+}
+
+async function addCollection(username, collectionId) {
+    await connect();
+
+    try {
+        const updatedUser = await User.findOneAndUpdate(
+            { username },
+            { $addToSet: { collections: collectionId } }, // Add collectionId to the collections array
+            { new: true }
+        );
+        console.log('Collection added successfully for user:', updatedUser);
+        return updatedUser;
+    } catch (error) {
+        console.error('Error adding collection:', error);
+        throw error;
+    }
+}
+
+async function removeCollection(username, collectionId) {
+    await connect();
+
+    try {
+        const updatedUser = await User.findOneAndUpdate(
+            { username },
+            { $pull: { collections: { _id: collectionId } } },
+            { new: true }
+        );
+        console.log('Collection removed successfully for user:', updatedUser);
+        return updatedUser;
+    } catch (error) {
+        console.error('Error removing collection:', error);
+        throw error;
+    }
+}
+
+
+export {
+    createNewUser,
+    findAllUsers,
+    updateUserByUsername,
+    deleteUserByUsername,
+    addLikedPhoto,
+    removeLikedPhoto,
+    addCollection,
+    removeCollection
+};
+
