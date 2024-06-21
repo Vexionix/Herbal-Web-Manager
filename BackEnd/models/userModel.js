@@ -1,11 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+import Collection from './collectionModel.js';
 
 const userSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-    age: Number
+    username: { type: String, required: true },
+    password: { type: String, required: true },
+    description:{type:String},
+    liked_photos: [{
+        _id: String,
+    }],
+    collections: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Collection' }],
+    profile_img: { type: String },
+    email:{type:String,required:true},
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;
