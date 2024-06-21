@@ -15,6 +15,8 @@
   "dependencies": {
     "mongodb": "^6.7.0",
     "mongoose": "^8.4.3",
-    "nodemailer": "^6.9.14"
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^6.9.14",
+    "unsplash-js": "^7.0.19"
   }
 }
