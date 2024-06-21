@@ -138,14 +138,14 @@ body {
   padding: 10px;
   border: none;
   border-radius: 4px;
-  background-color: #7a21e6;
+  background-color: #24a14a;
   color: #fff;
   cursor: pointer;
   font-size: 16px;
 }
 
 .contact-container button[type="submit"]:hover {
-  background-color: #5e1aaf;
+  background-color: #166f31;
 }
 
 main {

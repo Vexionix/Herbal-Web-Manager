@@ -52,7 +52,6 @@ body {
   cursor: pointer;
 }
 
-
 .redirect-nav {
   margin-top: 5px;
   background-color: #107d01;
@@ -82,14 +81,30 @@ body {
   min-height: 100vh;
 }
 
-main {
+div .first {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 10vh 5vw;
+  padding-top: 10vh;
+}
+
+div .middle {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+div .bottom {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 10vh;
 }
 
 section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 80%;
   margin-bottom: 10vh;
   background-color: #DFF8D5;
   border-radius: 2%;
@@ -97,23 +112,27 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: height 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 section h2 {
   font-size: 4vh;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  margin: 0;
   padding: 0.1vh;
   padding-bottom: 1vh;
 }
 
-section p {
+section .content {
+  width: 100%;
+  overflow: hidden;
+}
+
+section .content p {
   font-size: 3vh;
-  justify-content: center;
-  align-items: center;
-  padding: 2vh;
-  padding-top: 0.1vh;
-  text-indent: 10vw;
+  text-align: center;
+  margin: 2vh 10vw;
 }
 
 section:hover {
@@ -191,6 +210,6 @@ footer .footer-container p {
   }
 
   .footer-container p {
-    font-size: 80%
+    font-size: 80%;
   }
 }
