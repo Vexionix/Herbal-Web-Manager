@@ -11,7 +11,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
         if (response.ok) {
             alert('Image uploaded successfully');
         } else {
-            const errorData = await response.json(); // Parse JSON response
+            const errorData = await response.json(); 
             if (errorData && errorData.error) {
                 alert('Upload failed: ' + errorData.error);
             } else {
