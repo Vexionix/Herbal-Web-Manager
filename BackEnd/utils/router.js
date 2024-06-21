@@ -9,6 +9,7 @@ import { handleUnsplashRequest } from './unsplashHandler.js';
 import { handleFileUpload } from './fileUploadHandler.js';
 import url from 'url';
 import { handleAdmin } from '../routes/admin.js';
+import { createNewUser } from '../controllers/userController.js';
 
 const routes = {
     'GET': {
@@ -22,7 +23,7 @@ const routes = {
         '/notFound': handleNotFound,
         '/api/plants': handlePlantApi,
         '/api/unsplash': handleUnsplashRequest,
-        '/admin': handleAdmin
+        '/admin': handleAdmin,
         // Add more static paths here if needed
     },
     'POST': {
@@ -30,6 +31,32 @@ const routes = {
         '/signup': handleSignupForm,
         '/login': handleLoginForm,
         '/upload': handleFileUpload,
+        '/api/users': async (req, res) => {
+            let body = '';
+            req.on('data', chunk => {
+                body += chunk.toString();
+            });
+
+            req.on('end', async () => {
+                const userData = JSON.parse(body);
+                try {
+                    const newUser = await createNewUser(
+                        userData.username,
+                        userData.password,
+                        userData.description,
+                        userData.liked_photos,
+                        userData.collections,
+                        userData.profile_img,
+                        userData.email
+                    );
+                    res.writeHead(201, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify(newUser));
+                } catch (error) {
+                    res.writeHead(500, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ message: 'Error creating user', error }));
+                }
+            });
+        }
     }
 };
 

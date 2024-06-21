@@ -1,5 +1,6 @@
 import { connect } from '../database/mongooseDatabase.js'; // Import the connect function
 import User from '../models/userModel.js'; // Import your User model
+import mongoose from 'mongoose';
 
 async function createNewUser(username, password, description, liked_photos, collections, profile_img, email) {
     await connect();
@@ -27,7 +28,6 @@ async function findAllUsers() {
     }
 }
 
-
 async function updateUserByUsername(username, newData) {
     await connect();
 
@@ -44,7 +44,6 @@ async function updateUserByUsername(username, newData) {
         throw error;
     }
 }
-
 
 async function deleteUserByUsername(username) {
     await connect();
@@ -99,9 +98,10 @@ async function addCollection(username, collectionId) {
     try {
         const updatedUser = await User.findOneAndUpdate(
             { username },
-            { $addToSet: { collections: collectionId } }, // Add collectionId to the collections array
+            { collections: { _id: collectionId } },
             { new: true }
         );
+
         console.log('Collection added successfully for user:', updatedUser);
         return updatedUser;
     } catch (error) {
@@ -110,13 +110,13 @@ async function addCollection(username, collectionId) {
     }
 }
 
-async function removeCollection(username, collectionId) {
+async function removeCollection(username) {
     await connect();
 
     try {
         const updatedUser = await User.findOneAndUpdate(
             { username },
-            { $pull: { collections: { _id: collectionId } } },
+            { $unset: { collections: "" } },
             { new: true }
         );
         console.log('Collection removed successfully for user:', updatedUser);
@@ -126,7 +126,6 @@ async function removeCollection(username, collectionId) {
         throw error;
     }
 }
-
 
 export {
     createNewUser,
@@ -138,4 +137,3 @@ export {
     addCollection,
     removeCollection
 };
-
