@@ -32,22 +32,50 @@
         </div>
     </header>
     <div class="page-container">
-        <main>
-            <section>
-                <h2>How to use the website</h2>
-                <p>Welcome to our website! Most features are only available to registered users. If you are new here
-                    head to <a href="signup">Sign up</a> in order to register, otherwise you can <a
-                        href="login">login</a> here. If you want to find out more about us you can do so by heading
-                    to the <a href="about">About</a> page. Functionalities for users are still to be added, but you
-                    will also be able to search for plants by filtering specific fields, so keep an eye out for this in
-                    the future!</p>
-                <p>
-                    If you encounter a problem on our website, we would appreciate it if you would fill out the form
-                    found in the <a href="contact">Contact</a> tab. The site is still in a very incipient state and
-                    as such there might be a lot of bugs/unimplemented features for now.
-                </p>
+        <div class="first">
+            <section id="collapsible-section">
+                <h2 id="collapsible-title">How to use the website</h2>
+                <div class="content">
+                    <p>Welcome to our website! Most features are only available to registered users. If you are new here
+                        head to <a href="signup">Sign up</a> in order to register, otherwise you can <a
+                            href="login">login</a> here. If you want to find out more about us you can do so by heading
+                        to the <a href="about">About</a> page. Functionalities for users are still to be added, but you
+                        will also be able to search for plants by filtering specific fields, so keep an eye out for this
+                        in
+                        the future!</p>
+                    <p>
+                        If you encounter a problem on our website, we would appreciate it if you would fill out the form
+                        found in the <a href="contact">Contact</a> tab. The site is still in a very incipient state and
+                        as such there might be a lot of bugs/unimplemented features for now.
+                    </p>
+                </div>
             </section>
-        </main>
+        </div>
+        <div class="middle">
+            <section id="collapsible-section2">
+                <h2 id="collapsible-title">Some of the plants I saved got removed. Why?</h2>
+                <div class="content">
+                    <p>
+                        If the post got removed it was probably due to the fact that it was either a duplicate or it was
+                        not a plant. We are trying to keep the database as clean as possible and as such we are removing
+                        any posts that do not fit the criteria. If you think that the post was removed by mistake,
+                        please contact one of the admins.
+                    </p>
+                </div>
+            </section>
+        </div>
+        <div class="bottom">
+            <section id="collapsible-section3">
+                <h2 id="collapsible-title">I have a problem with my account, what should I do?</h2>
+                <div class="content">
+                    <p>
+                        When encoutering a problem with your account fill out the contact form or directly
+                        contact one of the admins. They will help you with your problem and try to solve it as soon as
+                        possible.
+                    </p>
+                </div>
+            </section>
+        </div>
         <footer>
             <div class="footer-container">
                 <p>
@@ -56,6 +84,7 @@
             </div>
         </footer>
     </div>
+    <script src="../BackEnd/scripts/collapsible.js"></script>
 </body>
 
 </html>
