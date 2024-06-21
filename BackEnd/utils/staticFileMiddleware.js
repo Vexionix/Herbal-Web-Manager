@@ -21,20 +21,35 @@ export const serveStaticFile = async (req, res) => {
         res.end();
         return;
     }   
-    
     let filePath;
-    if (requestPath.startsWith('/assets')) {
-        filePath = path.join(assetsDirectory, requestPath.replace('/assets', ''));
-    } else if (requestPath.startsWith('/plants')) {
-        filePath = path.join(plantsDirectory, requestPath.replace('/plants', ''));
-    } else if (requestPath.endsWith('.css')) {
-        filePath = path.join(frontEndDirectory, requestPath);
+    if (requestPath.endsWith('.css')) {
+        filePath = path.join(frontEndDirectory, requestPath.split('/').pop());
     } else if (requestPath.endsWith('.js')) {
-        filePath = path.join(__dirname, '..', '..', requestPath);
+        const parts = requestPath.split('/');
+        const fileName = parts.pop();
+        const subDir = parts.pop();
+        const dir = parts.pop();
+        filePath = path.join(__dirname, '..', '..', dir, subDir, fileName);
     } else if (requestPath.endsWith('.json')) {
         filePath = path.join(__dirname, '..', '..', requestPath);
-    } else if (requestPath.startsWith('/uploaded')) {
-        filePath = path.join(uploadedDirectory, requestPath.replace('/uploaded', ''));
+    } else if (requestPath.includes('/assets')) {
+        if(requestPath.split('/assets').pop().split('/').length!=2) {
+            handleNotFound(null, res);
+            return;
+        }
+        filePath = path.join(assetsDirectory, requestPath.split('/assets').pop());
+    } else if (requestPath.includes('/plants')) {        
+        if(requestPath.split('/plants').pop().split('/').length!=2) {
+            handleNotFound(null, res);
+            return;
+        }
+        filePath = path.join(plantsDirectory, requestPath.split('/plants').pop());
+    } else if (requestPath.includes('/uploaded')) {
+        if(requestPath.split('/uploaded').pop().split('/').length!=2) {
+            handleNotFound(null, res);
+            return;
+        }
+        filePath = path.join(uploadedDirectory, requestPath.split('/uploaded').pop());
     }
 
     try {

@@ -34,7 +34,6 @@ const routes = {
 };
 
 export const router = async (req, res) => {
-    console.log(req.method, req.url, req.headers['content-type']);
     const { method } = req;
     const parsedUrl = url.parse(req.url);
     const pathname = parsedUrl.pathname;
