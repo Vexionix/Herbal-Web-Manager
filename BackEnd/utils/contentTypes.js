@@ -13,6 +13,23 @@ const contentTypes = {
 };
 
 export const getContentType = (filePath) => {
-    const ext = path.extname(filePath).toLowerCase();
-    return contentTypes[ext] || 'application/octet-stream';
+    const extname = String(path.extname(filePath)).toLowerCase();
+    const mimeTypes = {
+        '.html': 'text/html',
+        '.js': 'application/javascript',
+        '.css': 'text/css',
+        '.json': 'application/json',
+        '.png': 'image/png',
+        '.jpg': 'image/jpeg',
+        '.gif': 'image/gif',
+        '.svg': 'image/svg+xml',
+        '.woff': 'application/font-woff',
+        '.woff2': 'application/font-woff2',
+        '.ttf': 'application/font-ttf',
+        '.otf': 'application/font-otf',
+        '.eot': 'application/vnd.ms-fontobject',
+        '.ico': 'image/x-icon'
+    };
+
+    return mimeTypes[extname] || 'application/octet-stream';
 };

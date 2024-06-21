@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     liked_photos: [{
         _id: String,
     }],
-    collections: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Collection' }],
+    collections: {_id: String},
     profile_img: { type: String },
     email:{type:String,required:true},
 });
