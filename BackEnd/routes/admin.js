@@ -22,3 +22,4 @@ export const handleAdmin = async (req, res) => {
         handleError(error, res);
     }
 };
+
