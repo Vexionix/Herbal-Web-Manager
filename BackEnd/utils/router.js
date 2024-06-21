@@ -11,6 +11,7 @@ const routes = {
         '/': handleRequest,
         '/about': handleRequest,
         '/help': handleRequest,
+        '/unsplash': handleRequest,
         '/contact': handleContact,
         '/signup': handleSignup,
         '/login': handleLogin,
