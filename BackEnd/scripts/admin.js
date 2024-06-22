@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const userForm = document.getElementById('userForm');
     const userModal = document.getElementById('userModal');
     const addUserBtn = document.getElementById('addUserBtn');
@@ -39,13 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Error:', error);
         }
-        await fetchUsers();
     });
+
     async function fetchUsers() {
         try {
             const response = await fetch('/api/users');
             const users = await response.json();
             if (response.ok) {
+                userTableBody.innerHTML = ''; // Clear existing rows
                 users.forEach(user => addUser(user));
             } else {
                 console.error('Failed to fetch users:', users.message);
@@ -54,10 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching users:', error);
         }
     }
+
     function addUser(userData) {
         const row = userTableBody.insertRow();
-        row.dataset.id = userTableBody.rows.length + 1;
-        row.insertCell(0).innerText = userTableBody.rows.length;
+        row.dataset.id = userData._id; // Use the user ID from the database
+        row.insertCell(0).innerText = userTableBody.rows.length + 1;
         row.insertCell(1).innerText = userData.username;
         row.insertCell(2).innerText = userData.email;
         const actionsCell = row.insertCell(3);
@@ -75,6 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
             userModal.style.display = 'none';
         }
     };
+
+    // Fetch and display users when the page loads
+    await fetchUsers();
 });
 
 function editUser(button) {

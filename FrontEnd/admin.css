@@ -109,6 +109,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    
   }
   
   table, th, td {
@@ -140,6 +141,7 @@ body {
     background-color: #fff;
     margin: 15% auto;
     padding: 20px;
+    padding-right: 30px;
     border: 1px solid #888;
     width: 80%;
     max-width: 500px;
@@ -171,6 +173,10 @@ body {
     border: 1px solid #ddd;
   }
   
+  div .page-container-main{
+    padding-bottom: 100px;
+  }
+
   footer {
     background-color: #107d01;
     position: absolute;
@@ -210,6 +216,8 @@ body {
     .footer-container p {
       font-size: 150%;
     }
+
+    
   }
   
   /* Mobile */
