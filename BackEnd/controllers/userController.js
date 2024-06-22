@@ -3,6 +3,7 @@ import User from '../models/userModel.js'; // Import your User model
 import mongoose from 'mongoose';
 
 async function createNewUser(username, firstName, lastName, password, description, liked_photos, collections, profile_img, email) {
+    
     await connect();
 
     try {

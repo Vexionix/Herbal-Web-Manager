@@ -9,7 +9,6 @@ export const handleUserAdd = async (req, res) =>{
     req.on('end', async () => {
         const userData = JSON.parse(body);
         const existingUser = await findUserByUsernameOrEmail(userData.username, userData.email);
-        console.log(existingUser);
             if (existingUser) {
                 res.writeHead(409, { 'Content-Type': 'application/json' }); // Conflict status code
                 res.end(JSON.stringify({ message: 'Username or email already exists' }));
