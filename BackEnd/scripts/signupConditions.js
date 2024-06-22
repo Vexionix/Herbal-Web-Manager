@@ -1,3 +1,14 @@
+import {
+    createNewUser,
+    findAllUsers,
+    updateUserByUsername,
+    deleteUserByUsername,
+    addLikedPhoto,
+    addCollection,
+    removeLikedPhoto,
+    removeCollection
+} from '../controllers/userController.js';
+
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirm-password");
 const registerForm = document.getElementById("register-form");
@@ -18,6 +29,7 @@ const strengthCriteria = [
 let passwordStrength = 0;
 
 passwordInput.addEventListener("input", () => {
+    
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
     passwordStrength = 0;
@@ -114,5 +126,16 @@ registerForm.addEventListener("submit", async (event) => {
         errorMessage.textContent = "The password is too weak!";
         await new Promise(resolve => setTimeout(resolve, 1000));
         errorMessage.textContent = "";
+        return;
     }
+    fetch('/api/user')
+        .then(response => response.json())
+        .then(data => {
+            const plantContainer = document.getElementById('plant-container');
+            data.forEach(plant => {
+                const plantEntry = createPlantEntry(plant);
+                plantContainer.appendChild(plantEntry);
+            });
+        })
+        .catch(error => console.error('Error fetching plant data:', error));
 });

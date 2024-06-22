@@ -1,6 +1,7 @@
-import { connect } from '../database/mongooseDatabase.js'; // Import the connect function
+import { connect, closeDatabaseConnection } from '../database/mongooseDatabase.js'; // Import the connect function
 import User from '../models/userModel.js'; // Import your User model
 import mongoose from 'mongoose';
+
 async function createNewUser(username, password, description, liked_photos, collections, profile_img, email) {
     await connect();
 

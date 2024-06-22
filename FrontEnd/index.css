@@ -302,13 +302,6 @@ footer {
 }
 
 
-footer {
-    background-color: #107d01;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
 footer .footer-container p {
     color: #fff;
     text-align: center;

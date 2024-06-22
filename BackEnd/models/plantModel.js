@@ -6,6 +6,7 @@ const plantSchema = new mongoose.Schema({
     created_at: Date,
     updated_at: Date,
     color: String,
+    photo: String,
     description: String,
     urls: {
       full: String,
