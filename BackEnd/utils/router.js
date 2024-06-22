@@ -27,7 +27,6 @@ const routes = {
         '/api/unsplash': handleUnsplashRequest,
         '/admin': handleAdmin,
         '/api/users': handleUserGet
-        // Add more static paths here if needed
     },
     'POST': {
         '/contact': handleContactForm,

@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import url from 'url';
-import querystring from 'querystring';
+import fetch from 'node-fetch';
 import { getContentType } from '../utils/contentTypes.js';
 import { handleError } from '../utils/errorHandlers.js';
 
@@ -26,16 +26,41 @@ export const handleSignup = async (req, res) => {
 export const handleSignupForm = async (req, res) => {
     if (req.method === 'POST') {
         let body = '';
+
         req.on('data', chunk => {
             body += chunk.toString();
         });
 
         req.on('end', async () => {
-            const parsedBody = querystring.parse(body);
-            // Process the signup form data here
+            try {
+                const response = await fetch('http://localhost:' + process.env.PORT + '/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: body
+                });
 
-            res.writeHead(200, { 'Content-Type': 'text/plain' });
-            res.end('Signup successful!');
+                if (!response.ok) {
+                    if (response.status === 409) {
+                        res.writeHead(409, { 'Content-Type': 'text/plain' });
+                        res.end('Signup failed: User with the same username or email already exists.');
+                        return;
+                    }
+                    else if (response.status === 400) {
+                        res.writeHead(400, { 'Content-Type': 'text/plain' });
+                        res.end('Signup failed: Fields do not meet the criteria, check the input data. (Passwords should be strong enough, mails should be valid etc.)');
+                        return;
+                    }
+                    throw new Error('Failed to fetch users');
+                }
+
+                res.writeHead(200, { 'Content-Type': 'text/plain' });
+                res.end('Signup successful!');
+            } catch (error) {
+                res.writeHead(500, { 'Content-Type': 'text/plain' });
+                res.end('Signup failed: Unknown error occured.');
+            }
         });
     } else {
         res.writeHead(405, { 'Content-Type': 'text/plain' });

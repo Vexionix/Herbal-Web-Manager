@@ -138,7 +138,7 @@ async function fetchUsers(event) {
         liked_photos: null,
         collections: null,
     };
-    const response = await fetch('/api/users', {
+    const response = await fetch('/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
