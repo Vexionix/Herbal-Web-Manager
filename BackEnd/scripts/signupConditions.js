@@ -1,14 +1,3 @@
-import {
-    createNewUser,
-    findAllUsers,
-    updateUserByUsername,
-    deleteUserByUsername,
-    addLikedPhoto,
-    addCollection,
-    removeLikedPhoto,
-    removeCollection
-} from '../controllers/userController.js';
-
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirm-password");
 const registerForm = document.getElementById("register-form");
@@ -29,7 +18,7 @@ const strengthCriteria = [
 let passwordStrength = 0;
 
 passwordInput.addEventListener("input", () => {
-    
+
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
     passwordStrength = 0;
