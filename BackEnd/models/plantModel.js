@@ -8,28 +8,9 @@ const plantSchema = new mongoose.Schema({
     color: String,
     photo: String,
     description: String,
-    urls: {
-      full: String,
-      regular: String,
-      small: String,
-    },
-    links: {
-      self: String,
-      html: String,
-      download: String,
-      download_location: String
-    },
-    likes: Number,
-    tags: [{
-        type: String,
-        title: String
-      }],
-    tags_preview: [{
-        type: String,
-        title: String
-      }],
-      views : Number,
-      downloads: Number
+    type: String,
+    views : Number,
+    downloads: Number
   });
   
   const Plant = mongoose.model('Plant', plantSchema);
