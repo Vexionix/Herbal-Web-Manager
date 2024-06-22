@@ -32,6 +32,24 @@ body {
     -webkit-text-stroke: 2px #000000;
 }
 
+.home-button {
+    display: inline-block;
+    padding: 0.5em 1em;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin-top: 1em;
+}
+
+.home-button:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+
 .search-bar-container {
     text-align: center;
     margin-top: 20px;
