@@ -36,7 +36,7 @@
     <div class="signup-section">
       <div class="container">
         <h2>Sign up</h2>
-        <form action="login.html" method="get">
+        <form id="register-form" action="login" method="get">
           <div class="form-group">
             <label for="username">User Name</label>
             <input type="text" id="username" name="username" placeholder="Enter username" required>
@@ -80,6 +80,14 @@
           </div>
           <p>Already have an account? <a href="login.html">Log in here</a>.</p>
         </form>
+        <div class="strength-meter" id="strengthMeter">
+          <span></span>
+        </div>
+        <div class="strength-text" id="strengthText"></div>
+        <div class="matching-criteria" id="matchingCriteria"></div>
+        <div class="criteria-messages" id="criteriaMessages"></div>
+        <div class="error-message" id="errorMessage" style="color: red;">
+        </div>
       </div>
     </div>
     <footer>
@@ -90,6 +98,7 @@
       </div>
     </footer>
   </div>
+  <script src="../BackEnd/scripts/signupConditions.js" defer></script>
 </body>
 
 </html>

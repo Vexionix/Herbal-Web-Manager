@@ -82,6 +82,11 @@ body {
     min-height: 100vh;
 }
 
+#password-error {
+    color: red;
+    margin-top: 10px;
+}
+
 .signup-section {
     padding-bottom: 5rem;
 }
