@@ -39,8 +39,21 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Error:', error);
         }
+        await fetchUsers();
     });
-
+    async function fetchUsers() {
+        try {
+            const response = await fetch('/api/users');
+            const users = await response.json();
+            if (response.ok) {
+                users.forEach(user => addUser(user));
+            } else {
+                console.error('Failed to fetch users:', users.message);
+            }
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+    }
     function addUser(userData) {
         const row = userTableBody.insertRow();
         row.dataset.id = userTableBody.rows.length + 1;

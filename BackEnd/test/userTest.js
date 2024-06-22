@@ -16,26 +16,26 @@ import {
 async function testUserFunctions() {
     try {
         // Create a new user
-        const newUser = await createNewUser('john_doe', 'password123', 'A user description', [], [], 'profile.jpg', 'john@example.com');
-        console.log('New User created:', newUser);
+        //const newUser = await createNewUser('john_doe', 'password123', 'A user description', [], [], 'profile.jpg', 'john@example.com');
+        //console.log('New User created:', newUser);
 
         // Add a liked photo for the user
-        const photoId = 'photo123';
-        await addLikedPhoto('john_doe', photoId);
-        console.log('Added liked photo with ID', photoId, 'for user john_doe');
+        //const photoId = 'photo123';
+        //await addLikedPhoto('john_doe', photoId);
+        //console.log('Added liked photo with ID', photoId, 'for user john_doe');
 
         // Add a collection for the user
-        const collectionId = 'collection456';
-        await addCollection('john_doe', collectionId);
-        console.log('Added collection with ID', collectionId, 'for user john_doe');
+        //const collectionId = 'collection456';
+        //await addCollection('john_doe', collectionId);
+        //console.log('Added collection with ID', collectionId, 'for user john_doe');
 
         // Find all users (optional, for verification)
         const users = await findAllUsers();
         console.log('All users:', users);
 
         // Update user by username
-        const updatedUser = await updateUserByUsername('john_doe', { age: 31, description: 'Updated description' });
-        console.log('Updated user:', updatedUser);
+        //const updatedUser = await updateUserByUsername('john_doe', { age: 31, description: 'Updated description' });
+        //console.log('Updated user:', updatedUser);
 
         // Remove a liked photo for the user (optional)
         // await removeLikedPhoto('john_doe', photoId);
