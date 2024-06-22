@@ -94,9 +94,9 @@ confirmPasswordInput.addEventListener("input", () => {
 registerForm.addEventListener("submit", async (event) => {
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
+    event.preventDefault();
 
     if (password !== confirmPassword) {
-        event.preventDefault();
         errorMessage.textContent = "Passwords do not match!";
         await new Promise(resolve => setTimeout(resolve, 1000));
         errorMessage.textContent = "";
@@ -111,16 +111,22 @@ registerForm.addEventListener("submit", async (event) => {
     });
 
     if (criteriaMet < 5) {
-        event.preventDefault();
         errorMessage.textContent = "The password is too weak!";
         await new Promise(resolve => setTimeout(resolve, 1000));
         errorMessage.textContent = "";
         return;
     }
-
-     await fetchUsers();
+    try {
+        await fetchUsers();
+        registerForm.submit();
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        event.preventDefault();
+        errorMessage.textContent = "Account with the same username or email already exists!";
+    }
 });
-async function fetchUsers() {
+
+async function fetchUsers(event) {
     const userData = {
         username: document.getElementById('username').value,
         firstName: document.getElementById('first-name').value,
@@ -132,24 +138,16 @@ async function fetchUsers() {
         liked_photos: null,
         collections: null,
     };
-    try {
-        const response = await fetch('/api/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData) 
-        });
+    const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    });
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch users');
-        }
-
-        const users = await response.json();
-        userTableBody.innerHTML = ''; 
-        users.forEach(user => addUser(user));
-    } catch (error) {
-        console.error('Error fetching users:', error);
+    if (!response.ok) {
+        throw new Error('Failed to fetch users');
     }
 }
 

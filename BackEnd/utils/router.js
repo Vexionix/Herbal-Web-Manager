@@ -18,6 +18,7 @@ const routes = {
         '/about': handleRequest,
         '/help': handleRequest,
         '/unsplash': handleRequest,
+        '/catalog': handleRequest,
         '/contact': handleContact,
         '/signup': handleSignup,
         '/login': handleLogin,
@@ -34,8 +35,8 @@ const routes = {
         '/login': handleLoginForm,
         '/upload': handleFileUpload,
         '/api/users': handleUserAdd
-        }
- };
+    }
+};
 
 export const router = async (req, res) => {
     const { method } = req;

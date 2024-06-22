@@ -1,6 +1,6 @@
 import { createNewUser, findAllUsers, findUserByUsernameOrEmail } from '../controllers/userController.js';
 
-export const handleUserAdd = async (req, res) =>{
+export const handleUserAdd = async (req, res) => {
     let body = '';
     req.on('data', chunk => {
         body += chunk.toString();
@@ -9,11 +9,11 @@ export const handleUserAdd = async (req, res) =>{
     req.on('end', async () => {
         const userData = JSON.parse(body);
         const existingUser = await findUserByUsernameOrEmail(userData.username, userData.email);
-            if (existingUser) {
-                res.writeHead(409, { 'Content-Type': 'application/json' }); // Conflict status code
-                res.end(JSON.stringify({ message: 'Username or email already exists' }));
-                return;
-            }
+        if (existingUser) {
+            res.writeHead(409, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Username or email already exists' }));
+            return;
+        }
         try {
             const newUser = await createNewUser(
                 userData.username,
@@ -33,15 +33,16 @@ export const handleUserAdd = async (req, res) =>{
             res.writeHead(500, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ message: 'Error creating user', error }));
         }
-    });}
-    
-    export const handleUserGet = async (req, res) => {
-        try {
-            const users = await findAllUsers();
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify(users));
-        } catch (error) {
-            res.writeHead(500, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ message: 'Error fetching users', error }));
-        }
-    };
+    });
+}
+
+export const handleUserGet = async (req, res) => {
+    try {
+        const users = await findAllUsers();
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(users));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Error fetching users', error }));
+    }
+};

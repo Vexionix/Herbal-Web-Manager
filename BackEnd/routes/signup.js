@@ -34,11 +34,11 @@ export const handleSignupForm = async (req, res) => {
             const parsedBody = querystring.parse(body);
             // Process the signup form data here
 
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.end('<h1>Signup successful!</h1>');
+            res.writeHead(200, { 'Content-Type': 'text/plain' });
+            res.end('Signup successful!');
         });
     } else {
-        res.writeHead(405, { 'Content-Type': 'text/html' });
-        res.end('<h1>Method Not Allowed</h1>');
+        res.writeHead(405, { 'Content-Type': 'text/plain' });
+        res.end('Method Not Allowed');
     }
 };

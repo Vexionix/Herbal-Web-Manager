@@ -4,6 +4,7 @@ import url from 'url';
 import querystring from 'querystring';
 import { getContentType } from '../utils/contentTypes.js';
 import { handleError } from '../utils/errorHandlers.js';
+import { loginUser } from '../utils/loginUtil.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,13 +33,19 @@ export const handleLoginForm = async (req, res) => {
 
         req.on('end', async () => {
             const parsedBody = querystring.parse(body);
-            // Process the login form data here
+            const { username, password } = parsedBody;
 
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.end('<h1>Login successful!</h1>');
+            try {
+                const user = await loginUser(username, password);
+                res.writeHead(200, { 'Content-Type': 'text/plain' });
+                res.end('Login successful!');
+            } catch (error) {
+                res.writeHead(401, { 'Content-Type': 'text/plain' });
+                res.end('Login failed: Invalid username or password');
+            }
         });
     } else {
-        res.writeHead(405, { 'Content-Type': 'text/html' });
-        res.end('<h1>Method Not Allowed</h1>');
+        res.writeHead(405, { 'Content-Type': 'text/plain' });
+        res.end('Method Not Allowed');
     }
 };
