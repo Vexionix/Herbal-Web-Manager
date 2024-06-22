@@ -117,14 +117,39 @@ registerForm.addEventListener("submit", async (event) => {
         errorMessage.textContent = "";
         return;
     }
-    fetch('/api/user')
-        .then(response => response.json())
-        .then(data => {
-            const plantContainer = document.getElementById('plant-container');
-            data.forEach(plant => {
-                const plantEntry = createPlantEntry(plant);
-                plantContainer.appendChild(plantEntry);
-            });
-        })
-        .catch(error => console.error('Error fetching plant data:', error));
+
+     await fetchUsers();
 });
+async function fetchUsers() {
+    const userData = {
+        username: document.getElementById('username').value,
+        firstName: document.getElementById('first-name').value,
+        lastName: document.getElementById('last-name').value,
+        password: document.getElementById('password').value,
+        description: null,
+        email: document.getElementById('email').value,
+        profile_img: null,
+        liked_photos: null,
+        collections: null,
+    };
+    try {
+        const response = await fetch('/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData) 
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch users');
+        }
+
+        const users = await response.json();
+        userTableBody.innerHTML = ''; 
+        users.forEach(user => addUser(user));
+    } catch (error) {
+        console.error('Error fetching users:', error);
+    }
+}
+

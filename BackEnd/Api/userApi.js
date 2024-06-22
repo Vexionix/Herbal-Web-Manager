@@ -1,4 +1,4 @@
-import { createNewUser, findAllUsers } from '../controllers/userController.js';
+import { createNewUser, findAllUsers, findUserByUsernameOrEmail } from '../controllers/userController.js';
 
 export const handleUserAdd = async (req, res) =>{
     let body = '';
@@ -8,9 +8,18 @@ export const handleUserAdd = async (req, res) =>{
 
     req.on('end', async () => {
         const userData = JSON.parse(body);
+        const existingUser = await findUserByUsernameOrEmail(userData.username, userData.email);
+        console.log(existingUser);
+            if (existingUser) {
+                res.writeHead(409, { 'Content-Type': 'application/json' }); // Conflict status code
+                res.end(JSON.stringify({ message: 'Username or email already exists' }));
+                return;
+            }
         try {
             const newUser = await createNewUser(
                 userData.username,
+                userData.firstName,
+                userData.lastName,
                 userData.password,
                 userData.description,
                 userData.liked_photos,
@@ -18,6 +27,7 @@ export const handleUserAdd = async (req, res) =>{
                 userData.profile_img,
                 userData.email
             );
+
             res.writeHead(201, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(newUser));
         } catch (error) {

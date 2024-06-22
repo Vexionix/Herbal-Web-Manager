@@ -6,7 +6,8 @@ import {
     addLikedPhoto,
     addCollection,
     removeLikedPhoto,
-    removeCollection
+    removeCollection,
+    deleteAllUsers
 } from '../controllers/userController.js';
 
 import {
@@ -28,7 +29,7 @@ async function testUserFunctions() {
         //const collectionId = 'collection456';
         //await addCollection('john_doe', collectionId);
         //console.log('Added collection with ID', collectionId, 'for user john_doe');
-
+        await deleteAllUsers();
         // Find all users (optional, for verification)
         const users = await findAllUsers();
         console.log('All users:', users);
