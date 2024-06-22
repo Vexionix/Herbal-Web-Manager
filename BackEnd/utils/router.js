@@ -13,6 +13,7 @@ import { createNewUser } from '../controllers/userController.js';
 const routes = {
     'GET': {
         '/': handleRequest,
+        '/home': handleRequest,
         '/about': handleRequest,
         '/help': handleRequest,
         '/unsplash': handleRequest,

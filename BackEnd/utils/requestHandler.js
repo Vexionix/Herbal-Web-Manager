@@ -11,14 +11,16 @@ const frontEndDirectory = path.join(__dirname, '..', '..', 'FrontEnd');
 const getFilePath = (requestPath) => {
     if (requestPath === '/') {
         return path.join(frontEndDirectory, 'index.html');
+    } else if (requestPath === '/home') {
+        return path.join(frontEndDirectory, 'home.html');
     } else if (requestPath === '/about') {
         return path.join(frontEndDirectory, 'about.html');
     } else if (requestPath === '/help') {
-    return path.join(frontEndDirectory, 'help.html'); 
+        return path.join(frontEndDirectory, 'help.html');
     } else if (requestPath === '/notFound') {
-        return path.join(frontEndDirectory, 'notFound.html');  
+        return path.join(frontEndDirectory, 'notFound.html');
     } else if (requestPath === '/unsplash') {
-        return path.join(frontEndDirectory, 'unsplash.html');  
+        return path.join(frontEndDirectory, 'unsplash.html');
     } else {
         return path.join(frontEndDirectory, requestPath);
     }
@@ -31,7 +33,7 @@ export const handleRequest = async (req, res) => {
             res.end('Method Not Allowed');
             return;
         }
-        
+
         const requestPath = url.parse(req.url).pathname;
         const filePath = getFilePath(requestPath);
         if (!filePath.startsWith(frontEndDirectory)) {
