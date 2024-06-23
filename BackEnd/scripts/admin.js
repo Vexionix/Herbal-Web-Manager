@@ -17,11 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             firstName: document.getElementById('firstName').value,
             lastName: document.getElementById('lastName').value,
             password: document.getElementById('userPassword').value,
-            description: document.getElementById('userDescription').value,
-            email: document.getElementById('userEmail').value,
-            profile_img: document.getElementById('userProfileImg').value,
-            liked_photos: document.getElementById('userLikedPhotos').value.split(',').map(id => ({ _id: id.trim() })),
-            collections: document.getElementById('userCollections').value.split(',').map(id => id.trim()),
+            email: document.getElementById('userEmail').value
         };
         try {
             const response = await fetch('/api/users', {
@@ -179,11 +175,7 @@ function editUser(button) {
             firstName: editUserForm.elements.editFirstName.value,
             lastName: editUserForm.elements.editLastName.value,
             password: editUserForm.elements.editUserPassword.value,
-            description: editUserForm.elements.editUserDescription.value,
-            email: editUserForm.elements.editUserEmail.value,
-            profile_img: editUserForm.elements.editUserProfileImg.value,
-            liked_photos: editUserForm.elements.editUserLikedPhotos.value.split(',').map(id => ({ _id: id.trim() })),
-            collections: editUserForm.elements.editUserCollections.value.split(',').map(id => id.trim()),
+            email: editUserForm.elements.editUserEmail.value
         };
         try {
             const response = await fetch(`/api/users/${username}`, {
