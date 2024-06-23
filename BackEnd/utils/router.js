@@ -12,7 +12,7 @@ import { handleFileUpload } from './fileUploadHandler.js';
 import url from 'url';
 
 import { handleAdmin } from '../routes/admin.js';
-import { handleUserAdd, handleUserGet, handleUserDeleteByUsername, handleUserUpdateByUsername } from '../api/userApi.js';
+import { handleUserAdd, handleUserGet, handleUserDeleteByUsername, handleUserUpdateByUsername, handleUserGetByUsername } from '../api/userApi.js';
 import { createOrRetrieveSession } from './sessionManager.js';
 import { handleLogout } from '../routes/logout.js';
 import { handlePlantAdd, handlePlantGet, handlePlantDeleteById } from '../api/plantApi.js';
@@ -35,6 +35,7 @@ const routes = {
         '/api/unsplash': handleUnsplashRequest,
         '/admin': handleAdmin,
         '/api/users': handleUserGet,
+        '/api/users/:username': handleUserGetByUsername,
         '/api/plants': handlePlantGet
     },
     'POST': {

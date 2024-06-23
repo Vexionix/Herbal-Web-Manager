@@ -1,4 +1,4 @@
-import { createNewUser, findAllUsers, findUserByUsernameOrEmail, deleteUserById, deleteUserByUsername, updateUserByUsername } from '../controllers/userController.js';
+import { createNewUser, findAllUsers, findUserByUsernameOrEmail, deleteUserById, deleteUserByUsername, updateUserByUsername, findUserByUsername } from '../controllers/userController.js';
 import bcrypt from 'bcrypt';
 
 export const handleUserAdd = async (req, res) => {
@@ -66,6 +66,23 @@ export const handleUserGet = async (req, res) => {
     }
 };
 
+export const handleUserGetByUsername = async (req, res) => {
+    const { username } = req.params;
+    try {
+        const user = await findUserByUsername(username);
+        if (user) {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'User returned successfully', userData: user }));
+        } else {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'User not found' }));
+        }
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Error finding user', error }));
+    }
+};
+
 export const handleUserDeleteById = async (req, res) => {
     const { id } = req.params;
     try {
@@ -107,7 +124,21 @@ export const handleUserUpdateByUsername = async (req, res) => {
         body += chunk.toString();
     });
     req.on('end', async () => {
+
         const userData = JSON.parse(body);
+
+        if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(userData.password)) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Password does not meet the criteria' }));
+            return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email)) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Invalid email' }));
+            return;
+        }
+
         const saltRounds = 10;
         userData.password = await bcrypt.hash(userData.password, saltRounds);
 

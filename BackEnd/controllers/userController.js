@@ -53,6 +53,17 @@ async function findUserByUsernameOrEmail(username, email) {
     }
 }
 
+async function findUserByUsername(username) {
+    await connect();
+
+    try {
+        return await User.findOne({ username }).lean();
+    } catch (error) {
+        console.error('Error finding user by username:', error);
+        throw error;
+    }
+}
+
 async function updateUserByUsername(username, newData) {
     await connect();
 
@@ -207,6 +218,7 @@ export {
     addCollection,
     removeCollection,
     findUserByUsernameOrEmail,
+    findUserByUsername,
     deleteAllUsers,
     deleteUserById
 };
