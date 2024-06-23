@@ -20,7 +20,6 @@ const getAllUsersFromFile = () => {
     });
 };
 
-// Function to write users to JSON file
 const saveUsersToFile = (users) => {
     return new Promise((resolve, reject) => {
         fs.writeFile(usersFilePath, JSON.stringify(users, null, 2), 'utf8', (err) => {

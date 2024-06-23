@@ -1,6 +1,26 @@
+import mongoose from 'mongoose';
 import { connect } from '../database/mongooseDatabase.js';
-import Plant from '../models/plantModel.js';
 
+// Define the plant schema
+const plantSchema = new mongoose.Schema({
+    id: String,
+    name: String,
+    created_at: { type: Date, default: Date.now },
+    updated_at: { type: Date, default: Date.now },
+    color: String,
+    photo: String,
+    description: String,
+    type: String,
+    views: { type: Number, default: 0 },
+    downloads: { type: Number, default: 0 }
+});
+
+// Create the Plant model
+const Plant = mongoose.model('Plant', plantSchema);
+
+export default Plant;
+
+// Controller functions
 async function createNewPlant(plantData) {
     await connect();
 
@@ -27,10 +47,24 @@ async function findAllPlants() {
     }
 }
 
+async function findPlantById(plantId) {
+    await connect();
+
+    try {
+        const plant = await Plant.findById(plantId);
+        console.log('Plant found:', plant);
+        return plant;
+    } catch (error) {
+        console.error('Error finding plant:', error);
+        throw error;
+    }
+}
+
 async function updatePlantById(plantId, newData) {
     await connect();
 
     try {
+        newData.updated_at = new Date();
         const updatedPlant = await Plant.findByIdAndUpdate(
             plantId,
             newData,
@@ -60,6 +94,7 @@ async function deletePlantById(plantId) {
 export {
     createNewPlant,
     findAllPlants,
+    findPlantById,
     updatePlantById,
     deletePlantById
 };
