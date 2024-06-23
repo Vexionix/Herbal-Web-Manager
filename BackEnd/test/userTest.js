@@ -7,7 +7,8 @@ import {
     addCollection,
     removeLikedPhoto,
     removeCollection,
-    deleteAllUsers
+    deleteAllUsers,
+    deleteUserById
 } from '../controllers/userController.js';
 
 import {
@@ -29,10 +30,10 @@ async function testUserFunctions() {
         //const collectionId = 'collection456';
         //await addCollection('john_doe', collectionId);
         //console.log('Added collection with ID', collectionId, 'for user john_doe');
-        await deleteAllUsers();
+        // await deleteAllUsers();
         // Find all users (optional, for verification)
-        const users = await findAllUsers();
-        console.log('All users:', users);
+        // const users = await findAllUsers();
+        // console.log('All users:', users);
 
         // Update user by username
         //const updatedUser = await updateUserByUsername('john_doe', { age: 31, description: 'Updated description' });
@@ -49,6 +50,9 @@ async function testUserFunctions() {
         // Delete user by username (optional)
         // await deleteUserByUsername('john_doe');
         // console.log('User john_doe deleted successfully');
+        const id = '6678459335f5afbaa3514f90';
+        await deleteUserById(id);
+        console.log('User 1 deleted successfully');
 
     } catch (error) {
         console.error('Error:', error);

@@ -1,4 +1,4 @@
-import { createNewUser, findAllUsers, findUserByUsernameOrEmail } from '../controllers/userController.js';
+import { createNewUser, findAllUsers, findUserByUsernameOrEmail, deleteUserById, deleteUserByUsername } from '../controllers/userController.js';
 
 export const handleUserAdd = async (req, res) => {
     let body = '';
@@ -64,5 +64,40 @@ export const handleUserGet = async (req, res) => {
     } catch (error) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: 'Error fetching users', error }));
+    }
+};
+
+export const handleUserDeleteById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const user = await deleteUserById(id);
+        if (user) {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'User deleted successfully' }));
+        } else {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'User not found' }));
+        }
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Error deleting user', error }));
+    }
+};
+
+export const handleUserDeleteByUsername = async (req, res) => {
+    const { username } = req.params;
+    
+    try {
+        const user = await deleteUserByUsername(username);
+        if (user) {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'User deleted successfully' }));
+        } else {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'User not found' }));
+        }
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Error deleting user', error }));
     }
 };

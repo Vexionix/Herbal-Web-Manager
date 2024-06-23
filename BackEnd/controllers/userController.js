@@ -34,7 +34,7 @@ async function findAllUsers() {
 
     try {
         const users = await User.find({});
-        console.log('All users:', users);
+        // console.log('All users:', users);
         return users;
     } catch (error) {
         console.error('Error finding users:', error);
@@ -70,6 +70,26 @@ async function updateUserByUsername(username, newData) {
     }
 }
 
+async function deleteUserById(id) {
+    await connect();
+
+    try {
+        const deletedUser = await User.findByIdAndDelete(id);
+        
+        if (!deletedUser) {
+            throw new Error('User not found');
+        }
+
+        console.log('User deleted successfully:', deletedUser);
+        return deletedUser;
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        throw error;
+    } finally {
+        mongoose.disconnect();
+        console.log('Database disconnected');
+    }
+}
 
 async function deleteUserByUsername(username) {
     await connect();
@@ -178,6 +198,7 @@ export {
     addCollection,
     removeCollection,
     findUserByUsernameOrEmail,
-    deleteAllUsers
+    deleteAllUsers,
+    deleteUserById
 };
 

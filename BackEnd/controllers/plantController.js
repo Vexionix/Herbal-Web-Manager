@@ -39,7 +39,6 @@ async function findAllPlants() {
 
     try {
         const plants = await Plant.find({});
-        console.log('All plants:', plants);
         return plants;
     } catch (error) {
         console.error('Error finding plants:', error);

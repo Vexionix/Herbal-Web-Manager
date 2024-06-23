@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    // User Section
     const userForm = document.getElementById('userForm');
     const userModal = document.getElementById('userModal');
     const addUserBtn = document.getElementById('addUserBtn');
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const response = await fetch('/api/users');
             const users = await response.json();
             if (response.ok) {
-                userTableBody.innerHTML = ''; // Clear existing rows
+                userTableBody.innerHTML = ''; 
                 users.forEach(user => addUser(user));
             } else {
                 console.error('Failed to fetch users:', users.message);
@@ -56,9 +57,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+
     function addUser(userData) {
         const row = userTableBody.insertRow();
-        row.dataset.id = userData._id; // Use the user ID from the database
+        row.dataset.id = userData._id; 
         row.insertCell(0).innerText = userTableBody.rows.length + 1;
         row.insertCell(1).innerText = userData.username;
         row.insertCell(2).innerText = userData.email;
@@ -69,6 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('.close').forEach(button => {
         button.addEventListener('click', () => {
             userModal.style.display = 'none';
+            plantModal.style.display = 'none';
         });
     });
 
@@ -76,10 +79,81 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (event.target == userModal) {
             userModal.style.display = 'none';
         }
+        if (event.target == plantModal) {
+            plantModal.style.display = 'none';
+        }
     };
 
-    // Fetch and display users when the page loads
+    
     await fetchUsers();
+
+    // Plant Section
+    const plantForm = document.getElementById('plantForm');
+    const plantModal = document.getElementById('plantModal');
+    const addPlantBtn = document.getElementById('addPlantBtn');
+    const plantTableBody = document.querySelector('#plantsTable tbody');
+
+    addPlantBtn.addEventListener('click', () => {
+        plantForm.reset();
+        plantModal.style.display = 'block';
+    });
+
+    plantForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const plantData = {
+            name: document.getElementById('plantName').value,
+            color: document.getElementById('plantColor').value,
+            photo: document.getElementById('plantPhoto').value,
+            description: document.getElementById('plantDescription').value,
+            type: document.getElementById('plantType').value,
+        };
+        try {
+            const response = await fetch('/api/plants', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(plantData),
+            });
+            const result = await response.json();
+            if (response.ok) {
+                addPlant(result);
+                plantForm.reset();
+                plantModal.style.display = 'none';
+            } else {
+                console.error('Error:', result.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+
+    async function fetchPlants() {
+        try {
+            const response = await fetch('/api/plants');
+            const plants = await response.json();
+            if (response.ok) {
+                plantTableBody.innerHTML = ''; // Clear existing rows
+                plants.forEach(plant => addPlant(plant));
+            } else {
+                console.error('Failed to fetch plants:', plants.message);
+            }
+        } catch (error) {
+            console.error('Error fetching plants:', error);
+        }
+    }
+
+    function addPlant(plantData) {
+        const row = plantTableBody.insertRow();
+        row.dataset.id = plantData._id; // Use the plant ID from the database
+        row.insertCell(0).innerText = plantTableBody.rows.length + 1;
+        row.insertCell(1).innerText = plantData.name;
+        row.insertCell(2).innerText = plantData.color;
+        const actionsCell = row.insertCell(3);
+        actionsCell.innerHTML = `<button onclick="editPlant(this)">Edit</button> <button onclick="deletePlant(this)">Delete</button>`;
+    }
+
+    await fetchPlants();
 });
 
 function editUser(button) {
@@ -92,6 +166,61 @@ function editUser(button) {
     document.getElementById('userModal').style.display = 'block';
 }
 
-function deleteUser(button) {
+async function deleteUser(button) {
+    const row = button.closest('tr');
     button.closest('tr').remove();
+    const username = row.cells[1].innerText;
+    try {
+        const response = await fetch(`/api/user/${username}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        console.log(username);
+        if (response.ok) {
+            row.remove();
+            console.log('User deleted successfully');
+        } else {
+            const errorData = await response.json();
+            console.error('Failed to delete user:', errorData.message);
+        }
+    } catch (error) {
+        console.error('Error deleting user:', error);
+    }
 }
+
+function editPlant(button) {
+    const row = button.closest('tr');
+    const id = row.dataset.id;
+    const name = row.cells[1].innerText;
+    const color = row.cells[2].innerText;
+    document.getElementById('plantName').value = name;
+    document.getElementById('plantColor').value = color;
+    document.getElementById('plantModal').style.display = 'block';
+}
+
+async function deletePlant(button) {
+    const row = button.closest('tr');
+    const id = row.dataset.id;
+    
+    try {
+        const response = await fetch(`/api/plants/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const result = await response.json();
+        
+        if (response.ok) {
+            row.remove();
+            console.log('Plant deleted successfully:', result);
+        } else {
+            console.error('Failed to delete plant:', result.message);
+        }
+    } catch (error) {
+        console.error('Error deleting plant:', error);
+    }
+}
+

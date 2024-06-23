@@ -8,13 +8,14 @@ import { serveStaticFile } from './staticFileMiddleware.js';
 import { handleUnsplashRequest } from './unsplashHandler.js';
 import { handleFileUpload } from './fileUploadHandler.js';
 import url from 'url';
+
 import { handleAdmin } from '../routes/admin.js';
-import { handleUserAdd, handleUserGet } from '../api/userApi.js';
+import { handleUserAdd, handleUserGet, handleUserDeleteByUsername } from '../api/userApi.js';
 import { createOrRetrieveSession, } from './sessionManager.js';
 import { handleLogout } from '../routes/logout.js';
-
+import { handlePlantAdd, handlePlantGet, handlePlantDeleteById } from '../api/plantApi.js';
 const routes = {
-    'GET': {
+    'GET': {     
         '/': handleRequest,
         '/home': handleRequest,
         '/about': handleRequest,
@@ -28,7 +29,8 @@ const routes = {
         '/api/plants': handlePlantApi,
         '/api/unsplash': handleUnsplashRequest,
         '/admin': handleAdmin,
-        '/api/users': handleUserGet
+        '/api/users': handleUserGet,
+        '/api/plants': handlePlantGet
     },
     'POST': {
         '/contact': handleContactForm,
@@ -36,10 +38,14 @@ const routes = {
         '/login': handleLoginForm,
         '/logout': handleLogout,
         '/upload': handleFileUpload,
-        '/api/users': handleUserAdd
+        '/api/users': handleUserAdd,
+        '/api/plants': handlePlantAdd
+    },
+    'DELETE': { 
+        
     }
 };
-const protectedRoutes = ['/home', '/about', '/contact', '/admin', '/unslash', '/catalog'];
+const protectedRoutes = ['/home', '/about', '/contact',  '/unslash', '/catalog'];//admin
 
 export const router = async (req, res) => {
     const { method } = req;
