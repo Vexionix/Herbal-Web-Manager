@@ -92,9 +92,10 @@ confirmPasswordInput.addEventListener("input", () => {
 
 
 registerForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
-    event.preventDefault();
 
     if (password !== confirmPassword) {
         errorMessage.textContent = "Passwords do not match!";
@@ -116,38 +117,36 @@ registerForm.addEventListener("submit", async (event) => {
         errorMessage.textContent = "";
         return;
     }
-    try {
-        await fetchUsers();
-        registerForm.submit();
-    } catch (error) {
-        console.error('Error fetching users:', error);
-        event.preventDefault();
-        errorMessage.textContent = "Account with the same username or email already exists!";
-    }
-});
 
-async function fetchUsers(event) {
     const userData = {
         username: document.getElementById('username').value,
         firstName: document.getElementById('first-name').value,
         lastName: document.getElementById('last-name').value,
-        password: document.getElementById('password').value,
-        description: null,
+        password: password,
         email: document.getElementById('email').value,
-        profile_img: null,
-        liked_photos: null,
-        collections: null,
     };
-    const response = await fetch('/signup', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    });
 
-    if (!response.ok) {
-        throw new Error('Failed to fetch users');
+    try {
+        const response = await fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        });
+
+        if (response.ok) {
+            window.location.href = '/login';
+        } else {
+            const errorText = await response.text();
+            errorMessage.textContent = errorText;
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            errorMessage.textContent = "";
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        errorMessage.textContent = "An unknown error occurred.";
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        errorMessage.textContent = "";
     }
-}
-
+});
