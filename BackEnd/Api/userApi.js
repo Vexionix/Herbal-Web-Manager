@@ -39,11 +39,9 @@ export const handleUserAdd = async (req, res) => {
                 userData.firstName,
                 userData.lastName,
                 userData.password,
-                userData.description,
+                userData.email,
                 userData.liked_photos,
-                userData.collections,
-                userData.profile_img,
-                userData.email
+                userData.userType
             );
 
             res.writeHead(201, { 'Content-Type': 'application/json' });

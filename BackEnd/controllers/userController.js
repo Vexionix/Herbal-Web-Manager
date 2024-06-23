@@ -3,7 +3,7 @@ import User from '../models/userModel.js';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
-async function createNewUser(username, firstName, lastName, password, description, liked_photos, collections, profile_img, email) {
+async function createNewUser(username, firstName, lastName, password, email, liked_photos, userType) {
     await connect();
 
     try {
@@ -15,11 +15,9 @@ async function createNewUser(username, firstName, lastName, password, descriptio
             firstName,
             lastName,
             password: hashedPassword,
-            description,
+            email,
             liked_photos,
-            collections,
-            profile_img,
-            email
+            userType
         });
         console.log('User created successfully:', newUser);
         return newUser;
@@ -28,6 +26,7 @@ async function createNewUser(username, firstName, lastName, password, descriptio
         throw error;
     }
 }
+
 
 async function findAllUsers() {
     await connect();
