@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeMa | Password recovery</title>
+    <link rel="stylesheet" href="recovery.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-top"></div>
+            <div class="logo">
+                <p>Herbal Web Manager</p>
+            </div>
+            <div class="header-top"></div>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <div class="login-section">
+            <h2>Forgot your password?</h2>
+            <form id="reset-form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter email" required>
+                <button type="submit">Send reset link</button>
+                <p id="status-message"> </p>
+                <p>Remembered your password? <a href="login">Login instead.</a></p>
+            </form>
+        </div>
+
+        <footer>
+            <div class="footer-container">
+                <p>
+                    © 2024 Herbal Web Manager, Perju Mircea-Stefan & Hulubei Tudor 2A4 UAIC FII
+                </p>
+            </div>
+        </footer>
+    </div>
+    <script src="../BackEnd/scripts/requestReset.js"></script>
+</body>
+
+
+
+</html>

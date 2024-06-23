@@ -2,6 +2,8 @@ import { handleRequest } from './requestHandler.js';
 import { handleContact, handleContactForm } from '../routes/contact.js';
 import { handleSignup, handleSignupForm } from '../routes/signup.js';
 import { handleLogin, handleLoginForm } from '../routes/login.js';
+import { handleRecovery } from '../routes/recovery.js';
+import { handleResetRequest, handleResetForm } from '../routes/requestReset.js';
 import { handleNotFound } from '../routes/notFound.js';
 import { handlePlantApi } from './handlePlantApi.js';
 import { serveStaticFile } from './staticFileMiddleware.js';
@@ -26,6 +28,8 @@ const routes = {
         '/contact': handleContact,
         '/signup': handleSignup,
         '/login': handleLogin,
+        '/requestReset': handleResetRequest,
+        '/recovery': handleRecovery,
         '/notFound': handleNotFound,
         '/api/plants': handlePlantApi,
         '/api/unsplash': handleUnsplashRequest,
@@ -35,6 +39,7 @@ const routes = {
     },
     'POST': {
         '/contact': handleContactForm,
+        '/requestReset': handleResetForm,
         '/signup': handleSignupForm,
         '/login': handleLoginForm,
         '/logout': handleLogout,
@@ -92,7 +97,7 @@ export const router = async (req, res) => {
         return;
     }
 
-    if ((pathname === '/login' || pathname === '/' || pathname === '/signup') && session.data.user) {
+    if ((pathname === '/login' || pathname === '/' || pathname === '/signup' || pathname === '/recovery' || pathname == '/requestReset') && session.data.user) {
         res.writeHead(302, { 'Location': '/home' });
         res.end();
         return;

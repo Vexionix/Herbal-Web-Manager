@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeMa | Login</title>
-    <link rel="stylesheet" href="login.css">
+    <title>HeMa | Password recovery</title>
+    <link rel="stylesheet" href="recovery.css">
 </head>
 
 <body>
@@ -15,27 +15,20 @@
             <div class="logo">
                 <p>Herbal Web Manager</p>
             </div>
-            <nav class="redirect-nav">
-                <ul>
-                    <li class="redirect-button"><a href="/">Home</a></li>
-                    <li class="redirect-button"><a href="signup">Sign up</a></li>
-                    <li class="redirect-button"><a href="login">Login</a></li>
-                </ul>
-            </nav>
+            <div class="header-top"></div>
         </div>
     </header>
 
     <div class="page-container">
         <div class="login-section">
-            <h2>Login</h2>
+            <h2>Reset password</h2>
             <form id="login-form">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Enter Username" required>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter Password" required>
-                <button type="submit">Login</button>
-                <p>Don't have an account? <a href="/signup">Sign up here.</a></p>
-                <p>Forgot your password? <a href="/requestReset">Click here.</a></p>
+                <label for="password">New password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your new password" required>
+                <button type="submit">Update password</button>
+                <p>Remembered your password? <a href="login">Login instead.</a></p>
             </form>
         </div>
 
