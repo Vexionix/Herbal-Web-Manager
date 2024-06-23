@@ -1,4 +1,5 @@
-import { createNewUser, findAllUsers, findUserByUsernameOrEmail, deleteUserById, deleteUserByUsername } from '../controllers/userController.js';
+import { createNewUser, findAllUsers, findUserByUsernameOrEmail, deleteUserById, deleteUserByUsername, updateUserByUsername } from '../controllers/userController.js';
+import bcrypt from 'bcrypt';
 
 export const handleUserAdd = async (req, res) => {
     let body = '';
@@ -99,3 +100,35 @@ export const handleUserDeleteByUsername = async (req, res) => {
         res.end(JSON.stringify({ message: 'Error deleting user', error }));
     }
 };
+
+export const handleUserUpdateByUsername = async (req, res) => {
+    let body = '';
+    req.on('data', chunk => {
+        body += chunk.toString();
+    });
+    req.on('end', async () => {
+        const userData = JSON.parse(body);
+        const saltRounds = 10;
+        userData.password = await bcrypt.hash(userData.password, saltRounds);
+
+        if (userData.username === undefined || userData.firstName === undefined || userData.lastName === undefined || userData.password === undefined || userData.email === undefined || !userData.role === undefined) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Missing required fields' }));
+            return;
+        }
+
+        try {
+            const user = await updateUserByUsername(userData.username, userData);
+            if (user) {
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User updated successfully' }));
+            } else {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User not found' }));
+            }
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error updating user', error }));
+        }
+    });
+}

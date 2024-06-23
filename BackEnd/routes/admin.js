@@ -1,7 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
 import url from 'url';
-import querystring from 'querystring';
 import { getContentType } from '../utils/contentTypes.js';
 import { handleError } from '../utils/errorHandlers.js';
 

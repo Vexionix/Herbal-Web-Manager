@@ -10,7 +10,7 @@ import { handleFileUpload } from './fileUploadHandler.js';
 import url from 'url';
 
 import { handleAdmin } from '../routes/admin.js';
-import { handleUserAdd, handleUserGet, handleUserDeleteByUsername } from '../api/userApi.js';
+import { handleUserAdd, handleUserGet, handleUserDeleteByUsername, handleUserUpdateByUsername } from '../api/userApi.js';
 import { createOrRetrieveSession } from './sessionManager.js';
 import { handleLogout } from '../routes/logout.js';
 import { handlePlantAdd, handlePlantGet, handlePlantDeleteById } from '../api/plantApi.js';
@@ -41,6 +41,9 @@ const routes = {
         '/upload': handleFileUpload,
         '/api/users': handleUserAdd,
         '/api/plants': handlePlantAdd
+    },
+    'PUT': {
+        '/api/users/:username': handleUserUpdateByUsername
     },
     'DELETE': {
         '/api/users/:username': handleUserDeleteByUsername,

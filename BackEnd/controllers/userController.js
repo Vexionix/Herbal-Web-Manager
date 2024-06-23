@@ -58,11 +58,20 @@ async function updateUserByUsername(username, newData) {
 
     try {
         const updatedUser = await User.findOneAndUpdate(
-            { username },
+            { username: username },
             newData,
-            { new: true }
+            {
+                new: true,
+                upsert: false
+            }
         );
-        console.log('User updated successfully:', updatedUser);
+
+        if (updatedUser) {
+            console.log('User updated successfully:', updatedUser);
+        } else {
+            console.log('No matching user found with username:', username);
+        }
+
         return updatedUser;
     } catch (error) {
         console.error('Error updating user:', error);
@@ -75,7 +84,7 @@ async function deleteUserById(id) {
 
     try {
         const deletedUser = await User.findByIdAndDelete(id);
-        
+
         if (!deletedUser) {
             throw new Error('User not found');
         }

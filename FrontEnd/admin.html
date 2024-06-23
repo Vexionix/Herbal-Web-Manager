@@ -106,12 +106,12 @@
     </div>
   </div>
 
-  <!-- Modal for adding/editing users -->
-  <div id="userModal" class="modal">
+  <!-- Modal for adding users -->
+  <div id="addUserModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h2>Add/Edit User</h2>
-      <form id="userForm">
+      <h2>Add User</h2>
+      <form id="addUserForm">
         <label for="userName">Username:</label>
         <input type="text" id="userName" name="userName" required>
         <label for="firstName">First name:</label>
@@ -130,6 +130,35 @@
         <input type="text" id="userLikedPhotos" name="userLikedPhotos">
         <label for="userCollections">Collections (comma-separated IDs):</label>
         <input type="text" id="userCollections" name="userCollections">
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal for editing users -->
+  <div id="editUserModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Edit User</h2>
+      <form id="editUserForm">
+        <label for="editUserName">Username:</label>
+        <input type="text" id="editUserName" name="editUserName" required>
+        <label for="editFirstName">First name:</label>
+        <input type="text" id="editFirstName" name="editFirstName" required>
+        <label for="editLastName">Last name:</label>
+        <input type="text" id="editLastName" name="editLastName" required>
+        <label for="editUserPassword">Password:</label>
+        <input type="password" id="editUserPassword" name="editUserPassword" required>
+        <label for="editUserDescription">Description:</label>
+        <input type="text" id="editUserDescription" name="editUserDescription">
+        <label for="editUserEmail">Email:</label>
+        <input type="email" id="editUserEmail" name="editUserEmail" required>
+        <label for="editUserProfileImg">Profile Image URL:</label>
+        <input type="text" id="editUserProfileImg" name="editUserProfileImg">
+        <label for="editUserLikedPhotos">Liked Photos (comma-separated IDs):</label>
+        <input type="text" id="editUserLikedPhotos" name="editUserLikedPhotos">
+        <label for="editUserCollections">Collections (comma-separated IDs):</label>
+        <input type="text" id="editUserCollections" name="editUserCollections">
         <button type="submit">Save</button>
       </form>
     </div>

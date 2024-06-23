@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // User Section
-    const userForm = document.getElementById('userForm');
-    const userModal = document.getElementById('userModal');
+    const addUserForm = document.getElementById('addUserForm');
+    const addUserModal = document.getElementById('addUserModal');
     const addUserBtn = document.getElementById('addUserBtn');
     const userTableBody = document.querySelector('#usersTable tbody');
 
     addUserBtn.addEventListener('click', () => {
-        userForm.reset();
-        userModal.style.display = 'block';
+        addUserForm.reset();
+        addUserModal.style.display = 'block';
     });
 
-    userForm.addEventListener('submit', async (e) => {
+    addUserForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const userData = {
             username: document.getElementById('userName').value,
@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const result = await response.json();
             if (response.ok) {
                 addUser(result);
-                userForm.reset();
-                userModal.style.display = 'none';
+                addUserForm.reset();
+                addUserModal.style.display = 'none';
             } else {
                 console.error('Error:', result.message);
             }
@@ -72,14 +72,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     document.querySelectorAll('.close').forEach(button => {
         button.addEventListener('click', () => {
-            userModal.style.display = 'none';
+            addUserModal.style.display = 'none';
+            editUserModal.style.display = 'none';
             plantModal.style.display = 'none';
         });
     });
 
     window.onclick = (event) => {
-        if (event.target == userModal) {
-            userModal.style.display = 'none';
+        if (event.target == addUserModal) {
+            addUserModal.style.display = 'none';
+        }
+        if (event.target == editUserModal) {
+            editUserModal.style.display = 'none';
         }
         if (event.target == plantModal) {
             plantModal.style.display = 'none';
@@ -163,9 +167,44 @@ function editUser(button) {
     const id = row.dataset.id;
     const username = row.cells[1].innerText;
     const email = row.cells[2].innerText;
-    document.getElementById('userName').value = username;
-    document.getElementById('userEmail').value = email;
-    document.getElementById('userModal').style.display = 'block';
+    const editUserForm = document.getElementById('editUserForm');
+    const editUserModal = document.getElementById('editUserModal');
+    editUserForm.elements.editUserName.value = username;
+    editUserForm.elements.editUserEmail.value = email;
+    editUserModal.style.display = 'block';
+    editUserForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        console.log('First name: ' + document.getElementById('firstName').value);
+        const userData = {
+            username: editUserForm.elements.editUserName.value,
+            firstName: editUserForm.elements.editFirstName.value,
+            lastName: editUserForm.elements.editLastName.value,
+            password: editUserForm.elements.editUserPassword.value,
+            description: editUserForm.elements.editUserDescription.value,
+            email: editUserForm.elements.editUserEmail.value,
+            profile_img: editUserForm.elements.editUserProfileImg.value,
+            liked_photos: editUserForm.elements.editUserLikedPhotos.value.split(',').map(id => ({ _id: id.trim() })),
+            collections: editUserForm.elements.editUserCollections.value.split(',').map(id => id.trim()),
+        };
+        try {
+            const response = await fetch(`/api/users/${username}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+            const result = await response.json();
+            if (response.ok) {
+                editUserForm.reset();
+                editUserModal.style.display = 'none';
+            } else {
+                console.error('Error:', result.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
 }
 
 async function deleteUser(button) {
