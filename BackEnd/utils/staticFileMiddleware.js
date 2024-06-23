@@ -20,7 +20,7 @@ export const serveStaticFile = async (req, res) => {
         res.writeHead(204);
         res.end();
         return;
-    }   
+    }
     let filePath;
     if (requestPath.endsWith('.css')) {
         filePath = path.join(frontEndDirectory, requestPath.split('/').pop());
@@ -33,20 +33,23 @@ export const serveStaticFile = async (req, res) => {
     } else if (requestPath.endsWith('.json')) {
         filePath = path.join(__dirname, '..', '..', requestPath);
     } else if (requestPath.includes('/assets')) {
-        if(requestPath.split('/assets').pop().split('/').length!=2) {
-            handleNotFound(null, res);
+        if (requestPath.split('/assets').pop().split('/').length != 2) {
+            res.writeHead(302, { 'Location': '/notFound' });
+            res.end();
             return;
         }
         filePath = path.join(assetsDirectory, requestPath.split('/assets').pop());
-    } else if (requestPath.includes('/plants')) {        
-        if(requestPath.split('/plants').pop().split('/').length!=2) {
-            handleNotFound(null, res);
+    } else if (requestPath.includes('/plants')) {
+        if (requestPath.split('/plants').pop().split('/').length != 2) {
+            res.writeHead(302, { 'Location': '/notFound' });
+            res.end();
             return;
         }
         filePath = path.join(plantsDirectory, requestPath.split('/plants').pop());
     } else if (requestPath.includes('/uploaded')) {
-        if(requestPath.split('/uploaded').pop().split('/').length!=2) {
-            handleNotFound(null, res);
+        if (requestPath.split('/uploaded').pop().split('/').length != 2) {
+            res.writeHead(302, { 'Location': '/notFound' });
+            res.end();
             return;
         }
         filePath = path.join(uploadedDirectory, requestPath.split('/uploaded').pop());
@@ -54,13 +57,14 @@ export const serveStaticFile = async (req, res) => {
 
     try {
         if (filePath) {
-            const data = await fs.readFile(filePath); 
+            const data = await fs.readFile(filePath);
             const contentType = getContentType(filePath);
             res.writeHead(200, { 'Content-Type': contentType });
             res.write(data);
             res.end();
-        } else {            
-            handleNotFound(null, res);
+        } else {
+            res.writeHead(302, { 'Location': '/notFound' });
+            res.end();
             return;
         }
     } catch (error) {
