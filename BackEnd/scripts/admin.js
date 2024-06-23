@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         e.preventDefault();
         const userData = {
             username: document.getElementById('userName').value,
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
             password: document.getElementById('userPassword').value,
             description: document.getElementById('userDescription').value,
             email: document.getElementById('userEmail').value,
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const response = await fetch('/api/users');
             const users = await response.json();
             if (response.ok) {
-                userTableBody.innerHTML = ''; 
+                userTableBody.innerHTML = '';
                 users.forEach(user => addUser(user));
             } else {
                 console.error('Failed to fetch users:', users.message);
@@ -60,8 +62,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function addUser(userData) {
         const row = userTableBody.insertRow();
-        row.dataset.id = userData._id; 
-        row.insertCell(0).innerText = userTableBody.rows.length + 1;
+        row.dataset.id = userData._id;
+        row.insertCell(0).innerText = userTableBody.rows.length;
         row.insertCell(1).innerText = userData.username;
         row.insertCell(2).innerText = userData.email;
         const actionsCell = row.insertCell(3);
@@ -84,7 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
-    
+
     await fetchUsers();
 
     // Plant Section
@@ -146,7 +148,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function addPlant(plantData) {
         const row = plantTableBody.insertRow();
         row.dataset.id = plantData._id; // Use the plant ID from the database
-        row.insertCell(0).innerText = plantTableBody.rows.length + 1;
+        row.insertCell(0).innerText = plantTableBody.rows.length;
         row.insertCell(1).innerText = plantData.name;
         row.insertCell(2).innerText = plantData.color;
         const actionsCell = row.insertCell(3);
@@ -171,7 +173,7 @@ async function deleteUser(button) {
     button.closest('tr').remove();
     const username = row.cells[1].innerText;
     try {
-        const response = await fetch(`/api/user/${username}`, {
+        const response = await fetch(`/api/users/${username}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -203,7 +205,7 @@ function editPlant(button) {
 async function deletePlant(button) {
     const row = button.closest('tr');
     const id = row.dataset.id;
-    
+
     try {
         const response = await fetch(`/api/plants/${id}`, {
             method: 'DELETE',
@@ -212,7 +214,7 @@ async function deletePlant(button) {
             }
         });
         const result = await response.json();
-        
+
         if (response.ok) {
             row.remove();
             console.log('Plant deleted successfully:', result);

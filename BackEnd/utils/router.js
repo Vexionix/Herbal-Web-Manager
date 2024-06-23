@@ -11,11 +11,12 @@ import url from 'url';
 
 import { handleAdmin } from '../routes/admin.js';
 import { handleUserAdd, handleUserGet, handleUserDeleteByUsername } from '../api/userApi.js';
-import { createOrRetrieveSession, } from './sessionManager.js';
+import { createOrRetrieveSession } from './sessionManager.js';
 import { handleLogout } from '../routes/logout.js';
 import { handlePlantAdd, handlePlantGet, handlePlantDeleteById } from '../api/plantApi.js';
+
 const routes = {
-    'GET': {     
+    'GET': {
         '/': handleRequest,
         '/home': handleRequest,
         '/about': handleRequest,
@@ -41,17 +42,43 @@ const routes = {
         '/api/users': handleUserAdd,
         '/api/plants': handlePlantAdd
     },
-    'DELETE': { 
-        
+    'DELETE': {
+        '/api/users/:username': handleUserDeleteByUsername,
+        '/api/plants/:id': handlePlantDeleteById
     }
 };
-const protectedRoutes = ['/home', '/about', '/contact',  '/unslash', '/catalog'];//admin
+
+const protectedRoutes = ['/home', '/about', '/contact', '/unsplash', '/catalog'];
+
+const matchRoute = (method, pathname) => {
+    const routeEntries = Object.entries(routes[method] || {});
+    for (const [route, handler] of routeEntries) {
+        const routeParts = route.split('/');
+        const pathParts = pathname.split('/');
+        if (routeParts.length === pathParts.length) {
+            const params = {};
+            let match = true;
+            for (let i = 0; i < routeParts.length; i++) {
+                if (routeParts[i].startsWith(':')) {
+                    params[routeParts[i].substring(1)] = pathParts[i];
+                } else if (routeParts[i] !== pathParts[i]) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) {
+                return { handler, params };
+            }
+        }
+    }
+    return null;
+};
 
 export const router = async (req, res) => {
     const { method } = req;
     const parsedUrl = url.parse(req.url);
     const pathname = parsedUrl.pathname;
-    const routeHandler = routes[method] && routes[method][pathname];
+    const routeMatch = matchRoute(method, pathname);
 
     const session = createOrRetrieveSession(req, res);
     req.session = session;
@@ -68,8 +95,10 @@ export const router = async (req, res) => {
         return;
     }
 
-    if (routeHandler) {
-        routeHandler(req, res);
+    if (routeMatch) {
+        const { handler, params } = routeMatch;
+        req.params = params;
+        handler(req, res);
     } else {
         serveStaticFile(req, res);
     }

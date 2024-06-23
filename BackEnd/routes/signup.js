@@ -55,8 +55,8 @@ export const handleSignupForm = async (req, res) => {
                     throw new Error('Failed to fetch users');
                 }
 
-                res.writeHead(200, { 'Content-Type': 'text/plain' });
-                res.end('Signup successful!');
+                res.writeHead(302, { 'Location': '/login' });
+                res.end();
             } catch (error) {
                 res.writeHead(500, { 'Content-Type': 'text/plain' });
                 res.end('Signup failed: Unknown error occured.');
