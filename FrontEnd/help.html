@@ -22,10 +22,10 @@
             <nav class="redirect-nav">
                 <ul>
                     <li class="redirect-button"><a href="/home">Home</a></li>
-                    <li class="redirect-button"><a href="about">About</a></li>
-                    <li class="redirect-button"><a href="help">Help</a></li>
-                    <li class="redirect-button"><a href="contact">Contact</a></li>
-                    <li class="redirect-button"><a href="logout">Logout</a></li>
+                    <li class="redirect-button"><a href="/about">About</a></li>
+                    <li class="redirect-button"><a href="/help">Help</a></li>
+                    <li class="redirect-button"><a href="/contact">Contact</a></li>
+                    <li class="redirect-button"><a href="/logout" id="logout-link">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -83,7 +83,12 @@
             </div>
         </footer>
     </div>
+
+    <form id="logout-form" action="/logout" method="POST" style="display: none;"></form>
+
+    <script src="../BackEnd/scripts/logout.js"></script>
     <script src="../BackEnd/scripts/collapsible.js"></script>
 </body>
+
 
 </html>

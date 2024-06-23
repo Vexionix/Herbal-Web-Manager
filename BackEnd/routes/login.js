@@ -5,6 +5,7 @@ import querystring from 'querystring';
 import { getContentType } from '../utils/contentTypes.js';
 import { handleError } from '../utils/errorHandlers.js';
 import { loginUser } from '../utils/loginUtil.js';
+import { saveSession } from '../utils/sessionManager.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,6 +38,10 @@ export const handleLoginForm = async (req, res) => {
 
             try {
                 const user = await loginUser(username, password);
+
+                req.session.data.user = user;
+                saveSession(req.session);
+
                 res.writeHead(200, { 'Content-Type': 'text/plain' });
                 res.end('Login successful!');
             } catch (error) {
