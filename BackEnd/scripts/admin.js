@@ -174,7 +174,6 @@ function editUser(button) {
     editUserModal.style.display = 'block';
     editUserForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        console.log('First name: ' + document.getElementById('firstName').value);
         const userData = {
             username: editUserForm.elements.editUserName.value,
             firstName: editUserForm.elements.editFirstName.value,
