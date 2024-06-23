@@ -156,37 +156,23 @@ body {
     border-radius: 4px;
 }
 
-.container .email-gender-container {
-    display: flex;
-    justify-content: space-between;
-    width: 95%;
+.container .email-container {
+    text-align: center;
     margin: 0 auto;
     margin-bottom: 15px;
 }
 
-.container .email-gender-container .email-container {
-    width: 75%;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.container .email-gender-container .gender-container {
-    width: 25%;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.email-gender-container label {
+.email-container label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     cursor: url('../assets/cursor.png'), auto;
 }
 
-.container .email-gender-container input[type="text"],
-.container .email-gender-container input[type="email"],
-.container .email-gender-container input[type="password"],
-.container .email-gender-container select {
+.container .email-container input[type="text"],
+.container .email-container input[type="email"],
+.container .email-container input[type="password"],
+.container .email-container select {
     text-align: center;
     width: 90%;
     padding: 8px;
