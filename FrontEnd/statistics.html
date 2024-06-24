@@ -11,11 +11,55 @@
 </head>
 
 <body>
-  <pre id="xmlContainer"></pre>
-  <button id="downloadButton">Download Statistics in RSS</button>
-  <button id="csvButton">Download Statistics in CSV</button>
-  <button id="pdfButton">Download Statistics in PDF</button>
-  <button id="jsonButton">Download Statistics in JSON</button>
+  <header>
+    <div class="header-container">
+      <div class="header-top"></div>
+      <div class="logo">
+        <p>Herbal Web Manager</p>
+      </div>
+      <div class="header-top"></div>
+    </div>
+  </header>
+  <div class="page-container">
+    <div class="search-bar-container">
+      <a class="home-button" href="javascript:history.back()">Go Back</a>
+      <a class="home-button" href="/RSS">RSS</a>
+    </div>
+    <div class="category-separator">
+      <div class="page-content-container">
+        <p class="Title">Download statistics for most liked plants:</p>
+        <div class="button-container">
+          <button id="RSSButton">Download Statistics in RSS</button>
+          <button id="csvButton">Download Statistics in CSV</button>
+          <button id="pdfButton">Download Statistics in PDF</button>
+          <button id="jsonButton">Download Statistics in JSON</button>
+        </div>
+      </div>
+      <div class="page-content-container">
+        <p class="Title">Download statistics for most viewed plants:</p>
+        <div class="button-container">
+          <button id="RSSButtonViews">Download Statistics in RSS</button>
+          <button id="csvButtonViews">Download Statistics in CSV</button>
+          <button id="pdfButtonViews">Download Statistics in PDF</button>
+          <button id="jsonButtonViews">Download Statistics in JSON</button>
+        </div>
+      </div>
+      <div class="page-content-container">
+        <p class="Title">Download other statistics:</p>
+        <div class="button-container">
+          <button id="pdfButtonOther">Download Statistics in PDF</button>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-container">
+        <p>
+          © 2024 Herbal Web Manager, Perju Mircea-Stefan & Hulubei Tudor 2A4 UAIC FII
+        </p>
+      </div>
+    </footer>
+  </div>
+
   <script src="../BackEnd/scripts/rss.js"></script>
   <script src="../BackEnd/scripts/csv.js"></script>
   <script src="../BackEnd/scripts/pdf.js"></script>

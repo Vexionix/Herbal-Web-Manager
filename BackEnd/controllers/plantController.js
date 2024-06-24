@@ -61,6 +61,17 @@ class PlantController {
         }
     }
 
+    async handlePlantGetTopViews(req, res) {
+        try {
+            const plants = await plantService.findPlantTopViews();
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(plants));
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error fetching plants', error }));
+        }
+    }
+
     async handlePlantGetCurrentUser(req, res) {
         try {
             const plants = (await plantService.findAllPlants()).filter(plant => plant.posted_by === req.session.data.user.username);

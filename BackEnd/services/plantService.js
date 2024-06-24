@@ -50,6 +50,18 @@ class PlantService {
         }
     }
 
+    async findPlantTopViews() {
+        await connect();
+        try {
+            const plants = await Plant.find({}).sort({ views: -1 });
+            return plants;
+        } catch (error) {
+            console.error('Error finding plants:', error);
+            throw error;
+        }
+    }
+
+
     async findPlantByName(name) {
         await connect();
 
