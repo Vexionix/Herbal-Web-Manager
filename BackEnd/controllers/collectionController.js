@@ -74,7 +74,11 @@ class CollectionController {
     async getCollectionsByPlantName(req, res) {
         const { plant_name } = req.params;
         try {
-            const items = await collectionService.getCollectionItemsByPlantName(decodeURI(plant_name));
+            if (!req.session.data.user) {
+                throw new Error('User not logged in');
+            }
+            const username = req.session.data.user.username;
+            const items = await collectionService.getCollectionItemsByPlantName(username, decodeURI(plant_name));
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(items));
         } catch (error) {

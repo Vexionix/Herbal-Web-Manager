@@ -10,7 +10,7 @@ const frontEndDirectory = path.join(__dirname, '..', "..", 'FrontEnd');
 
 export const handleLikedPlants = async (req, res) => {
     try {
-        const filePath = path.join(frontEndDirectory, 'myPlants.html');
+        const filePath = path.join(frontEndDirectory, 'likedPlants.html');
         const data = await fs.readFile(filePath);
         const contentType = getContentType(filePath);
 

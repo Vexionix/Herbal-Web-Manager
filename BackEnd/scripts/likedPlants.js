@@ -1,11 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch(`/api/plants/current`)
+    fetch('/api/plants')
         .then(response => response.json())
         .then(data => {
             const plantContainer = document.getElementById('plant-container');
             data.forEach(plant => {
-                const plantEntry = createPlantEntry(plant);
-                plantContainer.appendChild(plantEntry);
+                fetch('/api/collections/' + plant.name)
+                    .then(response2 => response2.json())
+                    .then(data2 => {
+                        if (data2.length > 0)
+                            plantContainer.appendChild(createPlantEntry(plant));
+                    })
+                    .catch(error => console.error('Error fetching collection data:', error));
             });
         })
         .catch(error => console.error('Error fetching plant data:', error));

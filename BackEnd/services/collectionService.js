@@ -35,10 +35,10 @@ class CollectionService {
         }
     }
 
-    async getCollectionItemsByPlantName(plantName) {
+    async getCollectionItemsByPlantName(username, plantName) {
         await connect();
         try {
-            const items = await Collection.find({ plant_name: plantName }).lean();
+            const items = await Collection.find({ username: username, plant_name: plantName }).lean();
             return items;
         } catch (error) {
             throw new Error(`Error fetching collection items by plant name: ${error.message}`);
