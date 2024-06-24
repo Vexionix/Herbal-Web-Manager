@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { connect } from '../database/mongooseDatabase.js';
 import Plant from '../models/plantModel.js';
 
-async function createNewPlant(name, posted_by, family, species, place, color, collected_at, views, likes) {
+async function createNewPlant(name, posted_by, family, species, place, color, views, likes) {
     await connect();
 
     try {
@@ -13,7 +13,6 @@ async function createNewPlant(name, posted_by, family, species, place, color, co
             species,
             place,
             color,
-            collected_at,
             views,
             likes
         });

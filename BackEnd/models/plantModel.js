@@ -7,7 +7,6 @@ const plantSchema = new mongoose.Schema({
   species: String,
   place: String,
   color: String,
-  collected_at: Date,
   views: Number,
   likes: Number
 });

@@ -8,7 +8,7 @@ export const handlePlantAdd = async (req, res) => {
 
     req.on('end', async () => {
         const plantData = JSON.parse(body);
-        if (!plantData.name || !plantData.color || !plantData.posted_by || !plantData.family || !plantData.species || !plantData.place || !plantData.collected_at || plantData.views === undefined || plantData.likes === undefined) {
+        if (!plantData.name || !plantData.color || !plantData.posted_by || !plantData.family || !plantData.species || !plantData.place || plantData.views === undefined || plantData.likes === undefined) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ message: 'Missing required fields' }));
             return;
@@ -16,12 +16,12 @@ export const handlePlantAdd = async (req, res) => {
         const existingPlant = await findPlantByName(plantData.name);
         if (existingPlant) {
             res.writeHead(409, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ message: 'Username or email already exists' }));
+            res.end(JSON.stringify({ message: 'Plantname already exists' }));
             return;
         }
         console.log(existingPlant);
         try {
-            const newPlant = await createNewPlant(plantData.name, plantData.posted_by, plantData.family, plantData.species, plantData.place, plantData.color, plantData.collected_at, plantData.views, plantData.likes);
+            const newPlant = await createNewPlant(plantData.name, plantData.posted_by, plantData.family, plantData.species, plantData.place, plantData.color, plantData.views, plantData.likes);
             console.log(newPlant);
             res.writeHead(201, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(newPlant));

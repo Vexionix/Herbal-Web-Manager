@@ -110,7 +110,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             species: document.getElementById('plantSpecies').value,
             place: document.getElementById('plantPlace').value,
             color: document.getElementById('plantColor').value,
-            collected_at: new Date(document.getElementById('collected_at').value),
             views: 0,
             likes: 0
         };
