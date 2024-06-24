@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const searchButton = document.getElementById("search-button");
     const resetButton = document.getElementById("reset-button");
-
     searchButton.addEventListener("click", async () => {
         const criteria = ["family", "species", "place", "color"];
         let selectedOptions = {};
@@ -71,7 +70,7 @@ function createPlantEntry(plant) {
     likes.textContent = 'Likes: ' + plant.likes;
     const views = document.createElement('p');
     views.textContent = 'Views: ' + plant.views;
-
+    
     infoDiv.appendChild(h1);
     infoDiv.appendChild(p);
     infoDiv.appendChild(likes);
@@ -100,6 +99,7 @@ function createPlantEntry(plant) {
     input.id = `favoriteButton${plant.name}`;
     input.className = 'favorite-button';
 
+    
     const label = document.createElement('label');
     label.setAttribute('for', `favoriteButton${plant.name}`);
     label.className = 'favorite-label';

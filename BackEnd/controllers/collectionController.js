@@ -1,65 +1,64 @@
-import { connect } from '../database/mongooseDatabase.js';
-import Collection from '../models/collectionModel.js';
-
-const createNewCollection = async (name, description, plants, user_id) => {
-    await connect();
-    try {
-        const newCollection = new Collection({ name, description, plants, user_id });
-        const savedCollection = await newCollection.save();
-        return savedCollection;
-    } catch (error) {
-        throw new Error(`Could not create new collection: ${error.message}`);
+class CollectionController {
+    async getAllCollections(req, res) {
+        try {
+            const items = await CollectionService.getAllCollectionItems();
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(items));
+        } catch (error) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: error.message }));
+        }
     }
-};
 
-const findAllCollections = async () => {
-    await connect();
-    try {
-        const collections = await Collection.find();
-        return collections;
-    } catch (error) {
-        throw new Error(`Could not fetch all collections: ${error.message}`);
+    async deleteCollectionsByPlantName(req, res) {
+        const { plantName } = req.params;
+        try {
+            const result = await CollectionService.deleteCollectionItemsByPlant(plantName);
+            res.writeHead(204, { 'Content-Type': 'application/json' });
+            res.end();
+        } catch (error) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: error.message }));
+        }
     }
-};
 
-const findCollectionsByUserId = async (user_id) => {
-    await connect();
-    try {
-        const collections = await Collection.find({ user_id });
-        return collections;
-    } catch (error) {
-        throw new Error(`Could not fetch collections for user ${user_id}: ${error.message}`);
+    async updateCollectionByPlantName(req, res) {
+        const { plantName } = req.params;
+        const updatedData = req.body;
+        try {
+            const updatedItem = await CollectionService.updateCollectionItemByPlantName(plantName, updatedData);
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(updatedItem));
+        } catch (error) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: error.message }));
+        }
     }
-};
 
-const getCollectionById = async (id) => {
-    await connect();
-    try {
-        const collection = await Collection.findById(id);
-        return collection;
-    } catch (error) {
-        throw new Error(`Could not fetch collection with ID ${id}: ${error.message}`);
+    async createCollection(req, res) {
+        const { username, plantName } = req.body;
+        try {
+            const newItem = await CollectionService.createCollectionItem(username, plantName);
+            res.writeHead(201, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(newItem));
+        } catch (error) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: error.message }));
+        }
     }
-};
 
-const updateCollection = async (id, name, description, plants, user_id) => {
-    await connect();
-    try {
-        const updatedCollection = await Collection.findByIdAndUpdate(id, { name, description, plants, user_id }, { new: true });
-        return updatedCollection;
-    } catch (error) {
-        throw new Error(`Could not update collection with ID ${id}: ${error.message}`);
+    async getCollectionsByUsername(req, res) {
+        const { username } = req.params;
+        try {
+            const items = await CollectionService.getCollectionItemsByUsername(username);
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(items));
+        } catch (error) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: error.message }));
+        }
     }
-};
+}
 
-const deleteCollectionById = async (id) => {
-    await connect();
-    try {
-        const deletedCollection = await Collection.findByIdAndDelete(id);
-        return deletedCollection;
-    } catch (error) {
-        throw new Error(`Could not delete collection with ID ${id}: ${error.message}`);
-    }
-};
-
-export { createNewCollection, findAllCollections, findCollectionsByUserId, getCollectionById, updateCollection, deleteCollectionById };
+const collectionController = new CollectionController();
+export default collectionController;

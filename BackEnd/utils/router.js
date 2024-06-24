@@ -21,6 +21,7 @@ import { createOrRetrieveSession } from './sessionManager.js';
 import { handleLogout } from '../routes/logout.js';
 import userController from '../controllers/userController.js';
 import plantController from '../controllers/plantController.js';
+import collectionController from '../controllers/collectionController.js';
 
 const routes = {
     'GET': {
@@ -61,7 +62,8 @@ const routes = {
         '/api/users': userController.handleUserAdd,
         '/api/users/updatePassword': userController.handleUserUpdatePassword,
         '/api/plants': plantController.handlePlantAdd,
-        '/api/plants/search': plantController.handlePlantSearch
+        '/api/plants/search': plantController.handlePlantSearch,
+        '/api/collections/:plant_name': collectionController.createCollection//ads plant
     },
     'PUT': {
         '/api/users/:username': userController.handleUserUpdateByUsername,
@@ -69,7 +71,7 @@ const routes = {
     },
     'DELETE': {
         '/api/users/:username': userController.handleUserDeleteByUsername,
-        '/api/plants/:id': plantController.handlePlantDeleteById
+        '/api/collections/:plant_name': collectionController.deleteCollectionsByPlantName//delete plant
     }
 };
 
