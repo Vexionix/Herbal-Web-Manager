@@ -88,13 +88,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     await fetchUsers();
-
+});
+document.addEventListener('DOMContentLoaded', async () => {
     // Plant Section
     const plantForm = document.getElementById('plantForm');
     const plantModal = document.getElementById('plantModal');
     const addPlantBtn = document.getElementById('addPlantBtn');
     const plantTableBody = document.querySelector('#plantsTable tbody');
-
+    
     addPlantBtn.addEventListener('click', () => {
         plantForm.reset();
         plantModal.style.display = 'block';
@@ -104,11 +105,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         e.preventDefault();
         const plantData = {
             name: document.getElementById('plantName').value,
+            posted_by: 'sex',//req.session.data.user.username
+            family: document.getElementById('plantFamily').value,
+            species: document.getElementById('plantSpecies').value,
+            place: document.getElementById('plantPlace').value,
             color: document.getElementById('plantColor').value,
-            photo: document.getElementById('plantPhoto').value,
-            description: document.getElementById('plantDescription').value,
-            type: document.getElementById('plantType').value,
+            collected_at: new Date(document.getElementById('collected_at').value),
+            views: 0,
+            likes: 0
         };
+        console.log(plantData);
         try {
             const response = await fetch('/api/plants', {
                 method: 'POST',
