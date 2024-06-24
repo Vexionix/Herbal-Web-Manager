@@ -55,6 +55,44 @@ function createPlantEntry(plant) {
     input.id = `favoriteButton${plant.name}`;
     input.className = 'favorite-button';
 
+    fetch('/api/collections/' + plant.name)
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0)
+                input.checked = true;
+        })
+        .catch(error => console.error('Error fetching collection data:', error));
+
+    input.addEventListener('change', function (event) {
+        if (!event.target.checked) {
+            fetch('/api/collections/' + plant.name, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to delete collection data');
+                    }
+                    console.log('Collection data deleted successfully');
+                });
+        }
+        else {
+            fetch('/api/collections', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    plant_name: plant.name
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => console.error('Error creating collection data:', error));
+        }
+    });
+
     const label = document.createElement('label');
     label.setAttribute('for', `favoriteButton${plant.name}`);
     label.className = 'favorite-label';

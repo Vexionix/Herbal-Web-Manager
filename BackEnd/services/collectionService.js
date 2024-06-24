@@ -2,9 +2,10 @@ import Collection from "../models/collectionModel.js";
 import { connect } from '../database/mongooseDatabase.js';
 class CollectionService {
     async createCollectionItem(username, plantName) {
+        await connect();
         try {
             const newItem = new Collection({
-                username,
+                username: username,
                 plant_name: plantName
             });
             const savedItem = await newItem.save();
@@ -15,6 +16,7 @@ class CollectionService {
     }
 
     async getAllCollectionItems() {
+        await connect();
         try {
             const items = await Collection.find({});
             return items;
@@ -24,6 +26,7 @@ class CollectionService {
     }
 
     async getCollectionItemsByUsername(username) {
+        await connect();
         try {
             const items = await Collection.find({ username: username });
             return items;
@@ -33,8 +36,9 @@ class CollectionService {
     }
 
     async getCollectionItemsByPlantName(plantName) {
+        await connect();
         try {
-            const items = await Collection.find({ plant_name: plantName });
+            const items = await Collection.find({ plant_name: plantName }).lean();
             return items;
         } catch (error) {
             throw new Error(`Error fetching collection items by plant name: ${error.message}`);
@@ -42,6 +46,7 @@ class CollectionService {
     }
 
     async updateCollectionItemByPlantName(plantName, updatedData) {
+        await connect();
         try {
             const updatedItem = await Collection.findOneAndUpdate(
                 { plant_name: plantName },
@@ -55,6 +60,7 @@ class CollectionService {
     }
 
     async updateCollectionItemByPlantAndUsername(plantName, username, updatedData) {
+        await connect();
         try {
             const updatedItem = await Collection.findOneAndUpdate(
                 { plant_name: plantName, username: username },
@@ -67,9 +73,10 @@ class CollectionService {
         }
     }
 
-    async deleteCollectionItemsByPlant(plantName) {
+    async deleteCollectionItemsByPlant(username, plantName) {
+        await connect();
         try {
-            const result = await Collection.deleteMany({ plant_name: plantName });
+            const result = await Collection.deleteMany({ username: username, plant_name: plantName });
             return result;
         } catch (error) {
             throw new Error(`Error deleting collection items by plant name: ${error.message}`);
@@ -77,6 +84,7 @@ class CollectionService {
     }
 
     async deleteCollectionItemByPlantAndUsername(plantName, username) {
+        await connect();
         try {
             const deletedItem = await Collection.findOneAndDelete({ plant_name: plantName, username: username });
             return deletedItem;

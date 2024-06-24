@@ -1,7 +1,9 @@
+import collectionService from '../services/collectionService.js';
+
 class CollectionController {
     async getAllCollections(req, res) {
         try {
-            const items = await CollectionService.getAllCollectionItems();
+            const items = await collectionService.getAllCollectionItems();
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(items));
         } catch (error) {
@@ -11,9 +13,13 @@ class CollectionController {
     }
 
     async deleteCollectionsByPlantName(req, res) {
-        const { plantName } = req.params;
+        const { plant_name } = req.params;
         try {
-            const result = await CollectionService.deleteCollectionItemsByPlant(plantName);
+            if (!req.session.data.user) {
+                throw new Error('User not logged in');
+            }
+            const username = req.session.data.user.username;
+            const result = await collectionService.deleteCollectionItemsByPlant(username, decodeURI(plant_name));
             res.writeHead(204, { 'Content-Type': 'application/json' });
             res.end();
         } catch (error) {
@@ -23,10 +29,10 @@ class CollectionController {
     }
 
     async updateCollectionByPlantName(req, res) {
-        const { plantName } = req.params;
+        const { plant_name } = req.params;
         const updatedData = req.body;
         try {
-            const updatedItem = await CollectionService.updateCollectionItemByPlantName(plantName, updatedData);
+            const updatedItem = await collectionService.updateCollectionItemByPlantName(plant_name, updatedData);
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(updatedItem));
         } catch (error) {
@@ -36,21 +42,39 @@ class CollectionController {
     }
 
     async createCollection(req, res) {
-        const { username, plantName } = req.body;
-        try {
-            const newItem = await CollectionService.createCollectionItem(username, plantName);
-            res.writeHead(201, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify(newItem));
-        } catch (error) {
-            res.writeHead(400, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ message: error.message }));
-        }
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+
+        req.on('end', async () => {
+            const plantData = JSON.parse(body);
+            const plant_name = plantData.plant_name;
+            console.log(plant_name);
+            if (plant_name === undefined) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Missing required fields' }));
+                return;
+            }
+            try {
+                if (!req.session.data.user) {
+                    throw new Error('User not logged in');
+                }
+                const username = req.session.data.user.username;
+                const newItem = await collectionService.createCollectionItem(username, plant_name);
+                res.writeHead(201, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(newItem));
+            } catch (error) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: error.message }));
+            }
+        });
     }
 
     async getCollectionsByPlantName(req, res) {
-        const { plantName } = req.params;
+        const { plant_name } = req.params;
         try {
-            const items = await CollectionService.getCollectionItemsByPlantName(plantName);
+            const items = await collectionService.getCollectionItemsByPlantName(decodeURI(plant_name));
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(items));
         } catch (error) {
@@ -62,7 +86,7 @@ class CollectionController {
     async getCollectionsByUsername(req, res) {
         const { username } = req.params;
         try {
-            const items = await CollectionService.getCollectionItemsByUsername(username);
+            const items = await collectionService.getCollectionItemsByUsername(username);
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(items));
         } catch (error) {
@@ -72,5 +96,4 @@ class CollectionController {
     }
 }
 
-const collectionController = new CollectionController();
-export default collectionController;
+export default new CollectionController();

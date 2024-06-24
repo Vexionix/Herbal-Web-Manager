@@ -67,7 +67,7 @@ const routes = {
         '/api/users/updatePassword': userController.handleUserUpdatePassword,
         '/api/plants': plantController.handlePlantAdd,
         '/api/plants/search': plantController.handlePlantSearch,
-        '/api/collections/:plant_name': collectionController.createCollection//ads plant
+        '/api/collections': collectionController.createCollection//ads plant
     },
     'PUT': {
         '/api/users/:username': userController.handleUserUpdateByUsername,
