@@ -119,6 +119,11 @@ class UserController {
         const { username } = req.params;
 
         try {
+            if (!req.session.data.user || req.session.data.user.userType !== 'admin') {
+                res.writeHead(401, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Unauthorized' }));
+                return;
+            }
             const user = await userService.deleteUserByUsername(username);
             if (user) {
                 res.writeHead(200, { 'Content-Type': 'application/json' });

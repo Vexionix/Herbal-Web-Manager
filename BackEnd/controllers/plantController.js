@@ -146,6 +146,11 @@ class PlantController {
         const plantId = req.url.split('/').pop();
 
         try {
+            if (!req.session.data.user || req.session.data.user.userType !== 'admin') {
+                res.writeHead(401, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Unauthorized' }));
+                return;
+            }
             const deletedPlant = await plantService.deletePlantById(plantId);
             if (!deletedPlant) {
                 res.writeHead(404, { 'Content-Type': 'application/json' });
