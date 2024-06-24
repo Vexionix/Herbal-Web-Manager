@@ -3,7 +3,6 @@ import url from 'url';
 import fs from 'fs/promises';
 import { getContentType } from './contentTypes.js';
 import { handleError } from './errorHandlers.js';
-import { handleNotFound } from '../routes/notFound.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
