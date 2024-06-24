@@ -78,13 +78,78 @@
         <label for="plantName">Name:</label>
         <input type="text" id="plantName" name="plantName" required>
         <label for="plantSpecies">Species:</label>
-        <input type="text" id="plantSpecies" name="plantSpecies" required>
+        <select id="plantSpecies" name="plantSpecies" required>
+          <option value="">Select a species</option>
+          <option value="Ageratum">Ageratum</option>
+          <option value="Alpina">Alpina</option>
+          <option value="Aster">Aster</option>
+          <option value="Balsam">Balsam</option>
+          <option value="Biflora">Biflora</option>
+          <option value="Californica">Californica</option>
+          <option value="Domestica">Domestica</option>
+          <option value="Eximia">Eximia</option>
+          <option value="Fruticosa">Fruticosa</option>
+          <option value="Gigantea">Gigantea</option>
+          <option value="Heliotrope">Heliotrope</option>
+          <option value="Hirsuta">Hirsuta</option>
+          <option value="Impatiens">Impatiens</option>
+          <option value="Imperialis">Imperialis</option>
+          <option value="Japonica">Japonica</option>
+          <option value="Nana">Nana</option>
+          <option value="Orientalis">Orientalis</option>
+          <option value="Rosmarinifolia">Rosmarinifolia</option>
+          <option value="Sativum">Sativum</option>
+          <option value="Tenuifolia">Tenuifolia</option>
+          <option value="Xanthocarpa">Xanthocarpa</option>
+          <option value="Yunnanensis">Yunnanensis</option>
+          <option value="Zebrina">Zebrina</option>
+        </select>
         <label for="plantColor">Color:</label>
-        <input type="text" id="plantColor" name="plantColor" required>
-        <label for="plantFamily">Family:</label>
-        <input type="text" id="plantFamily" name="plantFamily" required>
-        <label for="plantPlace">Place:</label>
-        <input type="text" id="plantPlace" name="plantPlace" required>
+        <select id="plantColor" name="plantColor" required>
+          <option value="">Select a color</option>
+          <option value="Blue">Blue</option>
+          <option value="Brown">Brown</option>
+          <option value="Green">Green</option>
+          <option value="Orange">Orange</option>
+          <option value="Pink">Pink</option>
+          <option value="Purple">Purple</option>
+          <option value="Red">Red</option>
+          <option value="White">White</option>
+          <option value="Yellow">Yellow</option>
+        </select>
+        <label for="plantFamily">Family:</label><select id="plantFamily" name="plantFamily" required>
+          <option value="">Select a family</option>
+          <option value="Asteraceae">Asteraceae</option>
+          <option value="Apiaceae">Apiaceae</option>
+          <option value="Brassicaceae">Brassicaceae</option>
+          <option value="Caryophyllaceae">Caryophyllaceae</option>
+          <option value="Chrysanthemum">Chrysanthemum</option>
+          <option value="Ericaceae">Ericaceae</option>
+          <option value="Fabaceae">Fabaceae</option>
+          <option value="Lamiaceae">Lamiaceae</option>
+          <option value="Liliaceae">Liliaceae</option>
+          <option value="Malvaceae">Malvaceae</option>
+          <option value="Orchidaceae">Orchidaceae</option>
+          <option value="Oleaceae">Oleaceae</option>
+          <option value="Poaceae">Poaceae</option>
+          <option value="Ranunculaceae">Ranunculaceae</option>
+          <option value="Rubiaceae">Rubiaceae</option>
+          <option value="Rosaceae">Rosaceae</option>
+          <option value="Solanaceae">Solanaceae</option>
+          <option value="Urticaceae">Urticaceae</option>
+        </select>
+        <label for="plantPlace">Place:</label><select id="plantPlace" name="plantPlace" required>
+          <option value="">Select a place</option>
+          <option value="Cliff">Cliff</option>
+          <option value="Coastal">Coastal</option>
+          <option value="Desert">Desert</option>
+          <option value="Forest">Forest</option>
+          <option value="Garden">Garden</option>
+          <option value="Mountain">Mountain</option>
+          <option value="Savanna">Savanna</option>
+          <option value="Swamp">Swamp</option>
+          <option value="Urban">Urban</option>
+        </select>
         <label for="plantImage">Upload image:</label>
         <input type="file" id="plantImage" name="plantImage" accept=".jpg" required>
         <button type="submit">Save</button>
@@ -100,13 +165,79 @@
         <label for="editPlantName">Name:</label>
         <input type="text" id="editPlantName" name="editPlantName" required>
         <label for="editPlantSpecies">Species:</label>
-        <input type="text" id="editPlantSpecies" name="editPlantSpecies" required>
+        <select id="editPlantSpecies" name="editPlantSpecies" required>
+          <option value="">Select a species</option>
+          <option value="Ageratum">Ageratum</option>
+          <option value="Alpina">Alpina</option>
+          <option value="Aster">Aster</option>
+          <option value="Balsam">Balsam</option>
+          <option value="Biflora">Biflora</option>
+          <option value="Californica">Californica</option>
+          <option value="Domestica">Domestica</option>
+          <option value="Eximia">Eximia</option>
+          <option value="Fruticosa">Fruticosa</option>
+          <option value="Gigantea">Gigantea</option>
+          <option value="Heliotrope">Heliotrope</option>
+          <option value="Hirsuta">Hirsuta</option>
+          <option value="Impatiens">Impatiens</option>
+          <option value="Imperialis">Imperialis</option>
+          <option value="Japonica">Japonica</option>
+          <option value="Nana">Nana</option>
+          <option value="Orientalis">Orientalis</option>
+          <option value="Rosmarinifolia">Rosmarinifolia</option>
+          <option value="Sativum">Sativum</option>
+          <option value="Tenuifolia">Tenuifolia</option>
+          <option value="Xanthocarpa">Xanthocarpa</option>
+          <option value="Yunnanensis">Yunnanensis</option>
+          <option value="Zebrina">Zebrina</option>
+        </select>
         <label for="editPlantColor">Color:</label>
-        <input type="text" id="editPlantColor" name="editPlantColor" required>
+        <select id="editPlantColor" name="editPlantColor" required>
+          <option value="">Select a color</option>
+          <option value="Blue">Blue</option>
+          <option value="Brown">Brown</option>
+          <option value="Green">Green</option>
+          <option value="Orange">Orange</option>
+          <option value="Pink">Pink</option>
+          <option value="Purple">Purple</option>
+          <option value="Red">Red</option>
+          <option value="White">White</option>
+          <option value="Yellow">Yellow</option>
+        </select>
         <label for="editPlantFamily">Family:</label>
-        <input type="text" id="editPlantFamily" name="editPlantFamily" required>
-        <label for="editPlantPlace">Place:</label>
-        <input type="text" id="editPlantPlace" name="editPlantPlace" required>
+        <select id="editPlantFamily" name="editPlantFamily" required>
+          <option value="">Select a family</option>
+          <option value="Asteraceae">Asteraceae</option>
+          <option value="Apiaceae">Apiaceae</option>
+          <option value="Brassicaceae">Brassicaceae</option>
+          <option value="Caryophyllaceae">Caryophyllaceae</option>
+          <option value="Chrysanthemum">Chrysanthemum</option>
+          <option value="Ericaceae">Ericaceae</option>
+          <option value="Fabaceae">Fabaceae</option>
+          <option value="Lamiaceae">Lamiaceae</option>
+          <option value="Liliaceae">Liliaceae</option>
+          <option value="Malvaceae">Malvaceae</option>
+          <option value="Orchidaceae">Orchidaceae</option>
+          <option value="Oleaceae">Oleaceae</option>
+          <option value="Poaceae">Poaceae</option>
+          <option value="Ranunculaceae">Ranunculaceae</option>
+          <option value="Rubiaceae">Rubiaceae</option>
+          <option value="Rosaceae">Rosaceae</option>
+          <option value="Solanaceae">Solanaceae</option>
+          <option value="Urticaceae">Urticaceae</option>
+        </select>
+        <label for="editPlantPlace">Place:</label><select id="editPlantPlace" name="editPlantPlace" required>
+          <option value="">Select a place</option>
+          <option value="Cliff">Cliff</option>
+          <option value="Coastal">Coastal</option>
+          <option value="Desert">Desert</option>
+          <option value="Forest">Forest</option>
+          <option value="Garden">Garden</option>
+          <option value="Mountain">Mountain</option>
+          <option value="Savanna">Savanna</option>
+          <option value="Swamp">Swamp</option>
+          <option value="Urban">Urban</option>
+        </select>
         <button type="submit">Save</button>
       </form>
     </div>

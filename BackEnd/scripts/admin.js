@@ -130,7 +130,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const plantData = {
             name: document.getElementById('plantName').value,
-            posted_by: 'sex',//req.session.data.user.username
             family: document.getElementById('plantFamily').value,
             species: document.getElementById('plantSpecies').value,
             place: document.getElementById('plantPlace').value,
@@ -138,7 +137,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             views: 0,
             likes: 0
         };
-        console.log(plantData);
         try {
             const response = await fetch('/api/plants', {
                 method: 'POST',
@@ -263,7 +261,6 @@ function editPlant(button) {
         e.preventDefault();
         const plantData = {
             name: editPlantForm.elements.editPlantName.value,
-            posted_by: 'sex',//req.session.data.user.username
             family: editPlantForm.elements.editPlantFamily.value,
             species: editPlantForm.elements.editPlantSpecies.value,
             place: editPlantForm.elements.editPlantPlace.value,
