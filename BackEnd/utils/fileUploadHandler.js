@@ -5,13 +5,12 @@ import url from 'url';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const uploadDir = path.join(__dirname, '..', '..', 'uploaded');
+const uploadDir = path.join(__dirname, '..', '..', 'plants');
 
-// Function to check if the file is a JPEG or PNG
-const isJpegOrPng = (filename) => {
+const isJpg = (filename) => {
     const ext = path.extname(filename).toLowerCase();
-    return ext === '.jpg' || ext === '.jpeg' || ext === '.png';
-};
+    return ext === '.jpg';
+}
 
 export const handleFileUpload = (req, res) => {
     const form = new multiparty.Form({
@@ -27,6 +26,7 @@ export const handleFileUpload = (req, res) => {
         }
 
         const uploadedFile = files.image ? files.image[0] : null;
+        const username = fields.name ? fields.name[0] : null;
 
         if (!uploadedFile) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -34,9 +34,9 @@ export const handleFileUpload = (req, res) => {
             return;
         }
 
-        if (!isJpegOrPng(uploadedFile.originalFilename)) {
+        if (!isJpg(uploadedFile.originalFilename)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'Only JPEG or PNG files are allowed' }));
+            res.end(JSON.stringify({ error: 'Only JPEG files (.jpg) are allowed' }));
             return;
         }
 
@@ -48,7 +48,7 @@ export const handleFileUpload = (req, res) => {
 
         const oldPath = uploadedFile.path;
         const originalFilename = uploadedFile.originalFilename;
-        const filename = originalFilename || 'uploaded_file';
+        const filename = username + '.jpg' || 'failed_upload_' + Date.now() + '_' + originalFilename;
 
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir);
