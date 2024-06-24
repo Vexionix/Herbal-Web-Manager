@@ -40,6 +40,7 @@ const routes = {
         '/recovery': handleRecovery,
         '/userProfile': handleUserProfile,
         '/notFound': handleNotFound,
+        '/statistics': handleRequest,
         '/api/plants': handlePlantApi,
         '/api/unsplash': handleUnsplashRequest,
         '/admin': handleAdmin,
