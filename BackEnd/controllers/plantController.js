@@ -1,31 +1,21 @@
 import mongoose from 'mongoose';
 import { connect } from '../database/mongooseDatabase.js';
+import Plant from '../models/plantModel.js';
 
-// Define the plant schema
-const plantSchema = new mongoose.Schema({
-    id: String,
-    name: String,
-    created_at: { type: Date, default: Date.now },
-    updated_at: { type: Date, default: Date.now },
-    color: String,
-    photo: String,
-    description: String,
-    type: String,
-    views: { type: Number, default: 0 },
-    downloads: { type: Number, default: 0 }
-});
-
-// Create the Plant model
-const Plant = mongoose.model('Plant', plantSchema);
-
-export default Plant;
-
-// Controller functions
-async function createNewPlant(plantData) {
+async function createNewPlant(name, posted_by, family, species, place, color, views, likes) {
     await connect();
 
     try {
-        const newPlant = await Plant.create(plantData);
+        const newPlant = await Plant.create({
+            name,
+            posted_by,
+            family,
+            species,
+            place,
+            color,
+            views,
+            likes
+        });
         console.log('Plant created successfully:', newPlant);
         return newPlant;
     } catch (error) {
@@ -45,12 +35,25 @@ async function findAllPlants() {
         throw error;
     }
 }
+export async function findPlantByName(name) {
+    await connect();
+
+    try {
+        return await Plant.findOne({name}).lean();
+    } catch (error) {
+        console.error('Error finding plant by name:', error);
+        throw error;
+    }
+}
 
 async function findPlantById(plantId) {
     await connect();
 
     try {
         const plant = await Plant.findById(plantId);
+        if (!plant) {
+            throw new Error('Plant not found');
+        }
         console.log('Plant found:', plant);
         return plant;
     } catch (error) {

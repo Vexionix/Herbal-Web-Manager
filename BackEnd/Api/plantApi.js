@@ -1,4 +1,4 @@
-import { createNewPlant, findAllPlants, findPlantById, updatePlantById, deletePlantById } from '../controllers/plantController.js';
+import { findPlantByName, createNewPlant, findAllPlants, findPlantById, updatePlantById, deletePlantById } from '../controllers/plantController.js';
 
 export const handlePlantAdd = async (req, res) => {
     let body = '';
@@ -8,15 +8,21 @@ export const handlePlantAdd = async (req, res) => {
 
     req.on('end', async () => {
         const plantData = JSON.parse(body);
-
-        if (!plantData.name || !plantData.color || !plantData.photo || !plantData.description || !plantData.type) {
+        if (!plantData.name || !plantData.color || !plantData.posted_by || !plantData.family || !plantData.species || !plantData.place || plantData.views === undefined || plantData.likes === undefined) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ message: 'Missing required fields' }));
             return;
         }
-
+        const existingPlant = await findPlantByName(plantData.name);
+        if (existingPlant) {
+            res.writeHead(409, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Plantname already exists' }));
+            return;
+        }
+        console.log(existingPlant);
         try {
-            const newPlant = await createNewPlant(plantData);
+            const newPlant = await createNewPlant(plantData.name, plantData.posted_by, plantData.family, plantData.species, plantData.place, plantData.color, plantData.views, plantData.likes);
+            console.log(newPlant);
             res.writeHead(201, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(newPlant));
         } catch (error) {
