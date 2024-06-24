@@ -4,6 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             const plantContainer = document.getElementById('plant-container');
             data.forEach(plant => {
+                fetch('/api/plants/viewed/' + plant.name, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response2 => {
+                        if (!response2.ok) {
+                            throw new Error(`HTTP error! Status: ${response2.status}`);
+                        }
+                    })
+                    .catch(error => { });
                 const plantEntry = createPlantEntry(plant);
                 plantContainer.appendChild(plantEntry);
             });
@@ -72,8 +84,32 @@ function createPlantEntry(plant) {
                     if (!response.ok) {
                         throw new Error('Failed to delete collection data');
                     }
-                    console.log('Collection data deleted successfully');
+                    fetch('/api/plants/disliked/' + plant.name, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response2 => {
+                            if (!response2.ok) {
+                                throw new Error(`HTTP error! Status: ${response2.status}`);
+                            }
+                        })
+                        .catch(error => { });
+                    fetch('/api/usersdisliked', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response2 => {
+                            if (!response2.ok) {
+                                throw new Error(`HTTP error! Status: ${response2.status}`);
+                            }
+                        })
+                        .catch(error => { });
                 });
+
         }
         else {
             fetch('/api/collections', {
@@ -87,7 +123,30 @@ function createPlantEntry(plant) {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    fetch('/api/plants/liked/' + plant.name, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response2 => {
+                            if (!response2.ok) {
+                                throw new Error(`HTTP error! Status: ${response2.status}`);
+                            }
+                        })
+                        .catch(error => { });
+                    fetch('/api/usersliked', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response2 => {
+                            if (!response2.ok) {
+                                throw new Error(`HTTP error! Status: ${response2.status}`);
+                            }
+                        })
+                        .catch(error => { });
                 })
                 .catch(error => console.error('Error creating collection data:', error));
         }

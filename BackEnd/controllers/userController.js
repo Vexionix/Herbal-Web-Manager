@@ -184,6 +184,60 @@ class UserController {
         });
     }
 
+    async handleLikeIncrement(req, res) {
+
+        if (!req.session.data.user) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'No user connected' }));
+        }
+
+        if (req.session.data.user.username === undefined) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Missing required fields' }));
+        }
+
+        try {
+            const user = await userService.incrementUserLikes(decodeURI(req.session.data.user.username));
+            if (user) {
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User updated successfully' }));
+            } else {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User not found' }));
+            }
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error updating user', error }));
+        }
+    }
+
+    async handleLikeDecrement(req, res) {
+
+        if (!req.session.data.user) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'No user connected' }));
+        }
+
+        if (req.session.data.user.username === undefined) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Missing required fields' }));
+        }
+
+        try {
+            const user = await userService.decrementUserLikes(decodeURI(req.session.data.user.username));
+            if (user) {
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User updated successfully' }));
+            } else {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User not found' }));
+            }
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error updating user', error }));
+        }
+    }
+
     async handleUserUpdatePassword(req, res) {
         let body = '';
         req.on('data', chunk => {

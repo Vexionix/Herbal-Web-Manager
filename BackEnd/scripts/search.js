@@ -15,8 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        console.log("Selected Options:", selectedOptions);
-
         try {
             const response = await fetch('/api/plants/search', {
                 method: 'POST',
@@ -36,6 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
             plantContainer.innerHTML = '';
 
             data.forEach(plant => {
+                fetch('/api/plants/viewed/' + plant.name, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response2 => {
+                        if (!response2.ok) {
+                            throw new Error(`HTTP error! Status: ${response2.status}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error updating viewed count:', error);
+                    });
                 const plantEntry = createPlantEntry(plant);
                 plantContainer.appendChild(plantEntry);
             });
@@ -70,7 +82,7 @@ function createPlantEntry(plant) {
     likes.textContent = 'Likes: ' + plant.likes;
     const views = document.createElement('p');
     views.textContent = 'Views: ' + plant.views;
-    
+
     infoDiv.appendChild(h1);
     infoDiv.appendChild(p);
     infoDiv.appendChild(likes);

@@ -71,6 +71,11 @@ const routes = {
     },
     'PUT': {
         '/api/users/:username': userController.handleUserUpdateByUsername,
+        '/api/usersliked': userController.handleLikeIncrement,
+        '/api/usersdisliked': userController.handleLikeDecrement,
+        '/api/plants/viewed/:plant_name': plantController.handlePlantView,
+        '/api/plants/liked/:plant_name': plantController.handlePlantLikeIncrement,
+        '/api/plants/disliked/:plant_name': plantController.handlePlantLikeDecrement,
         '/api/plants/:name': plantController.handlePlantUpdateByName
     },
     'DELETE': {

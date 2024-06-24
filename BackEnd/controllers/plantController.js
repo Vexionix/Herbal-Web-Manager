@@ -153,6 +153,57 @@ class PlantController {
         });
     }
 
+    async handlePlantLikeIncrement(req, res) {
+        const plant_name = decodeURIComponent(req.url.split('/').pop());
+        try {
+            const updatedPlant = await plantService.incrementPlantLikes(decodeURI(plant_name));
+            if (!updatedPlant) {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Plant not found' }));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(updatedPlant));
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error updating plant', error }));
+        }
+    }
+
+    async handlePlantLikeDecrement(req, res) {
+        const plant_name = decodeURIComponent(req.url.split('/').pop());
+        try {
+            const updatedPlant = await plantService.decrementPlantLikes(decodeURI(plant_name));
+            if (!updatedPlant) {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Plant not found' }));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(updatedPlant));
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error updating plant', error }));
+        }
+    }
+
+    async handlePlantView(req, res) {
+        const plant_name = decodeURIComponent(req.url.split('/').pop());
+        try {
+            const updatedPlant = await plantService.updatePlantViews(decodeURI(plant_name));
+            if (!updatedPlant) {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Plant not found' }));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(updatedPlant));
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error updating plant', error }));
+        }
+    }
+
     async handlePlantDeleteById(req, res) {
         const plantId = req.url.split('/').pop();
 

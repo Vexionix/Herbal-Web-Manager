@@ -73,6 +73,84 @@ class PlantService {
         }
     }
 
+    async incrementPlantLikes(plant_name) {
+        await connect();
+
+        try {
+            const updatedPlant = await Plant.findOneAndUpdate(
+                { name: plant_name },
+                { $inc: { likes: 1 } },
+                {
+                    new: true,
+                    upsert: false
+                }
+            );
+
+            if (updatedPlant) {
+                console.log('Plant updated successfully:', updatedPlant);
+            } else {
+                console.log('No matching plant found with name:', name);
+            }
+
+            return updatedPlant;
+        } catch (error) {
+            console.error('Error updating plant:', error);
+            throw error;
+        }
+    }
+
+    async decrementPlantLikes(plant_name) {
+        await connect();
+
+        try {
+            const updatedPlant = await Plant.findOneAndUpdate(
+                { name: plant_name },
+                { $inc: { likes: -1 } },
+                {
+                    new: true,
+                    upsert: false
+                }
+            );
+
+            if (updatedPlant) {
+                console.log('Plant updated successfully:', updatedPlant);
+            } else {
+                console.log('No matching plant found with name:', name);
+            }
+
+            return updatedPlant;
+        } catch (error) {
+            console.error('Error updating plant:', error);
+            throw error;
+        }
+    }
+
+    async updatePlantViews(plant_name) {
+        await connect();
+
+        try {
+            const updatedPlant = await Plant.findOneAndUpdate(
+                { name: plant_name },
+                { $inc: { views: 1 } },
+                {
+                    new: true,
+                    upsert: false
+                }
+            );
+
+            if (updatedPlant) {
+                console.log('Plant updated successfully:', updatedPlant);
+            } else {
+                console.log('No matching plant found with name:', name);
+            }
+
+            return updatedPlant;
+        } catch (error) {
+            console.error('Error updating plant:', error);
+            throw error;
+        }
+    }
+
     async findPlantById(plantId) {
         await connect();
 

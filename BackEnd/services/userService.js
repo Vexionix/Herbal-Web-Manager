@@ -91,6 +91,58 @@ class UserService {
         }
     }
 
+    async incrementUserLikes(username) {
+        await connect();
+
+        try {
+            const updatedUser = await User.findOneAndUpdate(
+                { username: username },
+                { $inc: { liked_photos: 1 } },
+                {
+                    new: true,
+                    upsert: false
+                }
+            );
+
+            if (updatedUser) {
+                console.log('User updated successfully:', updatedUser);
+            } else {
+                console.log('No matching user found with username:', username);
+            }
+
+            return updatedUser;
+        } catch (error) {
+            console.error('Error updating user:', error);
+            throw error;
+        }
+    }
+
+    async decrementUserLikes(username) {
+        await connect();
+
+        try {
+            const updatedUser = await User.findOneAndUpdate(
+                { username: username },
+                { $inc: { liked_photos: -1 } },
+                {
+                    new: true,
+                    upsert: false
+                }
+            );
+
+            if (updatedUser) {
+                console.log('User updated successfully:', updatedUser);
+            } else {
+                console.log('No matching user found with username:', username);
+            }
+
+            return updatedUser;
+        } catch (error) {
+            console.error('Error updating user:', error);
+            throw error;
+        }
+    }
+
     async deleteUserById(id) {
         await connect();
 
