@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hema | Profile</title>
+    <link rel="stylesheet" href="userProfile.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-top"></div>
+            <div class="logo">
+                <p>Herbal Web Manager</p>
+            </div>
+            <div class="header-top"></div>
+        </div>
+    </header>
+    <div class="search-bar-container">
+        <a class="home-button" href="javascript:history.back()">Go Back</a>
+    </div>
+    <div class="page-container">
+        <div class="page-content-container">
+            <div class="user-panel">
+                <div class="user-icon">
+                    <img src="../assets/default-user-icon.png" alt="User Icon">
+                </div>
+                <div class="user-info">
+                    <h2>User Information</h2>
+                    <p><strong>Username:</strong> <span id="username"></span></p>
+                    <p><strong>Email:</strong> <span id="email"></span></p>
+                    <p><strong>First Name:</strong> <span id="firstName"></span></p>
+                    <p><strong>Last Name:</strong> <span id="lastName"></span></p>
+                </div>
+                <hr>
+                <div class="update-password">
+                    <h2>Update Password</h2>
+                    <form id="updatePasswordForm">
+                        <label for="currentPassword">Current Password:</label>
+                        <input type="password" id="currentPassword" name="currentPassword" required>
+                        <label for="newPassword">New Password:</label>
+                        <input type="password" id="newPassword" name="newPassword" required>
+                        <button type="submit">Update Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-container">
+                <p>
+                    © 2024 Herbal Web Manager, Perju Mircea-Stefan & Hulubei Tudor 2A4 UAIC FII
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../BackEnd/scripts/userProfile.js"></script>
+</body>
+
+
+</html>
