@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeMa | Search</title>
+    <link rel="stylesheet" href="search.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-top"></div>
+            <div class="logo">
+                <p>Herbal Web Manager</p>
+            </div>
+            <div class="header-top"></div>
+        </div>
+    </header>
+    <div class="page-container">
+        <div class="search-bar-container">
+            <a class="home-button" href="javascript:history.back()">Go Back</a>
+        </div>
+        <div class="search-bar-container">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+        <div class="page-content-container">
+            <main>
+                <div class="left-section">
+                    <div class="criteria" id="family">
+                        <p class="title">Family</p>
+                        <div class="slider">
+                            <ul class="elements">
+                                <li><input type="radio" name="family" value="Asteraceae">Asteraceae</li>
+                                <li><input type="radio" name="family" value="Apiaceae">Apiaceae</li>
+                                <li><input type="radio" name="family" value="Brassicaceae">Brassicaceae</li>
+                                <li><input type="radio" name="family" value="Caryophyllaceae">Caryophyllaceae</li>
+                                <li><input type="radio" name="family" value="Chrysanthemum">Chrysanthemum</li>
+                                <li><input type="radio" name="family" value="Ericaceae">Ericaceae</li>
+                                <li><input type="radio" name="family" value="Fabaceae">Fabaceae</li>
+                                <li><input type="radio" name="family" value="Lamiaceae">Lamiaceae</li>
+                                <li><input type="radio" name="family" value="Liliaceae">Liliaceae</li>
+                                <li><input type="radio" name="family" value="Malvaceae">Malvaceae</li>
+                                <li><input type="radio" name="family" value="Orchidaceae">Orchidaceae</li>
+                                <li><input type="radio" name="family" value="Oleaceae">Oleaceae</li>
+                                <li><input type="radio" name="family" value="Poaceae">Poaceae</li>
+                                <li><input type="radio" name="family" value="Ranunculaceae">Ranunculaceae</li>
+                                <li><input type="radio" name="family" value="Rubiaceae">Rubiaceae</li>
+                                <li><input type="radio" name="family" value="Rosaceae">Rosaceae</li>
+                                <li><input type="radio" name="family" value="Solanaceae">Solanaceae</li>
+                                <li><input type="radio" name="family" value="Urticaceae">Urticaceae</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="criteria" id="species">
+                        <p class="title">Species</p>
+                        <div class="slider">
+                            <ul class="elements">
+                                <li><input type="checkbox" value="Ageratum">Ageratum</li>
+                                <li><input type="checkbox" value="Alpina">Alpina</li>
+                                <li><input type="checkbox" value="Aster">Aster</li>
+                                <li><input type="checkbox" value="Balsam">Balsam</li>
+                                <li><input type="checkbox" value="Biflora">Biflora</li>
+                                <li><input type="checkbox" value="Californica">Californica</li>
+                                <li><input type="checkbox" value="Domestica">Domestica</li>
+                                <li><input type="checkbox" value="Eximia">Eximia</li>
+                                <li><input type="checkbox" value="Fruticosa">Fruticosa</li>
+                                <li><input type="checkbox" value="Gigantea">Gigantea</li>
+                                <li><input type="checkbox" value="Heliotrope">Heliotrope</li>
+                                <li><input type="checkbox" value="Hirsuta">Hirsuta</li>
+                                <li><input type="checkbox" value="Impatiens">Impatiens</li>
+                                <li><input type="checkbox" value="Imperialis">Imperialis</li>
+                                <li><input type="checkbox" value="Japonica">Japonica</li>
+                                <li><input type="checkbox" value="Nana">Nana</li>
+                                <li><input type="checkbox" value="Orientalis">Orientalis</li>
+                                <li><input type="checkbox" value="Rosmarinifolia">Rosmarinifolia</li>
+                                <li><input type="checkbox" value="Sativum">Sativum</li>
+                                <li><input type="checkbox" value="Tenuifolia">Tenuifolia</li>
+                                <li><input type="checkbox" value="Xanthocarpa">Xanthocarpa</li>
+                                <li><input type="checkbox" value="Yunnanensis">Yunnanensis</li>
+                                <li><input type="checkbox" value="Zebrina">Zebrina</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="criteria" id="place">
+                        <p class="title">Place</p>
+                        <div class="slider">
+                            <ul class="elements">
+                                <li><input type="radio" name="place" value="Cliff">Cliff</li>
+                                <li><input type="radio" name="place" value="Coastal">Coastal</li>
+                                <li><input type="radio" name="place" value="Desert">Desert</li>
+                                <li><input type="radio" name="place" value="Forest">Forest</li>
+                                <li><input type="radio" name="place" value="Garden">Garden</li>
+                                <li><input type="radio" name="place" value="Mountain">Mountain</li>
+                                <li><input type="radio" name="place" value="Savanna">Savanna</li>
+                                <li><input type="radio" name="place" value="Swamp">Swamp</li>
+                                <li><input type="radio" name="place" value="Urban">Urban</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="criteria" id="color">
+                        <p class="title">Color</p>
+                        <div class="slider">
+                            <ul class="elements">
+                                <li><input type="radio" name="color" value="Blue">Blue</li>
+                                <li><input type="radio" name="color" value="Brown">Brown</li>
+                                <li><input type="radio" name="color" value="Green">Green</li>
+                                <li><input type="radio" name="color" value="Orange">Orange</li>
+                                <li><input type="radio" name="color" value="Pink">Pink</li>
+                                <li><input type="radio" name="color" value="Purple">Purple</li>
+                                <li><input type="radio" name="color" value="Red">Red</li>
+                                <li><input type="radio" name="color" value="White">White</li>
+                                <li><input type="radio" name="color" value="Yellow">Yellow</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn" id="reset-button">Reset</button>
+                    <button class="btn" id="search-button">Search</button>
+                </div>
+                <div id="plant-container" class="right-section">
+                    <!-- this is where the plant entries go -->
+
+                </div>
+
+            </main>
+        </div>
+        <footer>
+            <div class="footer-container">
+                <p>
+                    © 2024 Herbal Web Manager, Perju Mircea-Stefan & Hulubei Tudor 2A4 UAIC FII
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <form id="logout-form" action="/logout" method="POST" style="display: none;"></form>
+
+    <script src="../BackEnd/scripts/logout.js"></script>
+    <script src="../BackEnd/scripts/search.js"></script>
+    <script src="../BackEnd/scripts/searchrightpanel.js"></script>
+</body>
+
+</html>

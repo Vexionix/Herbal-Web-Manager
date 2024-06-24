@@ -5,6 +5,7 @@ import { handleLogin, handleLoginForm } from '../routes/login.js';
 import { handleRecovery } from '../routes/recovery.js';
 import { handleResetRequest, handleResetForm } from '../routes/requestReset.js';
 import { handleNotFound } from '../routes/notFound.js';
+import { handleSearch } from '../routes/search.js';
 import { handlePlantApi } from './handlePlantApi.js';
 import { serveStaticFile } from './staticFileMiddleware.js';
 import { handleUnsplashRequest } from './unsplashHandler.js';
@@ -26,6 +27,7 @@ const routes = {
         '/unsplash': handleRequest,
         '/catalog': handleRequest,
         '/contact': handleContact,
+        '/search': handleSearch,
         '/signup': handleSignup,
         '/login': handleLogin,
         '/requestReset': handleResetRequest,
@@ -97,6 +99,13 @@ export const router = async (req, res) => {
         res.end();
         return;
     }
+
+    /*
+    if (pathname === '/admin' && ((session.data.user && session.data.user.userType !== 'admin') || !session.data.user)) {
+        res.writeHead(302, { 'Location': '/home' });
+        res.end();
+        return;
+    }*/
 
     if ((pathname === '/login' || pathname === '/' || pathname === '/signup' || pathname === '/recovery' || pathname == '/requestReset') && session.data.user) {
         res.writeHead(302, { 'Location': '/home' });

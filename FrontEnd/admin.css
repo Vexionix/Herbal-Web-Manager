@@ -1,245 +1,259 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-position: center;
-    background: #85A878;
-    cursor: url('../assets/cursor.png'), auto;
-  }
-  
-  .header-container {
-    background-image: url('../assets/background.jpg');
-    margin: 0;
-  }
-  
-  .header-top {
-    background-color: #107d01;
-    padding: 10px;
-  }
-  
-  @font-face {
-    font-family: the-bold-font;
-    src: url(../assets/the_bold_font.otf);
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-position: center;
+  background: #85A878;
+  cursor: url('../assets/cursor.png'), auto;
+}
+
+.header-container {
+  background-image: url('../assets/background.jpg');
+  margin: 0;
+}
+
+.header-top {
+  background-color: #107d01;
+  padding: 10px;
+}
+
+@font-face {
+  font-family: the-bold-font;
+  src: url(../assets/the_bold_font.otf);
+}
+
+.logo {
+  text-align: center;
+  font-family: the-bold-font;
+  font-size: 40px;
+  background: linear-gradient(#14a102, #04d91d, #03f41f);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px #000000;
+}
+
+.search-bar-container {
+  text-align: center;
+}
+
+.search-bar-container input[type="text"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 250px;
+}
+
+.search-bar-container button {
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.home-button {
+  display: inline-block;
+  padding: 0.5em 1em;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2em;
+  margin-top: 1em;
+}
+
+.redirect-nav {
+  margin-top: 5px;
+  background-color: #107d01;
+  padding: 5px;
+}
+
+.redirect-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.redirect-button {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.redirect-button a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #f0f0f0;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 30px;
+  margin-top: 35px;
+}
+
+.container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  padding-right: 30px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+}
+
+div .page-container-main {
+  padding-bottom: 100px;
+}
+
+footer {
+  background-color: #107d01;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer .footer-container p {
+  color: #fff0f0;
+  text-align: center;
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
   .logo {
-    text-align: center;
-    font-family: the-bold-font;
-    font-size: 40px;
-    background: linear-gradient(#14a102, #04d91d, #03f41f);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 2px #000000;
+    font-size: 60px;
+    -webkit-text-stroke-width: 4px;
   }
-  
-  .search-bar-container {
-    text-align: center;
-  }
-  
+
   .search-bar-container input[type="text"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 250px;
+    width: 50%;
   }
-  
-  .search-bar-container button {
-    padding: 5px 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
+
   .redirect-nav {
-    margin-top: 5px;
-    background-color: #107d01;
-    padding: 5px;
-  }
-  
-  .redirect-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .redirect-button {
-    margin: 0 10px;
-    cursor: pointer;
-  }
-  
-  .redirect-button a {
-    color: #ffffff;
-    text-decoration: none;
-  }
-  
-  .page-container {
-    position: relative;
-    min-height: 100vh;
-  }
-  
-  .container {
-    background-color: #f0f0f0;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 80%;
-    margin: 0 auto;
-    padding: 30px;
-    margin-top: 35px;
-  }
-  
-  .container h2 {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
     margin-top: 20px;
-    
   }
-  
-  table, th, td {
-    border: 1px solid #ddd;
+
+  .redirect-button {
+    font-size: 180%;
+    margin: 0 20px;
   }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f4f4f4;
-  }
-  
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    padding-right: 30px;
-    border: 1px solid #888;
+
+  .container {
     width: 80%;
-    max-width: 500px;
-  }
-  
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  form label {
-    display: block;
-    margin: 10px 0 5px;
-  }
-  
-  form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-  }
-  
-  div .page-container-main{
-    padding-bottom: 100px;
   }
 
-  footer {
-    background-color: #107d01;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  .footer-container p {
+    font-size: 150%;
   }
-  
-  footer .footer-container p {
-    color: #fff0f0;
-    text-align: center;
-  }
-  
-  /* Tablet */
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
-    .logo {
-      font-size: 60px;
-      -webkit-text-stroke-width: 4px;
-    }
-  
-    .search-bar-container input[type="text"] {
-      width: 50%;
-    }
-  
-    .redirect-nav {
-      margin-top: 20px;
-    }
-  
-    .redirect-button {
-      font-size: 180%;
-      margin: 0 20px;
-    }
-  
-    .container {
-      width: 80%;
-    }
-  
-    .footer-container p {
-      font-size: 150%;
-    }
 
-    
+
+}
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+  .logo {
+    font-size: 250%;
   }
-  
-  /* Mobile */
-  @media screen and (max-width: 767px) {
-    .logo {
-      font-size: 250%;
-    }
-  
-    .search-bar-container input[type="text"] {
-      width: 50%;
-    }
-  
-    .redirect-button {
-      font-size: 80%;
-    }
-  
-    .container {
-      width: 80%;
-    }
-  
-    .footer-container p {
-      font-size: 80%;
-    }
+
+  .search-bar-container input[type="text"] {
+    width: 50%;
   }
-  
+
+  .redirect-button {
+    font-size: 80%;
+  }
+
+  .container {
+    width: 80%;
+  }
+
+  .footer-container p {
+    font-size: 80%;
+  }
+}

@@ -29,10 +29,17 @@ function createPlantEntry(plant) {
     const photoDiv = document.createElement('div');
     photoDiv.className = 'photo';
     const img = document.createElement('img');
-    img.src = '../plants/' + plant.name + '.jpg';
+    img.src = `../plants/${plant.name}.jpg`;
     img.alt = plant.name;
 
-    photoDiv.appendChild(img);
+    img.onload = function () {
+        photoDiv.appendChild(img);
+    };
+
+    img.onerror = function () {
+        img.src = '../plants/missing.jpg';
+        photoDiv.appendChild(img);
+    };
 
     const likeDiv = document.createElement('div');
     likeDiv.className = 'like';
