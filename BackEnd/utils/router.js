@@ -38,6 +38,7 @@ const routes = {
         '/requestReset': handleResetRequest,
         '/recovery': handleRecovery,
         '/notFound': handleNotFound,
+        '/statistics': handleRequest,
         '/api/plants': handlePlantApi,
         '/api/unsplash': handleUnsplashRequest,
         '/admin': handleAdmin,

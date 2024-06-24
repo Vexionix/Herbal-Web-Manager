@@ -23,6 +23,8 @@ const getFilePath = (requestPath) => {
         return path.join(frontEndDirectory, 'unsplash.html');
     } else if (requestPath === '/top') {
         return path.join(frontEndDirectory, 'top.html');
+    } else if (requestPath === '/statistics') {
+        return path.join(frontEndDirectory, 'statistics.html');
     } else {
         return path.join(frontEndDirectory, requestPath);
     }
