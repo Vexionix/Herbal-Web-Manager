@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { connect } from '../database/mongooseDatabase.js';
 import Plant from '../models/plantModel.js';
 
@@ -133,7 +132,40 @@ class PlantService {
             throw error;
         }
     }
+
+    async searchPlants(searchOptions) {
+        await connect();
+
+        try {
+            const query = {};
+
+            if (searchOptions.searchQuery) {
+                query.name = { $regex: searchOptions.searchQuery, $options: 'i' };
+            }
+
+            if (searchOptions.family) {
+                query.family = searchOptions.family;
+            }
+            if (searchOptions.species) {
+                query.species = searchOptions.species;
+            }
+            if (searchOptions.color) {
+                query.color = searchOptions.color;
+            }
+            if (searchOptions.place) {
+                query.place = searchOptions.place;
+            }
+
+            const plants = await Plant.find(query).lean();
+            console.log('Plants found:', plants);
+            return plants;
+        } catch (error) {
+            console.error('Error searching plants:', error);
+            throw error;
+        }
+    }
 }
+
 
 
 export default new PlantService();

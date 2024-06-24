@@ -60,7 +60,8 @@ const routes = {
         '/upload': handleFileUpload,
         '/api/users': userController.handleUserAdd,
         '/api/users/updatePassword': userController.handleUserUpdatePassword,
-        '/api/plants': plantController.handlePlantAdd
+        '/api/plants': plantController.handlePlantAdd,
+        '/api/plants/search': plantController.handlePlantSearch
     },
     'PUT': {
         '/api/users/:username': userController.handleUserUpdateByUsername,

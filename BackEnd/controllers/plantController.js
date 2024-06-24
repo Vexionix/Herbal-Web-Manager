@@ -154,6 +154,27 @@ class PlantController {
             res.end(JSON.stringify({ message: 'Error deleting plant', error }));
         }
     }
+
+    async handlePlantSearch(req, res) {
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+
+        req.on('end', async () => {
+            const searchOptions = JSON.parse(body);
+
+            try {
+                const plants = await plantService.searchPlants(searchOptions);
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(plants));
+            } catch (error) {
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Error fetching plants', error }));
+            }
+        });
+
+    }
 }
 
 const plantController = new PlantController();
