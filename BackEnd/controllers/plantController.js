@@ -9,6 +9,11 @@ class PlantController {
 
         req.on('end', async () => {
             const plantData = JSON.parse(body);
+            if (!req.session.data.user) {
+                res.writeHead(401, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Unauthorized' }));
+                return;
+            }
             plantData.posted_by = req.session.data.user.username;
             if (!plantData.name || !plantData.color || !plantData.posted_by || !plantData.family || !plantData.species || !plantData.place || plantData.views === undefined || plantData.likes === undefined) {
                 res.writeHead(400, { 'Content-Type': 'application/json' });
