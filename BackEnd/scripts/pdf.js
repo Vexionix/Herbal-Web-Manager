@@ -128,6 +128,12 @@ document.addEventListener('DOMContentLoaded', function () {
         doc.text(`Family: ${plant.family}`, margin + 5, yOffset);
         yOffset += lineHeight;
         doc.text(`Species: ${plant.species}`, margin + 5, yOffset);
+        yOffset += lineHeight;
+        doc.text(`Color: ${plant.color}`, margin + 5, yOffset);
+        yOffset += lineHeight;
+        doc.text(`Views: ${plant.views}`, margin + 5, yOffset);
+        yOffset += lineHeight;
+        doc.text(`Likes: ${plant.likes}`, margin + 5, yOffset);
       });
 
       doc.save(filename);
