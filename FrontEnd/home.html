@@ -27,6 +27,71 @@
         </div>
     </header>
     <div class="page-container">
+        <div class="page-content-container">
+
+            <div class="option" onclick="searchPlants()">
+                <div class="option-name">
+                    <p>SEARCH PLANTS</p>
+                </div>
+                <div class="icon">
+                    <img class="icon-svg" src="../assets/h_search.svg" alt="image">
+                </div>
+            </div>
+
+            <div class="option" onclick="addPlants()">
+                <div class="option-name">
+                    <p>ADD PLANTS</p>
+                </div>
+                <div class="icon">
+                    <img class="icon-svg" src="../assets/h_add.svg" alt="image">
+                </div>
+            </div>
+
+            <div class="option" onclick="myPlants()">
+                <div class="option-name">
+                    <p>MY PLANTS</p>
+                </div>
+                <div class="icon">
+                    <img class="icon-svg" src="../assets/h_added.svg" alt="image">
+                </div>
+            </div>
+
+            <div class="option" onclick="myProfile()">
+                <div class="option-name">
+                    <p>MY PROFILE</p>
+                </div>
+                <div class="icon">
+                    <img class="icon-svg" src="../assets/h_profile.svg" alt="image">
+                </div>
+            </div>
+
+            <div class="option" onclick="likedImages()">
+                <div class="option-name">
+                    <p>LIKED PLANTS</p>
+                </div>
+                <div class="icon">
+                    <img class="icon-svg" src="../assets/h_liked.svg" alt="image">
+                </div>
+            </div>
+
+            <div class="option" onclick="topRedirect()">
+                <div class="option-name">
+                    <p>TOP</p>
+                </div>
+                <div class="icon">
+                    <img class="icon-svg" src="../assets/h_top.svg" alt="image">
+                </div>
+            </div>
+
+            <div class="option" onclick="unsplash()">
+                <div class="option-name">
+                    <p>UNSPLASH </p>
+                </div>
+                <div class="icon">
+                    <img class="icon-svg" src="../assets/h_unsplash.svg" alt="image">
+                </div>
+            </div>
+        </div>
         <footer>
             <div class="footer-container">
                 <p>
@@ -39,6 +104,7 @@
     <form id="logout-form" action="/logout" method="POST" style="display: none;"></form>
 
     <script src="../BackEnd/scripts/logout.js"></script>
+    <script src="../BackEnd/scripts/home.js"></script>
 </body>
 
 </html>
