@@ -53,7 +53,8 @@ const routes = {
         '/api/plants': plantController.handlePlantGet,
         '/api/plants/current': plantController.handlePlantGetCurrentUser,
         '/api/plants/top': plantController.handlePlantGetTop,
-        '/api/plants/topViews': plantController.handlePlantGetTopViews
+        '/api/plants/topViews': plantController.handlePlantGetTopViews,
+        '/api/collections/:plant_name': collectionController.getCollectionsByPlantName
     },
     'POST': {
         '/contact': handleContactForm,

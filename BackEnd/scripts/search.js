@@ -99,7 +99,10 @@ function createPlantEntry(plant) {
     input.id = `favoriteButton${plant.name}`;
     input.className = 'favorite-button';
 
-    
+    if (plant.isFavorite) {
+        input.checked = true;
+    }
+
     const label = document.createElement('label');
     label.setAttribute('for', `favoriteButton${plant.name}`);
     label.className = 'favorite-label';
