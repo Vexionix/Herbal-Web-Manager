@@ -71,7 +71,7 @@ const routes = {
     }
 };
 
-const protectedRoutes = ['/home', '/about', '/contact', '/unsplash', '/catalog'];
+const protectedRoutes = ['/home', '/about', '/contact', '/search', '/unsplash', '/top', '/myPlants', '/likedPlants', '/userProfile', '/logout', '/upload'];
 
 const matchRoute = (method, pathname) => {
     const routeEntries = Object.entries(routes[method] || {});
@@ -112,12 +112,11 @@ export const router = async (req, res) => {
         return;
     }
 
-    /*
     if (pathname === '/admin' && ((session.data.user && session.data.user.userType !== 'admin') || !session.data.user)) {
         res.writeHead(302, { 'Location': '/home' });
         res.end();
         return;
-    }*/
+    }
 
     if ((pathname === '/login' || pathname === '/' || pathname === '/signup' || pathname === '/recovery' || pathname == '/requestReset') && session.data.user) {
         res.writeHead(302, { 'Location': '/home' });

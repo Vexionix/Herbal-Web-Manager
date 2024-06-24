@@ -36,18 +36,25 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const fileInput = document.getElementById('plantImage');
+        const plantName = document.getElementById('plantName').value;
+        const plantSpecies = document.getElementById('plantSpecies').value;
+        const plantFamily = document.getElementById('plantFamily').value;
+        const plantPlace = document.getElementById('plantPlace').value;
+        const plantColor = document.getElementById('plantColor').value;
+
         if (!validateFile(fileInput.files[0])) {
             alert('Please upload a file with a .jpg extension.');
             return;
         }
 
+        if (!plantName || !plantSpecies || !plantFamily || !plantPlace || !plantColor) {
+            alert('Please fill in all the fields.');
+            return;
+        }
+
         const formData = new FormData();
         formData.append('image', fileInput.files[0]);
-        formData.append('name', document.getElementById('plantName').value);
-        formData.append('species', document.getElementById('plantSpecies').value);
-        formData.append('family', document.getElementById('plantFamily').value);
-        formData.append('place', document.getElementById('plantPlace').value);
-        formData.append('color', document.getElementById('plantColor').value);
+        formData.append('name', plantName);
 
         try {
             const uploadResponse = await fetch('/upload', {
@@ -66,11 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    name: formData.get('name'),
-                    family: formData.get('family'),
-                    species: formData.get('species'),
-                    place: formData.get('place'),
-                    color: formData.get('color'),
+                    name: plantName,
+                    family: plantFamily,
+                    species: plantSpecies,
+                    place: plantPlace,
+                    color: plantColor,
                     views: 0,
                     likes: 0
                 }),
