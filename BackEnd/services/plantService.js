@@ -96,6 +96,31 @@ class PlantService {
         }
     }
 
+    async updatePlantByName(name, newData) {
+        await connect();
+        try {
+            const updatedPlant = await Plant.findOneAndUpdate(
+                { name: name },
+                newData,
+                {
+                    new: true,
+                    upsert: false
+                }
+            );
+
+            if (updatedPlant) {
+                console.log('Plant updated successfully:', updatedPlant);
+            } else {
+                console.log('No matching plant found with username:', name);
+            }
+
+            return updatedPlant;
+        } catch (error) {
+            console.error('Error updating plant:', error);
+            throw error;
+        }
+    }
+
     async deletePlantById(plantId) {
         await connect();
 
@@ -109,5 +134,6 @@ class PlantService {
         }
     }
 }
+
 
 export default new PlantService();

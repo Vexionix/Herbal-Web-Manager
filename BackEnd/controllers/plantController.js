@@ -108,6 +108,32 @@ class PlantController {
         });
     }
 
+    async handlePlantUpdateByName(req, res) {
+        const plantName = decodeURIComponent(req.url.split('/').pop());
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+
+        req.on('end', async () => {
+            const plantData = JSON.parse(body);
+
+            try {
+                const updatedPlant = await plantService.updatePlantByName(plantName, plantData);
+                if (!updatedPlant) {
+                    res.writeHead(404, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ message: 'Plant not found' }));
+                    return;
+                }
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(updatedPlant));
+            } catch (error) {
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Error updating plant', error }));
+            }
+        });
+    }
+
     async handlePlantDeleteById(req, res) {
         const plantId = req.url.split('/').pop();
 
