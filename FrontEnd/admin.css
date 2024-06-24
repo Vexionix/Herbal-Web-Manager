@@ -36,22 +36,6 @@ body {
   text-align: center;
 }
 
-.search-bar-container input[type="text"] {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 250px;
-}
-
-.search-bar-container button {
-  padding: 5px 10px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
 .home-button {
   display: inline-block;
   padding: 0.5em 1em;
@@ -62,30 +46,6 @@ body {
   text-decoration: none;
   font-size: 1.2em;
   margin-top: 1em;
-}
-
-.redirect-nav {
-  margin-top: 5px;
-  background-color: #107d01;
-  padding: 5px;
-}
-
-.redirect-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-}
-
-.redirect-button {
-  margin: 0 10px;
-  cursor: pointer;
-}
-
-.redirect-button a {
-  color: #ffffff;
-  text-decoration: none;
 }
 
 .page-container {

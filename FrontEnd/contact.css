@@ -32,27 +32,6 @@ body {
   -webkit-text-stroke: 2px #000000;
 }
 
-.search-bar-container {
-  text-align: center;
-}
-
-.search-bar-container input[type="text"] {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 250px;
-}
-
-.search-bar-container button {
-  padding: 5px 10px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-
 .redirect-nav {
   margin-top: 5px;
   background-color: #107d01;
