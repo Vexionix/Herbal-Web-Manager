@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             addUserModal.style.display = 'none';
             editUserModal.style.display = 'none';
             plantModal.style.display = 'none';
+            editPlantModal.style.display = 'none';
         });
     });
 
@@ -83,6 +84,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         if (event.target == plantModal) {
             plantModal.style.display = 'none';
+        }
+        if (event.target == editPlantModal) {
+            editPlantModal.style.display = 'none';
         }
     };
 
@@ -165,7 +169,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function editUser(button) {
     const row = button.closest('tr');
-    const id = row.dataset.id;
     const username = row.cells[1].innerText;
     const email = row.cells[2].innerText;
     const editUserForm = document.getElementById('editUserForm');
@@ -229,12 +232,44 @@ async function deleteUser(button) {
 
 function editPlant(button) {
     const row = button.closest('tr');
-    const id = row.dataset.id;
     const name = row.cells[1].innerText;
-    const color = row.cells[2].innerText;
-    document.getElementById('plantName').value = name;
-    document.getElementById('plantColor').value = color;
-    document.getElementById('plantModal').style.display = 'block';
+    const editPlantForm = document.getElementById('editPlantForm');
+    const editPlantModal = document.getElementById('editPlantModal');
+    editPlantForm.elements.plantName.value = name;
+    console.log(editPlantForm.elements.plantName.value);
+    editPlantModal.style.display = 'block';
+    editPlantForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const plantData = {
+            name: editPlantForm.elements.plantName.value,
+            posted_by: 'sex',//req.session.data.user.username
+            family: editPlantForm.elements.plantFamily.value,
+            species: editPlantForm.elements.plantSpecies.value,
+            place: editPlantForm.elements.plantPlace.value,
+            color: editPlantForm.elements.plantColor.value,
+            views: 0,
+            likes: 0
+        };
+        try {
+            const response = await fetch(`/api/plants/${name}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(plantData),
+            });
+            const result = await response.json();
+            if (response.ok) {
+                editPlantForm.reset();
+                editPlantModal.style.display = 'none';
+            } else {
+                console.error('Error:', result.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+    
 }
 
 async function deletePlant(button) {

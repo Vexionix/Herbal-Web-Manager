@@ -69,12 +69,32 @@
     </footer>
   </div>
 
-  <!-- Modal for adding/editing plants -->
+  <!-- Modal for adding plants -->
   <div id="plantModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h2>Add/Edit Plant</h2>
+      <h2>Add Plant</h2>
       <form id="plantForm">
+        <label for="plantName">Name:</label>
+        <input type="text" id="plantName" name="plantName" required>
+        <label for="plantSpecies">Species:</label>
+        <input type="text" id="plantSpecies" name="plantSpecies" required>
+        <label for="plantColor">Color:</label>
+        <input type="text" id="plantColor" name="plantColor" required>
+        <label for="plantFamily">Family:</label>
+        <input type="text" id="plantFamily" name="plantFamily" required>
+        <label for="plantPlace">Place:</label>
+        <input type="text" id="plantPlace" name="plantPlace" required>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="editPlantModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Edit Plant</h2>
+      <form id="editPlantForm">
         <label for="plantName">Name:</label>
         <input type="text" id="plantName" name="plantName" required>
         <label for="plantSpecies">Species:</label>
@@ -117,16 +137,16 @@
       <span class="close">&times;</span>
       <h2>Edit User</h2>
       <form id="editUserForm">
-        <label for="editUserName">Username:</label>
-        <input type="text" id="editUserName" name="editUserName" required>
-        <label for="editFirstName">First name:</label>
-        <input type="text" id="editFirstName" name="editFirstName" required>
-        <label for="editLastName">Last name:</label>
-        <input type="text" id="editLastName" name="editLastName" required>
-        <label for="editUserPassword">Password:</label>
-        <input type="password" id="editUserPassword" name="editUserPassword" required>
-        <label for="editUserEmail">Email:</label>
-        <input type="email" id="editUserEmail" name="editUserEmail" required>
+        <label for="plantName">Name:</label>
+        <input type="text" id="plantName" name="plantName" required>
+        <label for="plantSpecies">Species:</label>
+        <input type="text" id="plantSpecies" name="plantSpecies" required>
+        <label for="plantColor">Color:</label>
+        <input type="text" id="plantColor" name="plantColor" required>
+        <label for="plantFamily">Family:</label>
+        <input type="text" id="plantFamily" name="plantFamily" required>
+        <label for="plantPlace">Place:</label>
+        <input type="text" id="plantPlace" name="plantPlace" required>
         <button type="submit">Save</button>
       </form>
     </div>

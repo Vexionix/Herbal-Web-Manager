@@ -56,7 +56,8 @@ const routes = {
         '/api/plants': plantController.handlePlantAdd
     },
     'PUT': {
-        '/api/users/:username': userController.handleUserUpdateByUsername
+        '/api/users/:username': userController.handleUserUpdateByUsername,
+        '/api/plants/:name': plantController.handlePlantUpdateByName
     },
     'DELETE': {
         '/api/users/:username': userController.handleUserDeleteByUsername,
