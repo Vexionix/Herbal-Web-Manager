@@ -1,5 +1,5 @@
 import { connect } from '../database/mongooseDatabase.js';
-import Collection from '../models/collectionModel.js'; // Adjust path as needed
+import Collection from '../models/collectionModel.js';
 
 const createNewCollection = async (name, description, plants, user_id) => {
     await connect();

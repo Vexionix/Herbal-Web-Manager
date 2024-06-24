@@ -7,7 +7,6 @@ const __dirname = path.dirname(__filename);
 const dataDirectory = path.join(__dirname, '..', '..', 'data');
 const usersFilePath = path.join(dataDirectory, 'users.json');
 
-// Function to read users from JSON file
 const getAllUsersFromFile = () => {
     return new Promise((resolve, reject) => {
         fs.readFile(usersFilePath, 'utf8', (err, data) => {
@@ -49,7 +48,7 @@ export const handleUserApi = async (req, res) => {
                     const userData = JSON.parse(body);
                     const users = await getAllUsersFromFile();
                     const newUser = createUser(userData);
-                    users.push(newUser); // Assuming createUser returns the new user object
+                    users.push(newUser);
                     await saveUsersToFile(users);
                     res.writeHead(201, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify(newUser));

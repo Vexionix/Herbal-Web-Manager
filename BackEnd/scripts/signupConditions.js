@@ -52,19 +52,19 @@ passwordInput.addEventListener("input", () => {
         case 0:
         case 1:
             strengthMessage = "Weak";
-            strengthColor = "#ff4d4d"; // red
+            strengthColor = "#ff4d4d";
             meterWidth = "33%";
             break;
         case 2:
         case 3:
             strengthMessage = "Medium";
-            strengthColor = "#ffcc00"; // yellow
+            strengthColor = "#ffcc00";
             meterWidth = "66%";
             break;
         case 4:
         case 5:
             strengthMessage = "Strong";
-            strengthColor = "#28a745"; // green
+            strengthColor = "#28a745";
             meterWidth = "100%";
             break;
     }

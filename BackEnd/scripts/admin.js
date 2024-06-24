@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // User Section
     const addUserForm = document.getElementById('addUserForm');
     const addUserModal = document.getElementById('addUserModal');
     const addUserBtn = document.getElementById('addUserBtn');
@@ -94,7 +93,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     await fetchUsers();
 });
 document.addEventListener('DOMContentLoaded', async () => {
-    // Plant Section
     const plantForm = document.getElementById('plantForm');
     const plantModal = document.getElementById('plantModal');
     const addPlantBtn = document.getElementById('addPlantBtn');
@@ -163,7 +161,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const response = await fetch('/api/plants');
             const plants = await response.json();
             if (response.ok) {
-                plantTableBody.innerHTML = ''; // Clear existing rows
+                plantTableBody.innerHTML = '';
                 plants.forEach(plant => addPlant(plant));
             } else {
                 console.error('Failed to fetch plants:', plants.message);
@@ -175,7 +173,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function addPlant(plantData) {
         const row = plantTableBody.insertRow();
-        row.dataset.id = plantData._id; // Use the plant ID from the database
+        row.dataset.id = plantData._id;
         row.insertCell(0).innerText = plantTableBody.rows.length;
         row.insertCell(1).innerText = plantData.name;
         row.insertCell(2).innerText = plantData.species;
