@@ -1,41 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  fetchTopPlants()
-    .then(data => {
-      const xmlContainer = document.getElementById('xmlContainer');
-      const rssFeed = generateRSSFeed(data);
-      xmlContainer.textContent = rssFeed;
-    })
-    .catch(error => console.error('Error:', error));
-
-  function fetchTopPlants() {
-    var jwt = getCookie("User");
-    var decodedJwt = parseJwt(jwt);
-
-    const collectionUrl = `/api/plants/top`;
-    return fetch(collectionUrl, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${jwt}`
-      }
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(collectionData => {
-        if (Array.isArray(collectionData) && collectionData.length > 0) {
-          return collectionData;
-        } else {
-          throw new Error('No top plants found.');
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        throw error;
-      });
-  }
 
   function generateRSSFeed(data) {
     let rssFeed = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -64,52 +27,98 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchTopPlants()
       .then(data => {
         const rssFeed = generateRSSFeed(data);
-        downloadXMLFile(rssFeed);
+        downloadXMLFile(rssFeed, 'top_liked.xml');
       })
       .catch(error => console.error('Error:', error));
   }
 
-  function downloadXMLFile(rssFeed) {
+  function initiateDownloadViews() {
+    fetchTopPlantsViews()
+      .then(data => {
+        const rssFeed = generateRSSFeed(data);
+        downloadXMLFile(rssFeed, 'top_views.xml');
+      })
+      .catch(error => console.error('Error:', error));
+  }
+
+  function downloadXMLFile(rssFeed, filename) {
     const blob = new Blob([rssFeed], { type: 'application/xml' });
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'top_rss.xml';
+    a.download = filename;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   }
 
-  const downloadButton = document.getElementById('downloadButton');
+  const downloadButton = document.getElementById('RSSButton');
   if (downloadButton) {
     downloadButton.addEventListener('click', initiateDownload);
   } else {
     console.error('Download button not found in the DOM.');
   }
 
-  function getCookie(name) {
-    var cookieArr = document.cookie.split(";");
-    for (var i = 0; i < cookieArr.length; i++) {
-      var cookiePair = cookieArr[i].split("=");
-      if (name === cookiePair[0].trim()) {
-        return decodeURIComponent(cookiePair[1]);
-      }
-    }
-    return null;
-  }
-
-  function parseJwt(token) {
-    if (!token) {
-      return null;
-    }
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    return JSON.parse(jsonPayload);
+  const downloadButtonViews = document.getElementById('RSSButtonViews');
+  if (downloadButtonViews) {
+    downloadButtonViews.addEventListener('click', initiateDownloadViews);
+  } else {
+    console.error('Download button not found in the DOM.');
   }
 });
+
+function fetchTopPlants() {
+
+  const collectionUrl = `/api/plants/top`;
+  return fetch(collectionUrl, {
+    method: 'GET',
+    headers: {
+    }
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(collectionData => {
+      if (Array.isArray(collectionData) && collectionData.length > 0) {
+        return collectionData;
+      } else {
+        throw new Error('No top plants found.');
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+      throw error;
+    });
+}
+
+function fetchTopPlantsViews() {
+
+  const collectionUrl = `/api/plants/topViews`;
+  return fetch(collectionUrl, {
+    method: 'GET',
+    headers: {
+    }
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(collectionData => {
+      if (Array.isArray(collectionData) && collectionData.length > 0) {
+        return collectionData;
+      } else {
+        throw new Error('No top plants found.');
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+      throw error;
+    });
+}

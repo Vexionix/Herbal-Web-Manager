@@ -9,6 +9,7 @@ import { handleSearch } from '../routes/search.js';
 import { handleLikedPlants } from '../routes/likedPlants.js';
 import { handleUserProfile } from '../routes/userProfile.js';
 import { handleTop } from '../routes/top.js';
+import { handleRSS } from '../routes/rss.js';
 import { handleMyPlants } from '../routes/myPlants.js';
 import { handlePlantApi } from './handlePlantApi.js';
 import { serveStaticFile } from './staticFileMiddleware.js';
@@ -32,6 +33,7 @@ const routes = {
         '/unsplash': handleRequest,
         '/top': handleTop,
         '/myPlants': handleMyPlants,
+        '/RSS': handleRSS,
         '/likedPlants': handleLikedPlants,
         '/contact': handleContact,
         '/search': handleSearch,
@@ -50,7 +52,8 @@ const routes = {
         '/api/users/:username': userController.handleUserGetByUsername,
         '/api/plants': plantController.handlePlantGet,
         '/api/plants/current': plantController.handlePlantGetCurrentUser,
-        '/api/plants/top': plantController.handlePlantGetTop
+        '/api/plants/top': plantController.handlePlantGetTop,
+        '/api/plants/topViews': plantController.handlePlantGetTopViews
     },
     'POST': {
         '/contact': handleContactForm,
@@ -75,7 +78,7 @@ const routes = {
     }
 };
 
-const protectedRoutes = ['/home', '/about', '/contact', '/search', '/unsplash', '/top', '/myPlants', '/likedPlants', '/userProfile', '/logout', '/upload'];
+const protectedRoutes = ['/home', '/about', '/contact', '/search', '/statistics', '/unsplash', '/top', '/myPlants', '/likedPlants', '/userProfile', '/logout', '/upload'];
 
 const matchRoute = (method, pathname) => {
     const routeEntries = Object.entries(routes[method] || {});
