@@ -21,23 +21,29 @@ function createPlantEntry(plant) {
     const h1 = document.createElement('h1');
     h1.textContent = plant.name;
     const p = document.createElement('p');
-    p.textContent = plant.description;
+    p.textContent = 'Species: ' + plant.species;
+    const likes = document.createElement('p');
+    likes.textContent = 'Likes: ' + plant.likes;
+    const views = document.createElement('p');
+    views.textContent = 'Views: ' + plant.views;
 
     infoDiv.appendChild(h1);
     infoDiv.appendChild(p);
+    infoDiv.appendChild(likes);
+    infoDiv.appendChild(views);
 
     const photoDiv = document.createElement('div');
     photoDiv.className = 'photo';
     const img = document.createElement('img');
     img.src = `../plants/${plant.name}.jpg`;
-    img.alt = plant.name;
+    img.alt = `${plant.name}`;
 
     img.onload = function () {
         photoDiv.appendChild(img);
     };
 
     img.onerror = function () {
-        img.src = '../plants/missing.jpg';
+        img.src = `../assets/missing.jpg`;
         photoDiv.appendChild(img);
     };
 

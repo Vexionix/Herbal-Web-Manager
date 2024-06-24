@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const plantModal = document.getElementById('plantModal');
     const addPlantBtn = document.getElementById('addPlantBtn');
     const plantTableBody = document.querySelector('#plantsTable tbody');
-    
+
     addPlantBtn.addEventListener('click', () => {
         plantForm.reset();
         plantModal.style.display = 'block';
@@ -107,6 +107,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     plantForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        const fileInput = document.getElementById('plantImage');
+        if (!validateFile(fileInput.files[0])) {
+            alert('Please upload a file with a .jpg extension.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('image', fileInput.files[0]);
+        formData.append('name', document.getElementById('plantName').value);
+
+        const uploadResponse = await fetch('/upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!uploadResponse.ok) {
+            const errorData = await uploadResponse.json();
+            throw new Error(errorData.error || 'Image upload failed');
+        }
+
         const plantData = {
             name: document.getElementById('plantName').value,
             posted_by: 'sex',//req.session.data.user.username
@@ -159,7 +180,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         row.dataset.id = plantData._id; // Use the plant ID from the database
         row.insertCell(0).innerText = plantTableBody.rows.length;
         row.insertCell(1).innerText = plantData.name;
-        row.insertCell(2).innerText = plantData.color;
+        row.insertCell(2).innerText = plantData.species;
         const actionsCell = row.insertCell(3);
         actionsCell.innerHTML = `<button onclick="editPlant(this)">Edit</button> <button onclick="deletePlant(this)">Delete</button>`;
     }
@@ -235,18 +256,18 @@ function editPlant(button) {
     const name = row.cells[1].innerText;
     const editPlantForm = document.getElementById('editPlantForm');
     const editPlantModal = document.getElementById('editPlantModal');
-    editPlantForm.elements.plantName.value = name;
-    console.log(editPlantForm.elements.plantName.value);
+    editPlantForm.elements.editPlantName.value = name;
+    console.log(editPlantForm.elements.editPlantName.value);
     editPlantModal.style.display = 'block';
     editPlantForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const plantData = {
-            name: editPlantForm.elements.plantName.value,
+            name: editPlantForm.elements.editPlantName.value,
             posted_by: 'sex',//req.session.data.user.username
-            family: editPlantForm.elements.plantFamily.value,
-            species: editPlantForm.elements.plantSpecies.value,
-            place: editPlantForm.elements.plantPlace.value,
-            color: editPlantForm.elements.plantColor.value,
+            family: editPlantForm.elements.editPlantFamily.value,
+            species: editPlantForm.elements.editPlantSpecies.value,
+            place: editPlantForm.elements.editPlantPlace.value,
+            color: editPlantForm.elements.editPlantColor.value,
             views: 0,
             likes: 0
         };
@@ -269,7 +290,7 @@ function editPlant(button) {
             console.error('Error:', error);
         }
     });
-    
+
 }
 
 async function deletePlant(button) {
@@ -296,3 +317,7 @@ async function deletePlant(button) {
     }
 }
 
+function validateFile(file) {
+    const allowedExtensions = /(\.jpg)$/i;
+    return allowedExtensions.test(file.name);
+}

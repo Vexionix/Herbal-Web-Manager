@@ -24,7 +24,7 @@
         </div>
         <div class="search-bar-container">
             <input type="text" placeholder="Search...">
-            <button>Search</button>
+            <button id="search-button">Search</button>
         </div>
         <div class="page-content-container">
             <main>
@@ -59,29 +59,30 @@
                         <p class="title">Species</p>
                         <div class="slider">
                             <ul class="elements">
-                                <li><input type="checkbox" value="Ageratum">Ageratum</li>
-                                <li><input type="checkbox" value="Alpina">Alpina</li>
-                                <li><input type="checkbox" value="Aster">Aster</li>
-                                <li><input type="checkbox" value="Balsam">Balsam</li>
-                                <li><input type="checkbox" value="Biflora">Biflora</li>
-                                <li><input type="checkbox" value="Californica">Californica</li>
-                                <li><input type="checkbox" value="Domestica">Domestica</li>
-                                <li><input type="checkbox" value="Eximia">Eximia</li>
-                                <li><input type="checkbox" value="Fruticosa">Fruticosa</li>
-                                <li><input type="checkbox" value="Gigantea">Gigantea</li>
-                                <li><input type="checkbox" value="Heliotrope">Heliotrope</li>
-                                <li><input type="checkbox" value="Hirsuta">Hirsuta</li>
-                                <li><input type="checkbox" value="Impatiens">Impatiens</li>
-                                <li><input type="checkbox" value="Imperialis">Imperialis</li>
-                                <li><input type="checkbox" value="Japonica">Japonica</li>
-                                <li><input type="checkbox" value="Nana">Nana</li>
-                                <li><input type="checkbox" value="Orientalis">Orientalis</li>
-                                <li><input type="checkbox" value="Rosmarinifolia">Rosmarinifolia</li>
-                                <li><input type="checkbox" value="Sativum">Sativum</li>
-                                <li><input type="checkbox" value="Tenuifolia">Tenuifolia</li>
-                                <li><input type="checkbox" value="Xanthocarpa">Xanthocarpa</li>
-                                <li><input type="checkbox" value="Yunnanensis">Yunnanensis</li>
-                                <li><input type="checkbox" value="Zebrina">Zebrina</li>
+                                <li><input type="radio" name="species" value="Ageratum">Ageratum</li>
+                                <li><input type="radio" name="species" value="Alpina">Alpina</li>
+                                <li><input type="radio" name="species" value="Aster">Aster</li>
+                                <li><input type="radio" name="species" value="Balsam">Balsam</li>
+                                <li><input type="radio" name="species" name="species" value="Biflora">Biflora</li>
+                                <li><input type="radio" name="species" name="species" value="Californica">Californica
+                                </li>
+                                <li><input type="radio" name="species" value="Domestica">Domestica</li>
+                                <li><input type="radio" name="species" value="Eximia">Eximia</li>
+                                <li><input type="radio" name="species" value="Fruticosa">Fruticosa</li>
+                                <li><input type="radio" name="species" value="Gigantea">Gigantea</li>
+                                <li><input type="radio" name="species" value="Heliotrope">Heliotrope</li>
+                                <li><input type="radio" name="species" value="Hirsuta">Hirsuta</li>
+                                <li><input type="radio" name="species" value="Impatiens">Impatiens</li>
+                                <li><input type="radio" name="species" value="Imperialis">Imperialis</li>
+                                <li><input type="radio" name="species" value="Japonica">Japonica</li>
+                                <li><input type="radio" name="species" value="Nana">Nana</li>
+                                <li><input type="radio" name="species" value="Orientalis">Orientalis</li>
+                                <li><input type="radio" name="species" value="Rosmarinifolia">Rosmarinifolia</li>
+                                <li><input type="radio" name="species" value="Sativum">Sativum</li>
+                                <li><input type="radio" name="species" value="Tenuifolia">Tenuifolia</li>
+                                <li><input type="radio" name="species" value="Xanthocarpa">Xanthocarpa</li>
+                                <li><input type="radio" name="species" value="Yunnanensis">Yunnanensis</li>
+                                <li><input type="radio" name="species" value="Zebrina">Zebrina</li>
                             </ul>
                         </div>
                     </div>
@@ -120,7 +121,6 @@
                         </div>
                     </div>
                     <button class="btn" id="reset-button">Reset</button>
-                    <button class="btn" id="search-button">Search</button>
                 </div>
                 <div id="plant-container" class="right-section">
                     <!-- this is where the plant entries go -->

@@ -52,8 +52,8 @@ export const serveStaticFile = async (req, res) => {
 
     try {
         if (filePath) {
-            const data = await fs.readFile(filePath);
-            const contentType = getContentType(filePath);
+            const data = await fs.readFile(decodeURIComponent(filePath));
+            const contentType = getContentType(decodeURIComponent(filePath));
             res.writeHead(200, { 'Content-Type': contentType });
             res.write(data);
             res.end();

@@ -418,6 +418,24 @@ footer .footer-container p {
     text-align: center;
 }
 
+@media screen and (min-width: 1024px) {
+    .like-button {
+        width: 85%;
+        height: 96px;
+    }
+
+    .favorite-label {
+        width: 100%;
+        height: 96px;
+    }
+
+    .like0,
+    .like5 {
+        width: 55px;
+        height: 70px;
+    }
+}
+
 /* Tablet */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     .logo {

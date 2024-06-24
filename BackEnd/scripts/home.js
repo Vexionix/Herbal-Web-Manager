@@ -14,8 +14,8 @@ function myProfile() {
     window.location.href = "/myProfile";
 }
 
-function likedImages() {
-    window.location.href = "/likedImages";
+function likedPlants() {
+    window.location.href = "/likedPlants";
 }
 
 function topRedirect() {

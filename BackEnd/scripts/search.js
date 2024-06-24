@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const resetButton = document.getElementById("reset-button");
 
     searchButton.addEventListener("click", () => {
-        const criteria = ["name", "plant-family", "habitat", "color"];
+        const criteria = ["family", "species", "place", "color"];
         let selectedOptions = {};
 
         const searchBar = document.querySelector(".search-bar-container input[type='text']");

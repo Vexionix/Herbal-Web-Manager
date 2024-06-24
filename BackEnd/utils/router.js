@@ -6,6 +6,7 @@ import { handleRecovery } from '../routes/recovery.js';
 import { handleResetRequest, handleResetForm } from '../routes/requestReset.js';
 import { handleNotFound } from '../routes/notFound.js';
 import { handleSearch } from '../routes/search.js';
+import { handleLikedPlants } from '../routes/likedPlants.js';
 import { handleTop } from '../routes/top.js';
 import { handleMyPlants } from '../routes/myPlants.js';
 import { handlePlantApi } from './handlePlantApi.js';
@@ -29,6 +30,7 @@ const routes = {
         '/unsplash': handleRequest,
         '/top': handleTop,
         '/myPlants': handleMyPlants,
+        '/likedPlants': handleLikedPlants,
         '/contact': handleContact,
         '/search': handleSearch,
         '/signup': handleSignup,
