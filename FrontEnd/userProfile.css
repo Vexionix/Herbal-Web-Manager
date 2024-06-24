@@ -1,0 +1,181 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-position: center;
+  background: #85A878;
+  cursor: url('../assets/cursor.png'), auto;
+}
+
+.header-container {
+  background-image: url('../assets/background.jpg');
+  margin: 0;
+}
+
+.header-top {
+  background-color: #107d01;
+  padding: 10px;
+}
+
+@font-face {
+  font-family: the-bold-font;
+  src: url(../assets/the_bold_font.otf);
+}
+
+.logo {
+  text-align: center;
+  font-family: the-bold-font;
+  font-size: 40px;
+  background: linear-gradient(#14a102, #04d91d, #03f41f);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px #000000;
+}
+
+.search-bar-container {
+  text-align: center;
+}
+
+.home-button {
+  display: inline-block;
+  padding: 0.5em 1em;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2em;
+  margin-top: 1em;
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.page-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+  padding-bottom: 7em;
+}
+
+
+.user-panel {
+  background-color: white;
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.user-icon img {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.user-info h2,
+.update-password h2 {
+  text-align: center;
+}
+
+.user-info p {
+  font-size: 1.1em;
+  margin: 0.5em 0;
+}
+
+hr {
+  margin: 2em 0;
+}
+
+.update-password label {
+  display: block;
+  margin: 0.5em 0 0.2em;
+}
+
+.update-password input {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.update-password button {
+  width: 100%;
+  padding: 0.5em;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update-password button:hover {
+  background-color: #555;
+}
+
+
+footer {
+  background-color: #107d01;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer .footer-container p {
+  color: #fff0f0;
+  text-align: center;
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {}
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .logo {
+    font-size: 60px;
+    -webkit-text-stroke-width: 4px;
+  }
+
+  .search-bar-container input[type="text"] {
+    width: 50%;
+  }
+
+  .redirect-nav {
+    margin-top: 20px;
+  }
+
+  .redirect-button {
+    font-size: 180%;
+    margin: 0 20px;
+  }
+
+  .footer-container p {
+    font-size: 150%;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+  .logo {
+    font-size: 250%;
+  }
+
+  .search-bar-container input[type="text"] {
+    width: 50%;
+  }
+
+  .redirect-button {
+    font-size: 80%;
+  }
+
+  .footer-container p {
+    font-size: 80%;
+  }
+}

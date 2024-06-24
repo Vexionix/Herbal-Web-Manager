@@ -7,7 +7,7 @@ function myPlants() {
 }
 
 function myProfile() {
-    window.location.href = "/myProfile";
+    window.location.href = "/userProfile";
 }
 
 function likedPlants() {

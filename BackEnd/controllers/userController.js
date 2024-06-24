@@ -65,6 +65,22 @@ class UserController {
         }
     };
 
+    async handleUserGetCurrentUser(req, res) {
+        try {
+            if (!req.session.data.user) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'No user connected' }));
+                return;
+            }
+            const user = await userService.findUserByUsername(req.session.data.user.username);
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(user));
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error fetching users', error }));
+        }
+    };
+
     async handleUserGetByUsername(req, res) {
         const { username } = req.params;
         try {
@@ -140,6 +156,67 @@ class UserController {
 
             const saltRounds = 10;
             userData.password = await bcrypt.hash(userData.password, saltRounds);
+
+            if (userData.username === undefined || userData.firstName === undefined || userData.lastName === undefined || userData.password === undefined || userData.email === undefined || !userData.role === undefined) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Missing required fields' }));
+                return;
+            }
+
+            try {
+                const user = await userService.updateUserByUsername(userData.username, userData);
+                if (user) {
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ message: 'User updated successfully' }));
+                } else {
+                    res.writeHead(404, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ message: 'User not found' }));
+                }
+            } catch (error) {
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Error updating user', error }));
+            }
+        });
+    }
+
+    async handleUserUpdatePassword(req, res) {
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+        req.on('end', async () => {
+
+            const input = JSON.parse(body);
+            if (!req.session.data.user) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'No user connected' }));
+                return;
+            }
+
+            const user = await userService.findUserByUsername(req.session.data.user.username);
+
+            const userData = {};
+            const isPasswordValid = await bcrypt.compare(input.currentPassword, user.password);
+            if (isPasswordValid) {
+                if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(input.newPassword)) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ message: 'Password does not meet the criteria' }));
+                    return;
+                }
+                const saltRounds = 10;
+                const newPassword = await bcrypt.hash(input.newPassword, saltRounds);
+                userData.password = newPassword;
+            } else {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Current password is not correct.' }));
+                return;
+            }
+
+            userData.username = req.session.data.user.username;
+            userData.email = user.email;
+            userData.firstName = user.firstName;
+            userData.lastName = user.lastName;
+            console.log(userData);
 
             if (userData.username === undefined || userData.firstName === undefined || userData.lastName === undefined || userData.password === undefined || userData.email === undefined || !userData.role === undefined) {
                 res.writeHead(400, { 'Content-Type': 'application/json' });

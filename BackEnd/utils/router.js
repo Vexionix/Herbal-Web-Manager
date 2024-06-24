@@ -7,6 +7,7 @@ import { handleResetRequest, handleResetForm } from '../routes/requestReset.js';
 import { handleNotFound } from '../routes/notFound.js';
 import { handleSearch } from '../routes/search.js';
 import { handleLikedPlants } from '../routes/likedPlants.js';
+import { handleUserProfile } from '../routes/userProfile.js';
 import { handleTop } from '../routes/top.js';
 import { handleMyPlants } from '../routes/myPlants.js';
 import { handlePlantApi } from './handlePlantApi.js';
@@ -37,12 +38,14 @@ const routes = {
         '/login': handleLogin,
         '/requestReset': handleResetRequest,
         '/recovery': handleRecovery,
+        '/userProfile': handleUserProfile,
         '/notFound': handleNotFound,
         '/statistics': handleRequest,
         '/api/plants': handlePlantApi,
         '/api/unsplash': handleUnsplashRequest,
         '/admin': handleAdmin,
         '/api/users': userController.handleUserGet,
+        '/api/users/current': userController.handleUserGetCurrentUser,
         '/api/users/:username': userController.handleUserGetByUsername,
         '/api/plants': plantController.handlePlantGet,
         '/api/plants/current': plantController.handlePlantGetCurrentUser,
@@ -56,6 +59,7 @@ const routes = {
         '/logout': handleLogout,
         '/upload': handleFileUpload,
         '/api/users': userController.handleUserAdd,
+        '/api/users/updatePassword': userController.handleUserUpdatePassword,
         '/api/plants': plantController.handlePlantAdd
     },
     'PUT': {
