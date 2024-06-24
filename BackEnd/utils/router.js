@@ -6,6 +6,8 @@ import { handleRecovery } from '../routes/recovery.js';
 import { handleResetRequest, handleResetForm } from '../routes/requestReset.js';
 import { handleNotFound } from '../routes/notFound.js';
 import { handleSearch } from '../routes/search.js';
+import { handleTop } from '../routes/top.js';
+import { handleMyPlants } from '../routes/myPlants.js';
 import { handlePlantApi } from './handlePlantApi.js';
 import { serveStaticFile } from './staticFileMiddleware.js';
 import { handleUnsplashRequest } from './unsplashHandler.js';
@@ -13,10 +15,10 @@ import { handleFileUpload } from './fileUploadHandler.js';
 import url from 'url';
 
 import { handleAdmin } from '../routes/admin.js';
-import { handleUserAdd, handleUserGet, handleUserDeleteByUsername, handleUserUpdateByUsername, handleUserGetByUsername } from '../api/userApi.js';
 import { createOrRetrieveSession } from './sessionManager.js';
 import { handleLogout } from '../routes/logout.js';
-import { handlePlantAdd, handlePlantGet, handlePlantDeleteById } from '../api/plantApi.js';
+import userController from '../controllers/userController.js';
+import plantController from '../controllers/plantController.js';
 
 const routes = {
     'GET': {
@@ -25,7 +27,8 @@ const routes = {
         '/about': handleRequest,
         '/help': handleRequest,
         '/unsplash': handleRequest,
-        '/catalog': handleRequest,
+        '/top': handleTop,
+        '/myPlants': handleMyPlants,
         '/contact': handleContact,
         '/search': handleSearch,
         '/signup': handleSignup,
@@ -36,9 +39,11 @@ const routes = {
         '/api/plants': handlePlantApi,
         '/api/unsplash': handleUnsplashRequest,
         '/admin': handleAdmin,
-        '/api/users': handleUserGet,
-        '/api/users/:username': handleUserGetByUsername,
-        '/api/plants': handlePlantGet
+        '/api/users': userController.handleUserGet,
+        '/api/users/:username': userController.handleUserGetByUsername,
+        '/api/plants': plantController.handlePlantGet,
+        '/api/plants/current': plantController.handlePlantGetCurrentUser,
+        '/api/plants/top': plantController.handlePlantGetTop
     },
     'POST': {
         '/contact': handleContactForm,
@@ -47,15 +52,15 @@ const routes = {
         '/login': handleLoginForm,
         '/logout': handleLogout,
         '/upload': handleFileUpload,
-        '/api/users': handleUserAdd,
-        '/api/plants': handlePlantAdd
+        '/api/users': userController.handleUserAdd,
+        '/api/plants': plantController.handlePlantAdd
     },
     'PUT': {
-        '/api/users/:username': handleUserUpdateByUsername
+        '/api/users/:username': userController.handleUserUpdateByUsername
     },
     'DELETE': {
-        '/api/users/:username': handleUserDeleteByUsername,
-        '/api/plants/:id': handlePlantDeleteById
+        '/api/users/:username': userController.handleUserDeleteByUsername,
+        '/api/plants/:id': plantController.handlePlantDeleteById
     }
 };
 

@@ -21,8 +21,8 @@ const getFilePath = (requestPath) => {
         return path.join(frontEndDirectory, 'notFound.html');
     } else if (requestPath === '/unsplash') {
         return path.join(frontEndDirectory, 'unsplash.html');
-    } else if (requestPath === '/catalog') {
-        return path.join(frontEndDirectory, 'catalog.html');
+    } else if (requestPath === '/top') {
+        return path.join(frontEndDirectory, 'top.html');
     } else {
         return path.join(frontEndDirectory, requestPath);
     }

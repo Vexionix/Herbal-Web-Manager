@@ -1,224 +1,167 @@
-import { connect } from '../database/mongooseDatabase.js';
-import User from '../models/userModel.js';
-import mongoose from 'mongoose';
+import userService from '../services/userService.js';
 import bcrypt from 'bcrypt';
 
-async function createNewUser(username, firstName, lastName, password, email, liked_photos, userType) {
-    await connect();
-
-    try {
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-        const newUser = await User.create({
-            username,
-            firstName,
-            lastName,
-            password: hashedPassword,
-            email,
-            liked_photos,
-            userType
+class UserController {
+    async handleUserAdd(req, res) {
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
         });
-        console.log('User created successfully:', newUser);
-        return newUser;
-    } catch (error) {
-        console.error('Error creating user:', error);
-        throw error;
-    }
-}
 
+        req.on('end', async () => {
+            const userData = JSON.parse(body);
 
-async function findAllUsers() {
-    await connect();
-
-    try {
-        const users = await User.find({});
-        // console.log('All users:', users);
-        return users;
-    } catch (error) {
-        console.error('Error finding users:', error);
-        throw error;
-    }
-}
-
-async function findUserByUsernameOrEmail(username, email) {
-    await connect();
-
-    try {
-        return await User.findOne({ $or: [{ username }, { email }] }).lean();
-    } catch (error) {
-        console.error('Error finding user by username or email:', error);
-        throw error;
-    }
-}
-
-async function findUserByUsername(username) {
-    await connect();
-
-    try {
-        return await User.findOne({ username }).lean();
-    } catch (error) {
-        console.error('Error finding user by username:', error);
-        throw error;
-    }
-}
-
-async function updateUserByUsername(username, newData) {
-    await connect();
-
-    try {
-        const updatedUser = await User.findOneAndUpdate(
-            { username: username },
-            newData,
-            {
-                new: true,
-                upsert: false
+            if (userData.username === undefined || userData.firstName === undefined || userData.lastName === undefined || userData.password === undefined || userData.email === undefined) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Missing required fields' }));
+                return;
             }
-        );
+            if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(userData.password)) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Password does not meet the criteria' }));
+                return;
+            }
 
-        if (updatedUser) {
-            console.log('User updated successfully:', updatedUser);
-        } else {
-            console.log('No matching user found with username:', username);
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email)) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Invalid email' }));
+                return;
+            }
+
+            const existingUser = await userService.findUserByUsernameOrEmail(userData.username, userData.email);
+            if (existingUser) {
+                res.writeHead(409, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Username or email already exists' }));
+                return;
+            }
+            try {
+                const newUser = await userService.createNewUser(
+                    userData.username,
+                    userData.firstName,
+                    userData.lastName,
+                    userData.password,
+                    userData.email,
+                    userData.liked_photos,
+                    userData.userType
+                );
+
+                res.writeHead(201, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(newUser));
+            } catch (error) {
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Error creating user', error }));
+            }
+        });
+    }
+
+    async handleUserGet(req, res) {
+        try {
+            const users = await userService.findAllUsers();
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(users));
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error fetching users', error }));
         }
+    };
 
-        return updatedUser;
-    } catch (error) {
-        console.error('Error updating user:', error);
-        throw error;
-    }
-}
-
-async function deleteUserById(id) {
-    await connect();
-
-    try {
-        const deletedUser = await User.findByIdAndDelete(id);
-
-        if (!deletedUser) {
-            throw new Error('User not found');
+    async handleUserGetByUsername(req, res) {
+        const { username } = req.params;
+        try {
+            const user = await userService.findUserByUsername(username);
+            if (user) {
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User returned successfully', userData: user }));
+            } else {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User not found' }));
+            }
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error finding user', error }));
         }
+    };
 
-        console.log('User deleted successfully:', deletedUser);
-        return deletedUser;
-    } catch (error) {
-        console.error('Error deleting user:', error);
-        throw error;
-    } finally {
-        mongoose.disconnect();
-        console.log('Database disconnected');
+    async handleUserDeleteById(req, res) {
+        const { id } = req.params;
+        try {
+            const user = await userService.deleteUserById(id);
+            if (user) {
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User deleted successfully' }));
+            } else {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User not found' }));
+            }
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error deleting user', error }));
+        }
+    };
+
+    async handleUserDeleteByUsername(req, res) {
+        const { username } = req.params;
+
+        try {
+            const user = await userService.deleteUserByUsername(username);
+            if (user) {
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User deleted successfully' }));
+            } else {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'User not found' }));
+            }
+        } catch (error) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Error deleting user', error }));
+        }
+    };
+
+    async handleUserUpdateByUsername(req, res) {
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+        req.on('end', async () => {
+
+            const userData = JSON.parse(body);
+
+            if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(userData.password)) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Password does not meet the criteria' }));
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email)) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Invalid email' }));
+                return;
+            }
+
+            const saltRounds = 10;
+            userData.password = await bcrypt.hash(userData.password, saltRounds);
+
+            if (userData.username === undefined || userData.firstName === undefined || userData.lastName === undefined || userData.password === undefined || userData.email === undefined || !userData.role === undefined) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Missing required fields' }));
+                return;
+            }
+
+            try {
+                const user = await userService.updateUserByUsername(userData.username, userData);
+                if (user) {
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ message: 'User updated successfully' }));
+                } else {
+                    res.writeHead(404, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ message: 'User not found' }));
+                }
+            } catch (error) {
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ message: 'Error updating user', error }));
+            }
+        });
     }
 }
 
-async function deleteUserByUsername(username) {
-    await connect();
-
-    try {
-        const deletedUser = await User.findOneAndDelete({ username });
-        console.log('User deleted successfully:', deletedUser);
-        return deletedUser;
-    } catch (error) {
-        console.error('Error deleting user:', error);
-        throw error;
-    }
-}
-
-async function addLikedPhoto(username, photoId) {
-    await connect();
-
-    try {
-        const updatedUser = await User.findOneAndUpdate(
-            { username },
-            { $addToSet: { liked_photos: { _id: photoId } } },
-            { new: true }
-        );
-        console.log('Liked photo added successfully for user:', updatedUser);
-        return updatedUser;
-    } catch (error) {
-        console.error('Error adding liked photo:', error);
-        throw error;
-    }
-}
-async function deleteAllUsers() {
-    await connect();
-
-    try {
-        const result = await User.deleteMany({});
-        console.log('All users deleted successfully:', result);
-        return result;
-    } catch (error) {
-        console.error('Error deleting all users:', error);
-        throw error;
-    }
-}
-async function removeLikedPhoto(username, photoId) {
-    await connect();
-
-    try {
-        const updatedUser = await User.findOneAndUpdate(
-            { username },
-            { $pull: { liked_photos: { _id: photoId } } },
-            { new: true }
-        );
-        console.log('Liked photo removed successfully for user:', updatedUser);
-        return updatedUser;
-    } catch (error) {
-        console.error('Error removing liked photo:', error);
-        throw error;
-    }
-}
-
-async function addCollection(username, collectionId) {
-    await connect();
-
-    try {
-        // Convert collectionId to ObjectId
-        const collectionObjectId = mongoose.Types.ObjectId(collectionId);
-
-        const updatedUser = await User.findOneAndUpdate(
-            { username },
-            { $addToSet: { collections: collectionObjectId } },
-            { new: true }
-        );
-
-        console.log('Collection added successfully for user:', updatedUser);
-        return updatedUser;
-    } catch (error) {
-        console.error('Error adding collection:', error);
-        throw error;
-    }
-}
-
-async function removeCollection(username, collectionId) {
-    await connect();
-
-    try {
-        const updatedUser = await User.findOneAndUpdate(
-            { username },
-            { $pull: { collections: { _id: collectionId } } },
-            { new: true }
-        );
-        console.log('Collection removed successfully for user:', updatedUser);
-        return updatedUser;
-    } catch (error) {
-        console.error('Error removing collection:', error);
-        throw error;
-    }
-}
-
-
-export {
-    createNewUser,
-    findAllUsers,
-    updateUserByUsername,
-    deleteUserByUsername,
-    addLikedPhoto,
-    removeLikedPhoto,
-    addCollection,
-    removeCollection,
-    findUserByUsernameOrEmail,
-    findUserByUsername,
-    deleteAllUsers,
-    deleteUserById
-};
-
+export default new UserController();
