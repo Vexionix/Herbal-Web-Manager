@@ -10,20 +10,15 @@ const __dirname = path.dirname(__filename);
 const frontEndDirectory = path.join(__dirname, '..', '..', 'FrontEnd');
 const assetsDirectory = path.join(__dirname, '..', '..', 'assets');
 const plantsDirectory = path.join(__dirname, '..', '..', 'plants');
-const dataDirectory = path.join(__dirname, '..', '..', 'data');
 const uploadedDirectory = path.join(__dirname, '..', '..', 'uploaded');
 
 export const serveStaticFile = async (req, res) => {
     const requestPath = url.parse(req.url).pathname;
-
-    if (req.url === '/favicon.ico') {
-        res.writeHead(204);
-        res.end();
-        return;
-    }
     let filePath;
     if (requestPath.endsWith('.css')) {
         filePath = path.join(frontEndDirectory, requestPath.split('/').pop());
+    } else if (requestPath.endsWith('.ico')) {
+        filePath = path.join(assetsDirectory, requestPath.split('/').pop());
     } else if (requestPath.endsWith('.js')) {
         const parts = requestPath.split('/');
         const fileName = parts.pop();
