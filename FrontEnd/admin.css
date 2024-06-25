@@ -214,13 +214,36 @@ footer .footer-container p {
 }
 
 /* Mobile */
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 401px) and (max-width: 767px) {
   .logo {
     font-size: 250%;
   }
 
   .search-bar-container input[type="text"] {
     width: 50%;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+  }
+
+  table,
+  th,
+  td {
+    padding: 0.15rem;
+    border: 1px solid #ddd;
+  }
+
+  th,
+  td {
+    text-align: left;
+  }
+
+  th {
+    background-color: #f4f4f4;
   }
 
   .redirect-button {
@@ -234,4 +257,31 @@ footer .footer-container p {
   .footer-container p {
     font-size: 80%;
   }
+}
+
+
+@media screen and (max-width: 400px) {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+  }
+
+  table,
+  th,
+  td {
+    padding: 0.005rem;
+    border: 1px solid #ddd;
+  }
+
+  th,
+  td {
+    text-align: left;
+  }
+
+  th {
+    background-color: #f4f4f4;
+  }
+
 }
