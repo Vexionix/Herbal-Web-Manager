@@ -60,7 +60,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         row.dataset.id = userData._id;
         row.insertCell(0).innerText = userTableBody.rows.length;
         row.insertCell(1).innerText = userData.username;
-        row.insertCell(2).innerText = userData.email;
+        if (window.matchMedia('(max-width: 767px)').matches) {
+            // Insert cell and slice email if condition is met
+            row.insertCell(2).innerText = userData.email.slice(0, 10);
+        } else {
+            // Insert cell without slicing if condition is not met
+            row.insertCell(2).innerText = userData.email;
+        }
         const actionsCell = row.insertCell(3);
         actionsCell.innerHTML = `<button onclick="editUser(this)">Edit</button> <button onclick="deleteUser(this)">Delete</button>`;
     }
