@@ -10,6 +10,7 @@ import { handleLikedPlants } from '../routes/likedPlants.js';
 import { handleUserProfile } from '../routes/userProfile.js';
 import { handleTop } from '../routes/top.js';
 import { handleRSS } from '../routes/rss.js';
+import { handleIsAdmin } from './isAdmin.js';
 import { handleMyPlants } from '../routes/myPlants.js';
 import { handlePlantApi } from './handlePlantApi.js';
 import { serveStaticFile } from './staticFileMiddleware.js';
@@ -45,6 +46,7 @@ const routes = {
         '/notFound': handleNotFound,
         '/statistics': handleRequest,
         '/api/plants': handlePlantApi,
+        '/api/isAdmin': handleIsAdmin,
         '/api/unsplash': handleUnsplashRequest,
         '/admin': handleAdmin,
         '/api/users': userController.handleUserGet,
