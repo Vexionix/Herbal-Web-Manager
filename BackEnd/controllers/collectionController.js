@@ -19,7 +19,7 @@ class CollectionController {
                 throw new Error('User not logged in');
             }
             const username = req.session.data.user.username;
-            const result = await collectionService.deleteCollectionItemsByPlant(username, decodeURI(plant_name));
+            const result = await collectionService.deleteCollectionItemsByPlant(decodeURI(username), decodeURI(plant_name));
             res.writeHead(204, { 'Content-Type': 'application/json' });
             res.end();
         } catch (error) {
@@ -27,6 +27,31 @@ class CollectionController {
             res.end(JSON.stringify({ message: error.message }));
         }
     }
+
+    async deleteAllCollectionsByUsername(req, res) {
+        const { username } = req.params;
+        try {
+            const result = await collectionService.deleteAllCollectionItemsByUsername(decodeURI(username));
+            res.writeHead(204, { 'Content-Type': 'application/json' });
+            res.end();
+        } catch (error) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: error.message }));
+        }
+    }
+
+    async deleteAllCollectionsByPlantName(req, res) {
+        const { plant_name } = req.params;
+        try {
+            const result = await collectionService.deleteAllCollectionItemsByPlant(decodeURI(plant_name));
+            res.writeHead(204, { 'Content-Type': 'application/json' });
+            res.end();
+        } catch (error) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: error.message }));
+        }
+    }
+
 
     async updateCollectionByPlantName(req, res) {
         const { plant_name } = req.params;

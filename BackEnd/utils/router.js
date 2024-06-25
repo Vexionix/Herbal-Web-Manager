@@ -67,7 +67,7 @@ const routes = {
         '/api/users/updatePassword': userController.handleUserUpdatePassword,
         '/api/plants': plantController.handlePlantAdd,
         '/api/plants/search': plantController.handlePlantSearch,
-        '/api/collections': collectionController.createCollection//ads plant
+        '/api/collections': collectionController.createCollection
     },
     'PUT': {
         '/api/users/:username': userController.handleUserUpdateByUsername,
@@ -80,7 +80,10 @@ const routes = {
     },
     'DELETE': {
         '/api/users/:username': userController.handleUserDeleteByUsername,
-        '/api/collections/:plant_name': collectionController.deleteCollectionsByPlantName//delete plant
+        '/api/plants/:id': plantController.handlePlantDeleteById,
+        '/api/collections/:plant_name': collectionController.deleteCollectionsByPlantName,
+        '/api/collections/deleteAllPlant/:plant_name': collectionController.deleteAllCollectionsByPlantName,
+        '/api/collections/deleteAllUser/:username': collectionController.deleteAllCollectionsByUsername
     }
 };
 

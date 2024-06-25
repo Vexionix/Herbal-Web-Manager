@@ -83,6 +83,26 @@ class CollectionService {
         }
     }
 
+    async deleteAllCollectionItemsByPlant(plantName) {
+        await connect();
+        try {
+            const result = await Collection.deleteMany({ plant_name: plantName });
+            return result;
+        } catch (error) {
+            throw new Error(`Error deleting collection items by plant name: ${error.message}`);
+        }
+    }
+
+    async deleteAllCollectionItemsByUsername(username) {
+        await connect();
+        try {
+            const result = await Collection.deleteMany({ username: username });
+            return result;
+        } catch (error) {
+            throw new Error(`Error deleting collection items by username: ${error.message}`);
+        }
+    }
+
     async deleteCollectionItemByPlantAndUsername(plantName, username) {
         await connect();
         try {

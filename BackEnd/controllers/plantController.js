@@ -138,7 +138,7 @@ class PlantController {
             const plantData = JSON.parse(body);
 
             try {
-                const updatedPlant = await plantService.updatePlantByName(plantName, plantData);
+                const updatedPlant = await plantService.updatePlantByName(decodeURI(plantName), plantData);
                 if (!updatedPlant) {
                     res.writeHead(404, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify({ message: 'Plant not found' }));
@@ -206,7 +206,6 @@ class PlantController {
 
     async handlePlantDeleteById(req, res) {
         const plantId = req.url.split('/').pop();
-
         try {
             if (!req.session.data.user || req.session.data.user.userType !== 'admin') {
                 res.writeHead(401, { 'Content-Type': 'application/json' });
@@ -219,6 +218,12 @@ class PlantController {
                 res.end(JSON.stringify({ message: 'Plant not found' }));
                 return;
             }
+            const response = await fetch('http://localhost:' + process.env.PORT + '/api/collections/deleteAllPlant/' + encodeURI(deletedPlant.name), {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(deletedPlant));
         } catch (error) {

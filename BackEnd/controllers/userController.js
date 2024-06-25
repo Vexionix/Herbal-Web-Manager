@@ -117,15 +117,21 @@ class UserController {
 
     async handleUserDeleteByUsername(req, res) {
         const { username } = req.params;
-
         try {
             if (!req.session.data.user || req.session.data.user.userType !== 'admin') {
                 res.writeHead(401, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ message: 'Unauthorized' }));
                 return;
             }
-            const user = await userService.deleteUserByUsername(username);
+            const user = await userService.deleteUserByUsername(decodeURI(username));
             if (user) {
+                console.log('http://localhost:' + process.env.PORT + '/api/collections/deleteAllUser/' + encodeURI(user.username));
+                const response = await fetch('http://localhost:' + process.env.PORT + '/api/collections/deleteAllUser/' + encodeURI(user.username), {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ message: 'User deleted successfully' }));
             } else {
@@ -136,7 +142,7 @@ class UserController {
             res.writeHead(500, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ message: 'Error deleting user', error }));
         }
-    };
+    }
 
     async handleUserUpdateByUsername(req, res) {
         let body = '';
@@ -169,7 +175,7 @@ class UserController {
             }
 
             try {
-                const user = await userService.updateUserByUsername(userData.username, userData);
+                const user = await userService.updateUserByUsername(decodeURI(userData.username), userData);
                 if (user) {
                     res.writeHead(200, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify({ message: 'User updated successfully' }));
